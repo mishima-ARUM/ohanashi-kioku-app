@@ -21,7 +21,7 @@ export function ColorAnswer({ options, selected, disabled, onSelect }: Props) {
           <div
             className={`w-16 h-16 rounded-full border-4 transition-all
               ${selected === o.id ? 'border-gray-800 scale-125 shadow-lg' : 'border-gray-300'}`}
-            style={{ backgroundColor: o.color }}
+            style={{ backgroundColor: o.color ?? '#cccccc' }}
           />
           <span className="text-sm font-bold text-gray-600">{o.label}</span>
         </button>
