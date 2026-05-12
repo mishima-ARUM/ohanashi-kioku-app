@@ -23,7 +23,7 @@ export function QuizPage() {
   const [qIdx, setQIdx] = useState(0)
   const [phase, setPhase] = useState<Phase>('reading')
   const [selectedId, setSelectedId] = useState<string | null>(null)
-  const [answers, setAnswers] = useState<Answer[]>([])
+  const [, setAnswers] = useState<Answer[]>([])
 
   const selectedIdRef = useRef<string | null>(null)
   const qIdxRef = useRef(0)
@@ -75,7 +75,7 @@ export function QuizPage() {
     })
   }, [story.questions, speak, finishQuiz, startQuestion])
 
-  const { timeLeft, start: startTimer, reset: resetTimer } = useQuizTimer(20, handleTimeout)
+  const { timeLeft, start: startTimer } = useQuizTimer(20, handleTimeout)
 
   useEffect(() => {
     if (phase === 'selecting') startTimer()

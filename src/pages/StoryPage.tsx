@@ -11,7 +11,7 @@ export function StoryPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const story = stories.find(s => s.id === id)
-  const { speak, stop, isPlaying, rate, setRate } = useTTS()
+  const { speak, stop, rate, setRate } = useTTS()
   const [phase, setPhase] = useState<Phase>('idle')
 
   useEffect(() => () => { stop() }, [stop])
