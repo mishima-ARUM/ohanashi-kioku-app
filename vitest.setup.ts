@@ -14,11 +14,12 @@ Object.defineProperty(window, 'speechSynthesis', {
 
 Object.defineProperty(window, 'SpeechSynthesisUtterance', {
   value: class {
-    text = ''; lang = ''; rate = 1
+    text = ''; lang = ''; rate = 1; volume = 1; pitch = 1
     onstart: (() => void) | null = null
     onend: (() => void) | null = null
     onpause: (() => void) | null = null
     onresume: (() => void) | null = null
+    onerror: ((e: Event) => void) | null = null
     constructor(text: string) { this.text = text }
   },
   writable: true,
