@@ -28,6 +28,8 @@ export function QuizPage() {
   const selectedIdRef = useRef<string | null>(null)
   const qIdxRef = useRef(0)
   const answersRef = useRef<Answer[]>([])
+  const earlyPressRef = useRef(false)
+  const startQuestionRef = useRef<(index: number) => void>(() => {})
 
   useEffect(() => () => { stop() }, [stop])
 
@@ -46,13 +48,37 @@ export function QuizPage() {
   const startQuestion = useCallback((index: number) => {
     const q = story.questions[index]
     selectedIdRef.current = null
+    earlyPressRef.current = false
     setSelectedId(null)
     setPhase('reading')
-    const text = `問題${index + 1}。${q.text}。回答を選択してください。はじめ`
-    speak(text, () => {
-      setPhase('selecting')
-    })
-  }, [story.questions, speak])
+    // 問題文読み上げ前に1秒間のポーズ
+    setTimeout(() => {
+      speak(`問題${index + 1}。${q.text}`, () => {
+        if (earlyPressRef.current) {
+          // 読み上げ中にボタンを押した場合 → 罰としてスキップ
+          const answer: Answer = { questionId: q.id, selectedId: '', correct: false }
+          const newAnswers = [...answersRef.current, answer]
+          answersRef.current = newAnswers
+          setAnswers(newAnswers)
+          speak('きちんと読み上げるまで、手を膝の上に置いてお待ちください。問題はスキップします。', () => {
+            const next = index + 1
+            if (next >= story.questions.length) {
+              finishQuiz(newAnswers)
+            } else {
+              qIdxRef.current = next
+              setQIdx(next)
+              startQuestionRef.current(next)
+            }
+          })
+        } else {
+          speak('回答を選択してください。はじめ', () => {
+            setPhase('selecting')
+          })
+        }
+      })
+    }, 1000)
+  }, [story.questions, speak, finishQuiz])
+  startQuestionRef.current = startQuestion
 
   const handleTimeout = useCallback(() => {
     const q = story.questions[qIdxRef.current]
@@ -88,6 +114,10 @@ export function QuizPage() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSelect = (optionId: string) => {
+    if (phase === 'reading') {
+      earlyPressRef.current = true
+      return
+    }
     if (phase !== 'selecting') return
     selectedIdRef.current = optionId
     setSelectedId(optionId)
