@@ -30,13 +30,13 @@ function splitBySentence(text: string): string[] {
   return text.split(/(?<=[。、！？\n])/).filter(s => s.trim().length > 0)
 }
 
-export function useTTS({ rate: initialRate = 0.7, lang = 'ja-JP', pauseMs = 500 }: UseTTSOptions = {}): UseTTSReturn {
+export function useTTS({ rate: initialRate = 1.0, lang = 'ja-JP', pauseMs = 500 }: UseTTSOptions = {}): UseTTSReturn {
   const [isPlaying, setIsPlaying] = useState(false)
   const [rate, setRate] = useState(initialRate)
   const rateRef = useRef(rate)
   rateRef.current = rate
   const voiceRef = useRef<SpeechSynthesisVoice | null>(null)
-  const cancelledRef = useRef(false)
+  const speakIdRef = useRef(0)
 
   useEffect(() => {
     const loadVoice = () => { voiceRef.current = selectBestVoice(lang) }
@@ -49,13 +49,14 @@ export function useTTS({ rate: initialRate = 0.7, lang = 'ja-JP', pauseMs = 500 
 
   const speak = useCallback((text: string, onDone?: () => void) => {
     window.speechSynthesis.cancel()
-    cancelledRef.current = false
+    speakIdRef.current += 1
+    const myId = speakIdRef.current
 
     const segments = splitBySentence(text)
     if (segments.length === 0) { onDone?.(); return }
 
     const speakNext = (remaining: string[]) => {
-      if (cancelledRef.current) return
+      if (speakIdRef.current !== myId) return
       if (remaining.length === 0) {
         setIsPlaying(false)
         onDone?.()
@@ -84,7 +85,7 @@ export function useTTS({ rate: initialRate = 0.7, lang = 'ja-JP', pauseMs = 500 
   }, [lang, pauseMs])
 
   const stop = useCallback(() => {
-    cancelledRef.current = true
+    speakIdRef.current += 1
     window.speechSynthesis.cancel()
     setIsPlaying(false)
   }, [])

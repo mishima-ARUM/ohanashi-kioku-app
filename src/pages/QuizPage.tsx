@@ -64,14 +64,16 @@ export function QuizPage() {
     setAnswers(newAnswers)
     setPhase('timeout')
     speak('やめ', () => {
-      const next = qIdxRef.current + 1
-      if (next >= story.questions.length) {
-        finishQuiz(newAnswers)
-      } else {
-        qIdxRef.current = next
-        setQIdx(next)
-        startQuestion(next)
-      }
+      setTimeout(() => {
+        const next = qIdxRef.current + 1
+        if (next >= story.questions.length) {
+          finishQuiz(newAnswers)
+        } else {
+          qIdxRef.current = next
+          setQIdx(next)
+          startQuestion(next)
+        }
+      }, 1000)
     })
   }, [story.questions, speak, finishQuiz, startQuestion])
 
