@@ -3,6 +3,7 @@ import { useState, useCallback, useRef, useEffect } from 'react'
 interface UseTTSOptions {
   rate?: number
   lang?: string
+  pauseMs?: number
 }
 
 interface UseTTSReturn {
@@ -13,27 +14,77 @@ interface UseTTSReturn {
   setRate: (r: number) => void
 }
 
-export function useTTS({ rate: initialRate = 1.0, lang = 'ja-JP' }: UseTTSOptions = {}): UseTTSReturn {
+function selectBestVoice(lang: string): SpeechSynthesisVoice | null {
+  const voices = window.speechSynthesis.getVoices?.() ?? []
+  const jaVoices = voices.filter(v => v.lang.startsWith(lang.slice(0, 2)))
+  return (
+    jaVoices.find(v => v.name.includes('Nanami')) ||
+    jaVoices.find(v => v.name.includes('Google') && v.lang === lang) ||
+    jaVoices.find(v => v.lang === lang) ||
+    jaVoices[0] ||
+    null
+  )
+}
+
+function splitBySentence(text: string): string[] {
+  return text.split(/(?<=[。、！？\n])/).filter(s => s.trim().length > 0)
+}
+
+export function useTTS({ rate: initialRate = 0.7, lang = 'ja-JP', pauseMs = 500 }: UseTTSOptions = {}): UseTTSReturn {
   const [isPlaying, setIsPlaying] = useState(false)
   const [rate, setRate] = useState(initialRate)
   const rateRef = useRef(rate)
   rateRef.current = rate
+  const voiceRef = useRef<SpeechSynthesisVoice | null>(null)
+  const cancelledRef = useRef(false)
+
+  useEffect(() => {
+    const loadVoice = () => { voiceRef.current = selectBestVoice(lang) }
+    loadVoice()
+    window.speechSynthesis.onvoiceschanged = loadVoice
+    return () => { window.speechSynthesis.onvoiceschanged = null }
+  }, [lang])
 
   useEffect(() => () => { window.speechSynthesis.cancel() }, [])
 
   const speak = useCallback((text: string, onDone?: () => void) => {
     window.speechSynthesis.cancel()
-    const u = new SpeechSynthesisUtterance(text)
-    u.lang = lang
-    u.rate = rateRef.current
-    u.onstart = () => setIsPlaying(true)
-    u.onend = () => { setIsPlaying(false); onDone?.() }
-    u.onpause = () => setIsPlaying(false)
-    u.onresume = () => setIsPlaying(true)
-    window.speechSynthesis.speak(u)
-  }, [lang])
+    cancelledRef.current = false
+
+    const segments = splitBySentence(text)
+    if (segments.length === 0) { onDone?.(); return }
+
+    const speakNext = (remaining: string[]) => {
+      if (cancelledRef.current) return
+      if (remaining.length === 0) {
+        setIsPlaying(false)
+        onDone?.()
+        return
+      }
+
+      const [current, ...rest] = remaining
+      const u = new SpeechSynthesisUtterance(current)
+      u.lang = lang
+      u.rate = rateRef.current
+      if (voiceRef.current) u.voice = voiceRef.current
+      u.onstart = () => setIsPlaying(true)
+      u.onend = () => {
+        if (rest.length === 0) {
+          setIsPlaying(false)
+          onDone?.()
+        } else {
+          setTimeout(() => speakNext(rest), pauseMs)
+        }
+      }
+      u.onerror = () => { setIsPlaying(false); onDone?.() }
+      window.speechSynthesis.speak(u)
+    }
+
+    speakNext(segments)
+  }, [lang, pauseMs])
 
   const stop = useCallback(() => {
+    cancelledRef.current = true
     window.speechSynthesis.cancel()
     setIsPlaying(false)
   }, [])
