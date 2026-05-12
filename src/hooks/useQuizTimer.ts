@@ -11,32 +11,54 @@ export function useQuizTimer(seconds: number, onExpire: () => void): UseQuizTime
   const [timeLeft, setTimeLeft] = useState(seconds)
   const [isRunning, setIsRunning] = useState(false)
   const onExpireRef = useRef(onExpire)
+  const countRef = useRef(seconds)
+  const timerIdRef = useRef<number | undefined>(undefined)
+
   onExpireRef.current = onExpire
 
-  useEffect(() => {
-    if (!isRunning) return
+  const scheduleTimer = useCallback(() => {
+    timerIdRef.current = setTimeout(() => {
+      countRef.current -= 1
+      setTimeLeft(countRef.current)
 
-    const id = setInterval(() => {
-      setTimeLeft(prev => {
-        const newTime = prev - 1
-        if (newTime <= 0) {
-          setIsRunning(false)
-          onExpireRef.current()
-          return 0
-        }
-        return newTime
-      })
+      if (countRef.current <= 0) {
+        setIsRunning(false)
+        onExpireRef.current()
+        return
+      }
+
+      scheduleTimer()
     }, 1000)
+  }, [])
 
-    return () => clearInterval(id)
-  }, [isRunning])
+  useEffect(() => {
+    if (!isRunning) {
+      if (timerIdRef.current) {
+        clearTimeout(timerIdRef.current)
+      }
+      return
+    }
+
+    scheduleTimer()
+
+    return () => {
+      if (timerIdRef.current) {
+        clearTimeout(timerIdRef.current)
+      }
+    }
+  }, [isRunning, scheduleTimer])
 
   const start = useCallback(() => {
+    countRef.current = seconds
     setTimeLeft(seconds)
     setIsRunning(true)
   }, [seconds])
 
   const reset = useCallback(() => {
+    if (timerIdRef.current) {
+      clearTimeout(timerIdRef.current)
+    }
+    countRef.current = seconds
     setIsRunning(false)
     setTimeLeft(seconds)
   }, [seconds])
