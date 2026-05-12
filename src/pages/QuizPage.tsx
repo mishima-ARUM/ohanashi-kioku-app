@@ -79,7 +79,7 @@ export function QuizPage() {
 
   useEffect(() => {
     if (phase === 'selecting') startTimer()
-  }, [phase, startTimer])
+  }, [phase]) // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     startQuestion(0)
@@ -99,7 +99,7 @@ export function QuizPage() {
     number: NumberAnswer,
     color: ColorAnswer,
     character: CharacterAnswer,
-  }[currentQ.type]
+  }[currentQ.type] ?? IllustrationAnswer
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 to-pink-50 p-4">

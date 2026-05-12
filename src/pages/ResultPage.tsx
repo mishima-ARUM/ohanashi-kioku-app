@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { stories } from '../data/stories'
 import { useProgress } from '../hooks/useProgress'
@@ -12,10 +13,11 @@ export function ResultPage() {
     .filter(r => r.storyId === id)
     .sort((a, b) => b.date.localeCompare(a.date))[0]
 
-  if (!latestResult) {
-    navigate('/')
-    return null
-  }
+  useEffect(() => {
+    if (!latestResult) navigate('/')
+  }, [latestResult, navigate])
+
+  if (!latestResult) return null
 
   const { score, total, answers } = latestResult
   const pct = Math.round((score / total) * 100)
