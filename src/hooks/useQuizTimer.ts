@@ -10,7 +10,6 @@ interface UseQuizTimerReturn {
 export function useQuizTimer(seconds: number, onExpire: () => void): UseQuizTimerReturn {
   const [timeLeft, setTimeLeft] = useState(seconds)
   const [isRunning, setIsRunning] = useState(false)
-  const startTimeRef = useRef<number | null>(null)
   const onExpireRef = useRef(onExpire)
   onExpireRef.current = onExpire
 
