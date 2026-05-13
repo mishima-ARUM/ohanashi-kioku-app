@@ -18,9 +18,11 @@ export function StoryPage() {
 
   const handleStart = useCallback(() => {
     setPhase('announcing')
-    speak('これからお話を読みます。手を膝の上において、静かに聞いてください。', () => {
+    speak('これからお話を読み上げます。手を膝の上に置いて、静かに聞いてください。', () => {
       setPhase('reading')
-      speak(story!.story, () => setPhase('done'))
+      setTimeout(() => {
+        speak(story!.story, () => setPhase('done'))
+      }, 1500)
     })
   }, [speak, story])
 
