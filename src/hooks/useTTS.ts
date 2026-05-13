@@ -52,14 +52,22 @@ export function useTTS({ rate: initialRate = 1.0, lang = 'ja-JP', pauseMs = 500 
     speakIdRef.current += 1
     const myId = speakIdRef.current
 
+    // ブラウザのonend二重発火バグや複数経路からの呼び出しを防ぐ
+    let called = false
+    const safeOnDone = () => {
+      if (called) return
+      called = true
+      onDone?.()
+    }
+
     const segments = splitBySentence(text)
-    if (segments.length === 0) { onDone?.(); return }
+    if (segments.length === 0) { safeOnDone(); return }
 
     const speakNext = (remaining: string[]) => {
       if (speakIdRef.current !== myId) return
       if (remaining.length === 0) {
         setIsPlaying(false)
-        onDone?.()
+        safeOnDone()
         return
       }
 
@@ -73,7 +81,7 @@ export function useTTS({ rate: initialRate = 1.0, lang = 'ja-JP', pauseMs = 500 
         if (speakIdRef.current !== myId) return
         if (rest.length === 0) {
           setIsPlaying(false)
-          onDone?.()
+          safeOnDone()
         } else {
           setTimeout(() => speakNext(rest), pauseMs)
         }
@@ -82,7 +90,7 @@ export function useTTS({ rate: initialRate = 1.0, lang = 'ja-JP', pauseMs = 500 
         if (speakIdRef.current !== myId) return
         setIsPlaying(false)
         // 'interrupted' はキャンセルによるものなので onDone を呼ばない
-        if (e.error !== 'interrupted') { onDone?.() }
+        if (e.error !== 'interrupted') { safeOnDone() }
       }
       window.speechSynthesis.speak(u)
     }
