@@ -70,6 +70,7 @@ export function useTTS({ rate: initialRate = 1.0, lang = 'ja-JP', pauseMs = 500 
       if (voiceRef.current) u.voice = voiceRef.current
       u.onstart = () => setIsPlaying(true)
       u.onend = () => {
+        if (speakIdRef.current !== myId) return
         if (rest.length === 0) {
           setIsPlaying(false)
           onDone?.()
@@ -77,7 +78,12 @@ export function useTTS({ rate: initialRate = 1.0, lang = 'ja-JP', pauseMs = 500 
           setTimeout(() => speakNext(rest), pauseMs)
         }
       }
-      u.onerror = () => { setIsPlaying(false); onDone?.() }
+      u.onerror = (e) => {
+        if (speakIdRef.current !== myId) return
+        setIsPlaying(false)
+        // 'interrupted' はキャンセルによるものなので onDone を呼ばない
+        if (e.error !== 'interrupted') { onDone?.() }
+      }
       window.speechSynthesis.speak(u)
     }
 

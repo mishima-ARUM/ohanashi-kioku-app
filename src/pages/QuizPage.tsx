@@ -124,7 +124,8 @@ export function QuizPage() {
   }
 
   const currentQ = story.questions[qIdx]
-  const isDisabled = phase !== 'selecting'
+  // timeout時のみ無効。reading中も押せる（早押し検知のため）
+  const isDisabled = phase === 'timeout'
 
   const AnswerComponent = {
     illustration: IllustrationAnswer,
