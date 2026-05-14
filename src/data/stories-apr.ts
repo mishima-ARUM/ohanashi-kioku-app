@@ -316,7 +316,7 @@ export const storiesApr: Story[] = [
           { id: '112', label: '112cm', emoji: '📏' },
         ],
         explanation: '「よんじゅっぱっセンチ（108cm）！」とせんせいがいいました。',
-        category: '季節',
+        category: '数の記憶',
       },
       {
         id: 'q2', type: 'marker',
@@ -329,7 +329,7 @@ export const storiesApr: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「さんセンチのびていました」とあります。',
-        category: '季節',
+        category: '数の記憶',
       },
     ],
   },

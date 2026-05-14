@@ -20,10 +20,10 @@ const RULES = [
   { keywords: ['いくつ', 'なんぼん', 'なんまい', 'なんこ', 'なんにん', 'なん本', 'なん枚'], category: '数の記憶' },
   { keywords: ['だれ', 'どの子', 'どの人', 'なんという'],                         category: '登場人物' },
   { keywords: ['なかった', 'ないもの', 'なかったもの', '入っていない'],             category: '仲間はずれ' },
-  { keywords: ['きせつ', 'はる', 'なつ', 'あき', 'ふゆ', '春', '夏', '秋', '冬'], category: '季節' },
+  { keywords: ['きせつ', '春', '夏', '秋', '冬'], category: '季節' },
   { keywords: ['さいしょ', 'さいご', 'つぎ', 'じゅんばん', '順番', '何番目'],      category: '順番・流れ' },
   { keywords: ['どこ', '場所', 'どのお店', 'どの公園'],                            category: '場所' },
-  { keywords: ['もって', 'かばん', 'なにを持', '何を持'],                          category: '持ち物・もの' },
+  { keywords: ['をもって', 'かばん', 'なにを持', '何を持'],                         category: '持ち物・もの' },
 ]
 
 function determineCategory(text) {
