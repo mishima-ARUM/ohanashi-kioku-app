@@ -1,6 +1,7 @@
 import type { Story } from '../types'
 import { storiesNov } from './stories-nov'
 import { storiesDec } from './stories-dec'
+import { storiesJan } from './stories-jan'
 
 const INS = 'ただしいこたえをえらんで、あかでまるをおしてください'
 
@@ -801,4 +802,5 @@ export const stories: Story[] = [
   },
   ...storiesNov,
   ...storiesDec,
+  ...storiesJan,
 ]
