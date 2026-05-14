@@ -3,6 +3,7 @@ import { storiesNov } from './stories-nov'
 import { storiesDec } from './stories-dec'
 import { storiesJan } from './stories-jan'
 import { storiesFeb } from './stories-feb'
+import { storiesMar } from './stories-mar'
 
 const INS = 'ただしいこたえをえらんで、あかでまるをおしてください'
 
@@ -805,4 +806,5 @@ export const stories: Story[] = [
   ...storiesDec,
   ...storiesJan,
   ...storiesFeb,
+  ...storiesMar,
 ]
