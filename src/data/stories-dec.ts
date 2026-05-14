@@ -25,6 +25,7 @@ export const storiesDec: Story[] = [
           { id: 'white',  label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「きいろいほし」をてっぺんにつけました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -38,6 +39,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「あかいボールをみっつ」つけました。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -51,6 +53,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「あおいボールをふたつ」つけました。',
+        category: '数の記憶',
       },
     ],
   },
@@ -75,6 +78,7 @@ export const storiesDec: Story[] = [
           { id: '6', label: '6', emoji: '6️⃣' },
         ],
         explanation: '「ツリーはよんだんかさなっていました」とあります。',
+        category: '行動・できごと',
       },
       {
         id: 'q2',
@@ -88,6 +92,7 @@ export const storiesDec: Story[] = [
           { id: 'blue',  label: 'あお',   emoji: '🔵' },
         ],
         explanation: '「ユウはぴんくのボールをふたつ」つけました。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -101,6 +106,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「お兄さんはしろいボールをみっつ」つけました。',
+        category: '数の記憶',
       },
     ],
   },
@@ -125,6 +131,7 @@ export const storiesDec: Story[] = [
           { id: '5', label: '5', emoji: '5️⃣' },
         ],
         explanation: '「あかいボールがよっつ」はいっていました。',
+        category: '数の記憶',
       },
       {
         id: 'q2',
@@ -138,6 +145,7 @@ export const storiesDec: Story[] = [
           { id: 'blue',   label: 'あお',     emoji: '🔵' },
         ],
         explanation: '「モールはぎんいろでキラキラしていました」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -150,6 +158,7 @@ export const storiesDec: Story[] = [
           { id: 'both',    label: 'ふたりで',   emoji: '👧👵' },
         ],
         explanation: '「おばあちゃんはきいろいボールをぜんぶつけました」とあります。',
+        category: '色の記憶',
       },
     ],
   },
@@ -175,6 +184,7 @@ export const storiesDec: Story[] = [
           { id: 'brown', label: 'ちゃいろ', emoji: '🟤' },
         ],
         explanation: '「みどりのクレヨン」でかきました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -188,6 +198,7 @@ export const storiesDec: Story[] = [
           { id: 'car',   label: 'くるま',   emoji: '🚗' },
         ],
         explanation: '「あかいでんしゃをください」とかきました。',
+        category: '行動・できごと',
       },
       {
         id: 'q3',
@@ -201,6 +212,7 @@ export const storiesDec: Story[] = [
           { id: 'pink',   label: 'ぴんく', emoji: '🩷' },
         ],
         explanation: '「きいろいふうとう」にいれました。',
+        category: '色の記憶',
       },
     ],
   },
@@ -225,6 +237,7 @@ export const storiesDec: Story[] = [
           { id: 'yellow', label: 'きいろ', emoji: '🟡' },
         ],
         explanation: '「あかいぶくろ」がありました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -238,6 +251,7 @@ export const storiesDec: Story[] = [
           { id: 'dog',    label: 'いぬ',   emoji: '🐶' },
         ],
         explanation: '「うさぎのぬいぐるみ」がはいっていました。',
+        category: '行動・できごと',
       },
       {
         id: 'q3',
@@ -251,6 +265,7 @@ export const storiesDec: Story[] = [
           { id: 'blue',  label: 'あお',   emoji: '🔵' },
         ],
         explanation: '「ぴんくのうさぎのぬいぐるみ」がはいっていました。',
+        category: '色の記憶',
       },
     ],
   },
@@ -275,6 +290,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: 'みどりがふたつ、あかがひとつで「みっつ」ありました。',
+        category: '数の記憶',
       },
       {
         id: 'q2',
@@ -288,6 +304,7 @@ export const storiesDec: Story[] = [
           { id: 'white', label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「ソウはあかいはこをあけると」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -301,6 +318,7 @@ export const storiesDec: Story[] = [
           { id: 'green',  label: 'みどり', emoji: '🟢' },
         ],
         explanation: '「きいろいでんしゃがはいっていました」とあります。',
+        category: '色の記憶',
       },
     ],
   },
@@ -326,6 +344,7 @@ export const storiesDec: Story[] = [
           { id: '5', label: '5', emoji: '5️⃣' },
         ],
         explanation: '「いちごはぜんぶでみっつ」でした。',
+        category: '数の記憶',
       },
       {
         id: 'q2',
@@ -339,6 +358,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「ろうそくはふたほん」たっていました。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -352,6 +372,7 @@ export const storiesDec: Story[] = [
           { id: 'pink',   label: 'ぴんく', emoji: '🩷' },
         ],
         explanation: '「しろいケーキ」とあります。',
+        category: '色の記憶',
       },
     ],
   },
@@ -376,6 +397,7 @@ export const storiesDec: Story[] = [
           { id: '5', label: '5', emoji: '5️⃣' },
         ],
         explanation: 'サラとモモとコトの「さんにん」があつまりました。',
+        category: '数の記憶',
       },
       {
         id: 'q2',
@@ -389,6 +411,7 @@ export const storiesDec: Story[] = [
           { id: 'white',  label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「あかいぼうし」をかぶってたべました。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -402,6 +425,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「ゲームはぜんぶでふたつ」しました。',
+        category: '数の記憶',
       },
     ],
   },
@@ -426,6 +450,7 @@ export const storiesDec: Story[] = [
           { id: '5', label: '5', emoji: '5️⃣' },
         ],
         explanation: '「いちごをよっつかざりました」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q2',
@@ -439,6 +464,7 @@ export const storiesDec: Story[] = [
           { id: 'pink',   label: 'ぴんく', emoji: '🩷' },
         ],
         explanation: '「きいろいろうそく」をたてました。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -452,6 +478,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「ろうそくをさんぼん」たてました。',
+        category: '数の記憶',
       },
     ],
   },
@@ -477,6 +504,7 @@ export const storiesDec: Story[] = [
           { id: 'white', label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「あかいてぶくろ」をしていました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -490,6 +518,7 @@ export const storiesDec: Story[] = [
           { id: 'branch', label: 'えだ',   emoji: '🌿' },
         ],
         explanation: '「くろいいし」をふたつつかいました。',
+        category: '行動・できごと',
       },
       {
         id: 'q3',
@@ -503,6 +532,7 @@ export const storiesDec: Story[] = [
           { id: 'branch', label: 'えだ',   emoji: '🌿' },
         ],
         explanation: '「はなにはみかんをひとつ」つけました。',
+        category: '行動・できごと',
       },
     ],
   },
@@ -527,6 +557,7 @@ export const storiesDec: Story[] = [
           { id: '5', label: '5', emoji: '5️⃣' },
         ],
         explanation: '「フウはゆきだまをみっつなげて」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q2',
@@ -540,6 +571,7 @@ export const storiesDec: Story[] = [
           { id: 'white', label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「そりはあかいろでした」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -553,6 +585,7 @@ export const storiesDec: Story[] = [
           { id: '5', label: '5', emoji: '5️⃣' },
         ],
         explanation: '「お兄さんはゆきだまをよっつなげました」とあります。',
+        category: '数の記憶',
       },
     ],
   },
@@ -577,6 +610,7 @@ export const storiesDec: Story[] = [
           { id: 'green', label: 'みどり', emoji: '🟢' },
         ],
         explanation: '「あかいマフラー」をまきました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -590,6 +624,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「ながいえだをふたほん」もたせました。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -603,6 +638,7 @@ export const storiesDec: Story[] = [
           { id: 'yuki',      label: 'ゆき',       emoji: '❄️' },
         ],
         explanation: '「ゆきちゃん！」といいました。',
+        category: '行動・できごと',
       },
     ],
   },
@@ -627,6 +663,7 @@ export const storiesDec: Story[] = [
           { id: 'black',  label: 'くろ',   emoji: '⬛' },
         ],
         explanation: '「あかいみのみをふたつ」つけました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -640,6 +677,7 @@ export const storiesDec: Story[] = [
           { id: 'white',  label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「みどりのはっぱ」がうさぎのみみです。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -653,6 +691,7 @@ export const storiesDec: Story[] = [
           { id: '5', label: '5', emoji: '5️⃣' },
         ],
         explanation: '「できたゆきうさぎはよっつになりました」とあります。',
+        category: '数の記憶',
       },
     ],
   },
@@ -678,6 +717,7 @@ export const storiesDec: Story[] = [
           { id: 'white',  label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「きいろいゆず」がうかんでいました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -691,6 +731,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「ゆずがみっつ」うかんでいました。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -704,6 +745,7 @@ export const storiesDec: Story[] = [
           { id: 'strong',  label: 'ちからがでる',  emoji: '💪' },
         ],
         explanation: '「ゆずゆにはいるとかぜをひかないんだよ」とおしえてくれました。',
+        category: '行動・できごと',
       },
     ],
   },
@@ -728,6 +770,7 @@ export const storiesDec: Story[] = [
           { id: 'daikon',  label: 'だいこん', emoji: '🫒' },
         ],
         explanation: '「かぼちゃのにもの」をつくりました。',
+        category: '行動・できごと',
       },
       {
         id: 'q2',
@@ -741,6 +784,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「ゆずはふたつはいっていました」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -754,6 +798,7 @@ export const storiesDec: Story[] = [
           { id: 'bitter', label: 'にがい',   emoji: '😣' },
         ],
         explanation: '「かぼちゃはきいろくてあまかったです」とあります。',
+        category: '行動・できごと',
       },
     ],
   },
@@ -779,6 +824,7 @@ export const storiesDec: Story[] = [
           { id: 'd', label: 'なるととかまぼこ', emoji: '🌀🔴' },
         ],
         explanation: '「みどりのねぎとあぶらあげ」がのっていました。',
+        category: '行動・できごと',
       },
       {
         id: 'q2',
@@ -792,6 +838,7 @@ export const storiesDec: Story[] = [
           { id: 'rich',     label: 'おかねもちになる', emoji: '💰' },
         ],
         explanation: '「ながいきできるんだよ」とおじいちゃんがおしえてくれました。',
+        category: '行動・できごと',
       },
       {
         id: 'q3',
@@ -805,6 +852,7 @@ export const storiesDec: Story[] = [
           { id: 'red',    label: 'あか',   emoji: '🔴' },
         ],
         explanation: '「みどりのねぎ」とあります。',
+        category: '色の記憶',
       },
     ],
   },
@@ -829,6 +877,7 @@ export const storiesDec: Story[] = [
           { id: 'white',  label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「あかいぞうきん」でまどをふきました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -842,6 +891,7 @@ export const storiesDec: Story[] = [
           { id: 'garden', label: 'にわそうじ', emoji: '🌿' },
         ],
         explanation: '「レンはあかいぞうきんでまどをふきました」とあります。',
+        category: '行動・できごと',
       },
       {
         id: 'q3',
@@ -855,6 +905,7 @@ export const storiesDec: Story[] = [
           { id: 'drum',     label: 'たいこ',      emoji: '🥁' },
         ],
         explanation: '「ちかくのおてらのかねのおとでした」とあります。',
+        category: '行動・できごと',
       },
     ],
   },
@@ -879,6 +930,7 @@ export const storiesDec: Story[] = [
           { id: 'tempura',  label: 'てんぷら', emoji: '🍤' },
         ],
         explanation: '「かまぼこがのっていました」とあります。',
+        category: '行動・できごと',
       },
       {
         id: 'q2',
@@ -892,6 +944,7 @@ export const storiesDec: Story[] = [
           { id: 'pink',   label: 'ぴんく', emoji: '🩷' },
         ],
         explanation: '「かまぼこはしろくてまるいかたちでした」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -905,6 +958,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「フウはそばをふたはいたべました」とあります。',
+        category: '行動・できごと',
       },
     ],
   },
@@ -930,6 +984,7 @@ export const storiesDec: Story[] = [
           { id: 'brown',  label: 'ちゃいろ', emoji: '🟤' },
         ],
         explanation: '「しろくてやわらかいおもちができあがりました」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -943,6 +998,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「まるくまとめてみっつつくりました」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -956,6 +1012,7 @@ export const storiesDec: Story[] = [
           { id: 'sister',  label: 'お姉さん',   emoji: '👧' },
         ],
         explanation: '「おじいちゃんといっしょにもちつきをしました」とあります。',
+        category: '登場人物',
       },
     ],
   },
@@ -980,6 +1037,7 @@ export const storiesDec: Story[] = [
           { id: '5', label: '5', emoji: '5️⃣' },
         ],
         explanation: '「みどりのたけをみっぽん」ならべました。',
+        category: '行動・できごと',
       },
       {
         id: 'q2',
@@ -993,6 +1051,7 @@ export const storiesDec: Story[] = [
           { id: 'white',  label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「きいろいみかんがついていました」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -1006,6 +1065,7 @@ export const storiesDec: Story[] = [
           { id: 'tori',      label: 'とりい',   emoji: '⛩️' },
         ],
         explanation: '「かどまつのまえにはしめなわもかざりました」とあります。',
+        category: '行動・できごと',
       },
     ],
   },
@@ -1030,6 +1090,7 @@ export const storiesDec: Story[] = [
           { id: 'd', label: 'きいろとあか', emoji: '🟡🔴' },
         ],
         explanation: '「あかとみどりのクレヨン」でえをかきました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -1043,6 +1104,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「ともだちはさんにんいたので、はがきをさんまいかきました」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -1056,6 +1118,7 @@ export const storiesDec: Story[] = [
           { id: 'green',  label: 'みどり', emoji: '🟢' },
         ],
         explanation: '「ゆうびんポストはあかいいろでした」とあります。',
+        category: '色の記憶',
       },
     ],
   },
@@ -1081,6 +1144,7 @@ export const storiesDec: Story[] = [
           { id: 'white',  label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「きいろいぞうきんをもって」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -1094,6 +1158,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「ぞうきんはみっつつかいました」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -1107,6 +1172,7 @@ export const storiesDec: Story[] = [
           { id: 'bath',   label: 'おふろ', emoji: '🛁' },
         ],
         explanation: '「たなをふきました」とあります。',
+        category: '場所',
       },
     ],
   },
@@ -1131,6 +1197,7 @@ export const storiesDec: Story[] = [
           { id: 'white',  label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「みどりのぶくろ」にごみをあつめました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -1144,6 +1211,7 @@ export const storiesDec: Story[] = [
           { id: '5', label: '5', emoji: '5️⃣' },
         ],
         explanation: '「ごみぶくろはよっつになりました」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -1157,6 +1225,7 @@ export const storiesDec: Story[] = [
           { id: 'floor',  label: 'ゆか',   emoji: '🧹' },
         ],
         explanation: '「おとうさんはおふろをみがきました」とあります。',
+        category: '場所',
       },
     ],
   },
@@ -1182,6 +1251,7 @@ export const storiesDec: Story[] = [
           { id: 'potato', label: 'じゃがいも', emoji: '🥔' },
         ],
         explanation: 'おなべには「とうふとはくさいとにんじん」がはいっていました。じゃがいもはありませんでした。',
+        category: '仲間はずれ',
       },
       {
         id: 'q2',
@@ -1195,6 +1265,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「とうふをみっつたべました」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -1208,6 +1279,7 @@ export const storiesDec: Story[] = [
           { id: 'green',  label: 'みどり',   emoji: '🟢' },
         ],
         explanation: '「にんじんはオレンジいろでした」とあります。',
+        category: '色の記憶',
       },
     ],
   },
@@ -1232,6 +1304,7 @@ export const storiesDec: Story[] = [
           { id: '12', label: '12', emoji: '1️⃣2️⃣' },
         ],
         explanation: '「きいろいみかんがはこのなかにじゅうこ」はいっていました。',
+        category: '数の記憶',
       },
       {
         id: 'q2',
@@ -1245,6 +1318,7 @@ export const storiesDec: Story[] = [
           { id: 'uncle',   label: 'おじさん',   emoji: '👨' },
         ],
         explanation: '「おじいちゃんがおくってくれたのです」とあります。',
+        category: '登場人物',
       },
       {
         id: 'q3',
@@ -1258,6 +1332,7 @@ export const storiesDec: Story[] = [
           { id: 'salty',  label: 'しおからい', emoji: '🧂' },
         ],
         explanation: '「ひとつたべるととてもあまかったです」とあります。',
+        category: '行動・できごと',
       },
     ],
   },
@@ -1282,6 +1357,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「しろいおもちがふたつ」はいっていました。',
+        category: '数の記憶',
       },
       {
         id: 'q2',
@@ -1295,6 +1371,7 @@ export const storiesDec: Story[] = [
           { id: 'brown',  label: 'ちゃいろ', emoji: '🟤' },
         ],
         explanation: '「しろいおもちがふたつ」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -1308,6 +1385,7 @@ export const storiesDec: Story[] = [
           { id: 'dad',     label: 'お父さん',   emoji: '👨' },
         ],
         explanation: '「おばあちゃんがあまいおしるこをつくってくれました」とあります。',
+        category: '登場人物',
       },
     ],
   },
@@ -1333,6 +1411,7 @@ export const storiesDec: Story[] = [
           { id: '6', label: '6', emoji: '6️⃣' },
         ],
         explanation: '「かぞえると五ほんありました」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q2',
@@ -1346,6 +1425,7 @@ export const storiesDec: Story[] = [
           { id: 'white', label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「サラのいちばんすきなのはあおいひかりでした」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -1359,6 +1439,7 @@ export const storiesDec: Story[] = [
           { id: 'cocoa', label: 'ココア', emoji: '☕' },
         ],
         explanation: '「あたたかいミルクをかってもらいました」とあります。',
+        category: '行動・できごと',
       },
     ],
   },
@@ -1383,6 +1464,7 @@ export const storiesDec: Story[] = [
           { id: 'blue',   label: 'あお',   emoji: '🔵' },
         ],
         explanation: '「ツリーのてっぺんにはきいろいほしがひかっていました」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -1396,6 +1478,7 @@ export const storiesDec: Story[] = [
           { id: 'd', label: 'お母さんとお姉さん',   emoji: '👩👧' },
         ],
         explanation: '「お父さんとお兄さんといっしょに」みにいきました。',
+        category: '登場人物',
       },
       {
         id: 'q3',
@@ -1409,6 +1492,7 @@ export const storiesDec: Story[] = [
           { id: 'd', label: 'あかとみどりときいろ', emoji: '🔴🟢🟡' },
         ],
         explanation: '「あかとしろとみどりのひかり」ときれいでした。',
+        category: '色の記憶',
       },
     ],
   },
@@ -1434,6 +1518,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「みっかいころんでしまいました」とあります。',
+        category: '行動・できごと',
       },
       {
         id: 'q2',
@@ -1447,6 +1532,7 @@ export const storiesDec: Story[] = [
           { id: 'black', label: 'くろ',   emoji: '⬛' },
         ],
         explanation: '「スケートのくつはあおいろでした」とあります。',
+        category: '色の記憶',
       },
       {
         id: 'q3',
@@ -1460,6 +1546,7 @@ export const storiesDec: Story[] = [
           { id: 'grandpa', label: 'おじいちゃん', emoji: '👴' },
         ],
         explanation: '「お父さんといっしょに」スケートじょうへいきました。',
+        category: '登場人物',
       },
     ],
   },
@@ -1484,6 +1571,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「こげちゃいろのとりがふたわいました」とあります。',
+        category: '行動・できごと',
       },
       {
         id: 'q2',
@@ -1497,6 +1585,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「パンのかけらをみっつまいてやりました」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -1510,6 +1599,7 @@ export const storiesDec: Story[] = [
           { id: 'red',   label: 'あか',     emoji: '🔴' },
         ],
         explanation: '「こげちゃいろのとり」とあります。',
+        category: '色の記憶',
       },
     ],
   },
@@ -1534,6 +1624,7 @@ export const storiesDec: Story[] = [
           { id: 'white',  label: 'しろ',   emoji: '⬜' },
         ],
         explanation: '「あかいマフラー」をしていました。',
+        category: '色の記憶',
       },
       {
         id: 'q2',
@@ -1547,6 +1638,7 @@ export const storiesDec: Story[] = [
           { id: '4', label: '4', emoji: '4️⃣' },
         ],
         explanation: '「おちばをみっまいひろいました」とあります。',
+        category: '数の記憶',
       },
       {
         id: 'q3',
@@ -1560,6 +1652,7 @@ export const storiesDec: Story[] = [
           { id: 'raccoon',  label: 'たぬき', emoji: '🦝' },
         ],
         explanation: '「うさぎがいっぴき草のなかからとびだしてきた」とあります。',
+        category: '行動・できごと',
       },
     ],
   },
