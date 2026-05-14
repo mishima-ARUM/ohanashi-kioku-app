@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { HomePage } from './pages/HomePage'
 import { StoryPage } from './pages/StoryPage'
 import { QuizPage } from './pages/QuizPage'
@@ -7,7 +7,7 @@ import { ProgressPage } from './pages/ProgressPage'
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter basename="/ohanashi-kioku-app">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/story/:id" element={<StoryPage />} />
@@ -15,6 +15,6 @@ export default function App() {
         <Route path="/result/:id" element={<ResultPage />} />
         <Route path="/progress" element={<ProgressPage />} />
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
