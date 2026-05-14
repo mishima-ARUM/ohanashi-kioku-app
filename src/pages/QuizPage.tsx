@@ -159,18 +159,10 @@ export function QuizPage() {
             )}
           </div>
 
-          <p className="text-xl font-bold text-gray-800 mb-2 text-center leading-relaxed">
-            {currentQ.text}
-          </p>
-
-          {currentQ.tasks.map((task, i) => (
-            <p key={i} className="text-xs text-center text-purple-600 bg-purple-50 rounded-lg px-3 py-1 mb-1">
-              {task.instruction}
-            </p>
-          ))}
         </div>
 
         <MarkerAnswerPanel
+          key={qIdx}
           ref={panelRef}
           options={currentQ.options}
           disabled={isDisabled}

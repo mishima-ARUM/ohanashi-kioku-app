@@ -80,7 +80,6 @@ export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
                   ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer active:scale-95'}`}
               >
                 {o.emoji && <span className="text-2xl">{o.emoji}</span>}
-                <span className="text-sm font-bold">{o.label}</span>
               </button>
             ))}
           </div>
@@ -106,7 +105,6 @@ export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
                     ${pendingColor === c.id ? 'border-gray-900 shadow-lg scale-110' : 'border-transparent'}`}
                   style={{ backgroundColor: c.hex }}
                 />
-                <span className="text-xs text-gray-600">{c.label}</span>
               </button>
             ))}
           </div>
@@ -133,7 +131,6 @@ export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
                 >
                   {s.symbol}
                 </div>
-                <span className="text-xs text-gray-600">{s.label}</span>
               </button>
             ))}
           </div>
