@@ -14,7 +14,7 @@ type Phase = 'reading' | 'selecting' | 'timeout'
 export function QuizPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
-  const story = stories.find(s => s.id === id)!
+  const story = stories.find(s => s.id === id)
   const { speak, stop } = useTTS()
   const { addResult } = useProgress()
 
@@ -50,7 +50,7 @@ export function QuizPage() {
     speak('やめ', () => {
       setTimeout(() => {
         const next = qIdxRef.current + 1
-        if (next >= story.questions.length) {
+        if (next >= (story?.questions.length ?? 0)) {
           finishQuiz(newAnswers)
         } else {
           qIdxRef.current = next
@@ -59,10 +59,10 @@ export function QuizPage() {
         }
       }, 1000)
     })
-  }, [story.questions.length, speak, finishQuiz])
+  }, [story?.questions?.length, speak, finishQuiz])
 
   const recordAnswer = useCallback((selections: MarkerSelection[]) => {
-    const q = story.questions[qIdxRef.current]
+    const q = (story?.questions ?? [])[qIdxRef.current]
     const taskResults = scoreAnswer(q.tasks, selections)
     const score = taskResults.filter(Boolean).length
     const answer: Answer = {
@@ -76,7 +76,7 @@ export function QuizPage() {
     answersRef.current = newAnswers
     setAnswers(newAnswers)
     return newAnswers
-  }, [story.questions])
+  }, [story?.questions])
 
   const handleDecide = useCallback((selections: MarkerSelection[]) => {
     resetTimer()
@@ -95,7 +95,7 @@ export function QuizPage() {
   handleTimeoutRef.current = handleTimeout
 
   const startQuestion = useCallback((index: number) => {
-    const q = story.questions[index]
+    const q = (story?.questions ?? [])[index]
     earlyPressRef.current = false
     setPhase('reading')
     const taskLines = q.tasks.map(t => t.instruction).join('。')
@@ -105,7 +105,7 @@ export function QuizPage() {
           const newAnswers = recordAnswer([])
           speak('きちんと読み上げるまで、手を膝の上に置いてお待ちください。問題はスキップします。', () => {
             const next = index + 1
-            if (next >= story.questions.length) {
+            if (next >= (story?.questions.length ?? 0)) {
               finishQuiz(newAnswers)
             } else {
               qIdxRef.current = next
@@ -120,7 +120,7 @@ export function QuizPage() {
         }
       })
     }, 1000)
-  }, [story.questions, speak, recordAnswer, finishQuiz])
+  }, [story?.questions, speak, recordAnswer, finishQuiz])
   startQuestionRef.current = startQuestion
 
   useEffect(() => {
@@ -130,6 +130,8 @@ export function QuizPage() {
   useEffect(() => {
     startQuestion(0)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!story) { navigate('/'); return null }
 
   const handleInteract = () => {
     if (phase === 'reading') earlyPressRef.current = true

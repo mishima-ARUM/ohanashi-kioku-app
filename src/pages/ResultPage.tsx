@@ -7,7 +7,7 @@ export function ResultPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
   const { data } = useProgress()
-  const story = stories.find(s => s.id === id)!
+  const story = stories.find(s => s.id === id)
 
   const latestResult = [...data.results]
     .filter(r => r.storyId === id)
@@ -18,6 +18,7 @@ export function ResultPage() {
   }, [latestResult, navigate])
 
   if (!latestResult) return null
+  if (!story) { navigate('/'); return null }
 
   const { score, total, answers } = latestResult
   const pct = total > 0 ? Math.round((score / total) * 100) : 0
