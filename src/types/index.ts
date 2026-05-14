@@ -21,6 +21,7 @@ export interface Option {
   emoji?: string
 }
 
+// 問題のカテゴリ分類（9種類）
 export type QuestionCategory =
   | '色の記憶'
   | '数の記憶'
@@ -39,7 +40,7 @@ export interface Question {
   tasks: MarkerTask[]
   options: Option[]
   explanation: string
-  category?: QuestionCategory
+  category?: QuestionCategory   // スクリプトで全問題にタグ付け済み（移行前はundefined）
 }
 
 export interface Story {
