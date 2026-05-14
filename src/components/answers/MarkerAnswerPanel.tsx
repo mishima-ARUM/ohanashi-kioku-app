@@ -91,6 +91,7 @@ export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
               <button
                 key={o.id}
                 onClick={() => handleOptClick(o.id)}
+                disabled={disabled}
                 className={`flex flex-col items-center gap-1 p-3 rounded-xl border-2 transition-all
                   ${pendingOpt === o.id
                     ? 'border-purple-500 bg-purple-50 text-purple-700'
@@ -115,6 +116,7 @@ export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
               <button
                 key={c.id}
                 onClick={() => handleColorClick(c.id)}
+                disabled={disabled}
                 className={`flex flex-col items-center gap-1 transition-all
                   ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
               >
@@ -140,6 +142,7 @@ export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
               <button
                 key={s.id}
                 onClick={() => handleShapeClick(s.id)}
+                disabled={disabled}
                 className={`flex flex-col items-center gap-1 transition-all
                   ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
               >
