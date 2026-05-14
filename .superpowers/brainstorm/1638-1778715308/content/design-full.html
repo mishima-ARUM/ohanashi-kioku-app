@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>マーカー回答UI — フルデザイン</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Hiragino Kaku Gothic Pro', sans-serif; background: #f0f4f8; padding: 16px; }
+h1 { font-size: 16px; color: #374151; text-align: center; margin-bottom: 4px; }
+.subtitle { font-size: 12px; color: #6b7280; text-align: center; margin-bottom: 16px; }
+
+.quiz-wrap { max-width: 380px; margin: 0 auto; }
+
+/* 問題ヘッダー */
+.q-header { background: linear-gradient(135deg,#7c3aed,#a855f7); border-radius: 16px; padding: 14px 16px; margin-bottom: 12px; color: white; text-align: center; }
+.q-num { font-size: 11px; opacity: .8; margin-bottom: 4px; }
+.q-text { font-size: 15px; font-weight: bold; line-height: 1.5; }
+.q-task { font-size: 12px; margin-top: 6px; opacity: .9; background: rgba(255,255,255,.15); border-radius: 8px; padding: 4px 8px; }
+
+/* セクション共通 */
+.section { background: white; border-radius: 14px; padding: 12px; margin-bottom: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.08); }
+.section-label { font-size: 11px; color: #6b7280; font-weight: bold; margin-bottom: 8px; display: flex; align-items: center; gap: 4px; }
+.step-badge { width: 18px; height: 18px; border-radius: 50%; background: #7c3aed; color: white; font-size: 10px; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; }
+
+/* ① 回答選択肢 */
+.options-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 7px; }
+.opt { border: 2px solid #e5e7eb; border-radius: 10px; padding: 10px 6px; text-align: center; cursor: pointer; transition: all .15s; font-size: 14px; font-weight: bold; color: #374151; }
+.opt:active { transform: scale(.96); }
+.opt.selected { border-color: #7c3aed; background: #f3e8ff; color: #7c3aed; }
+.opt.emoji-opt { font-size: 22px; }
+
+/* ② 色選択 */
+.colors { display: flex; gap: 10px; justify-content: center; }
+.color-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
+.color-dot { width: 50px; height: 50px; border-radius: 50%; border: 3px solid transparent; transition: all .15s; position: relative; }
+.color-dot:active { transform: scale(.92); }
+.color-dot.selected { border-color: #1f2937; box-shadow: 0 0 0 3px rgba(0,0,0,.15); }
+.color-dot.selected::after { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; font-weight: bold; text-shadow: 0 1px 2px rgba(0,0,0,.4); }
+.color-label { font-size: 11px; color: #374151; }
+
+/* ③ 形選択 */
+.shapes { display: flex; gap: 8px; justify-content: center; }
+.shape-btn { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; }
+.shape-box { width: 52px; height: 52px; border-radius: 10px; border: 2px solid #e5e7eb; display: flex; align-items: center; justify-content: center; font-size: 26px; transition: all .15s; }
+.shape-box:active { transform: scale(.92); }
+.shape-box.selected { border-color: #7c3aed; background: #f3e8ff; }
+.shape-label { font-size: 11px; color: #374151; }
+
+/* 結果エリア */
+.result-area { background: #fefce8; border: 2px solid #fbbf24; border-radius: 14px; padding: 12px; }
+.result-label { font-size: 11px; color: #92400e; font-weight: bold; margin-bottom: 8px; }
+.pending { background: #f0fdf4; border: 2px dashed #86efac; border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; min-height: 42px; }
+.pending-text { font-size: 12px; color: #6b7280; }
+.confirmed-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+.confirmed-item { background: white; border-radius: 10px; padding: 8px 12px; display: flex; align-items: center; gap: 8px; }
+.ci-option { font-size: 13px; font-weight: bold; color: #1f2937; flex: 1; }
+.ci-color { width: 20px; height: 20px; border-radius: 50%; flex-shrink: 0; }
+.ci-shape { font-size: 20px; }
+.ci-del { border: none; background: #fee2e2; color: #dc2626; border-radius: 6px; padding: 2px 8px; font-size: 11px; font-weight: bold; cursor: pointer; }
+.decide-btn { width: 100%; padding: 11px; border-radius: 12px; border: none; background: linear-gradient(to right, #f59e0b, #d97706); color: white; font-size: 15px; font-weight: bold; cursor: pointer; }
+.decide-btn:disabled { background: #d1d5db; color: #9ca3af; cursor: default; }
+
+/* 凡例 */
+.legend { font-size: 11px; color: #6b7280; text-align: center; margin-top: 4px; }
+</style>
+</head>
+<body>
+<h1>マーカー回答UI — 動作デモ</h1>
+<p class="subtitle">実際に色・形を選んで「決定」まで試せます</p>
+
+<div class="quiz-wrap">
+
+  <div class="q-header">
+    <div class="q-num">もんだい 2 ／ 3 &nbsp;⏱ 18びょう</div>
+    <div class="q-text">うさぎさんとおさるさんがたべていたものはなんですか？</div>
+    <div class="q-task">うさぎさんのこたえを えらんで、あかで まるを おしてください</div>
+    <div class="q-task" style="margin-top:4px;">おさるさんのこたえを えらんで、あおで さんかくを おしてください</div>
+  </div>
+
+  <!-- ① 回答 -->
+  <div class="section">
+    <div class="section-label"><span class="step-badge">①</span> こたえをえらぶ</div>
+    <div class="options-grid">
+      <div class="opt emoji-opt" onclick="selectOpt(this,'🍱','おべんとう')" data-id="bento">🍱<br><span style="font-size:11px">おべんとう</span></div>
+      <div class="opt emoji-opt" onclick="selectOpt(this,'🍎','りんご')" data-id="apple">🍎<br><span style="font-size:11px">りんご</span></div>
+      <div class="opt emoji-opt" onclick="selectOpt(this,'🍌','バナナ')" data-id="banana">🍌<br><span style="font-size:11px">バナナ</span></div>
+      <div class="opt emoji-opt" onclick="selectOpt(this,'🍙','おにぎり')" data-id="onigiri">🍙<br><span style="font-size:11px">おにぎり</span></div>
+    </div>
+  </div>
+
+  <!-- ② 色 -->
+  <div class="section">
+    <div class="section-label"><span class="step-badge">②</span> いろをえらぶ</div>
+    <div class="colors">
+      <div class="color-btn" onclick="selectColor(this,'#ef4444','red','赤')">
+        <div class="color-dot" style="background:#ef4444" data-color="red"></div>
+        <span class="color-label">あか</span>
+      </div>
+      <div class="color-btn" onclick="selectColor(this,'#3b82f6','blue','青')">
+        <div class="color-dot" style="background:#3b82f6" data-color="blue"></div>
+        <span class="color-label">あお</span>
+      </div>
+      <div class="color-btn" onclick="selectColor(this,'#22c55e','green','緑')">
+        <div class="color-dot" style="background:#22c55e" data-color="green"></div>
+        <span class="color-label">みどり</span>
+      </div>
+      <div class="color-btn" onclick="selectColor(this,'#eab308','yellow','黄')">
+        <div class="color-dot" style="background:#eab308" data-color="yellow"></div>
+        <span class="color-label">きいろ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 形 -->
+  <div class="section">
+    <div class="section-label"><span class="step-badge">③</span> かたちをえらぶ</div>
+    <div class="shapes">
+      <div class="shape-btn" onclick="selectShape(this,'○','circle')">
+        <div class="shape-box" data-shape="circle">○</div>
+        <span class="shape-label">まる</span>
+      </div>
+      <div class="shape-btn" onclick="selectShape(this,'△','triangle')">
+        <div class="shape-box" data-shape="triangle">△</div>
+        <span class="shape-label">さんかく</span>
+      </div>
+      <div class="shape-btn" onclick="selectShape(this,'✕','cross')">
+        <div class="shape-box" data-shape="cross">✕</div>
+        <span class="shape-label">ばつ</span>
+      </div>
+      <div class="shape-btn" onclick="selectShape(this,'◎','double')">
+        <div class="shape-box" data-shape="double">◎</div>
+        <span class="shape-label">にじゅうまる</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 結果 -->
+  <div class="result-area">
+    <div class="result-label">📋 えらんだこたえ</div>
+    <div class="pending" id="pending">
+      <span class="pending-text" id="pending-text">①②③ をえらぶと ここにひょうじされます</span>
+    </div>
+    <div class="confirmed-list" id="confirmed-list"></div>
+    <button class="decide-btn" id="decide-btn" disabled onclick="decide()">このこたえでけっていする →</button>
+  </div>
+  <p class="legend">①②③ がそろうと自動で下に追加されます</p>
+
+</div>
+
+<script>
+let pending = { optId: null, optLabel: null, optEmoji: null, color: null, colorHex: null, colorLabel: null, shape: null, shapeLabel: null };
+let confirmed = [];
+
+function selectOpt(el, emoji, label) {
+  document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  pending.optId = el.dataset.id;
+  pending.optEmoji = emoji;
+  pending.optLabel = label;
+  tryAutoConfirm();
+}
+function selectColor(btn, hex, id, label) {
+  document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('selected'));
+  btn.querySelector('.color-dot').classList.add('selected');
+  pending.color = id; pending.colorHex = hex; pending.colorLabel = label;
+  tryAutoConfirm();
+}
+function selectShape(btn, sym, id) {
+  document.querySelectorAll('.shape-box').forEach(b => b.classList.remove('selected'));
+  btn.querySelector('.shape-box').classList.add('selected');
+  pending.shape = sym; pending.shapeId = id;
+  tryAutoConfirm();
+}
+
+function tryAutoConfirm() {
+  const p = pending;
+  const parts = [];
+  if (p.optEmoji) parts.push(p.optEmoji + ' ' + p.optLabel);
+  if (p.colorLabel) parts.push('<span style="display:inline-block;width:14px;height:14px;border-radius:50%;background:' + p.colorHex + ';vertical-align:middle;"></span> ' + p.colorLabel);
+  if (p.shape) parts.push('<span style="font-size:16px">' + p.shape + '</span>');
+
+  document.getElementById('pending-text').innerHTML = parts.length ? parts.join(' &nbsp;→&nbsp; ') : '①②③ をえらぶと ここにひょうじされます';
+
+  if (p.optId && p.color && p.shape) {
+    // 全部揃った → 自動確定
+    confirmed.push({ ...p });
+    renderConfirmed();
+    // リセット
+    pending = { optId:null,optLabel:null,optEmoji:null,color:null,colorHex:null,colorLabel:null,shape:null,shapeLabel:null };
+    document.querySelectorAll('.opt').forEach(o => o.classList.remove('selected'));
+    document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('selected'));
+    document.querySelectorAll('.shape-box').forEach(b => b.classList.remove('selected'));
+    document.getElementById('pending-text').innerHTML = '①②③ をえらぶと ここにひょうじされます';
+  }
+}
+
+function renderConfirmed() {
+  const list = document.getElementById('confirmed-list');
+  list.innerHTML = confirmed.map((c, i) => `
+    <div class="confirmed-item">
+      <span class="ci-option">${c.optEmoji} ${c.optLabel}</span>
+      <div class="ci-color" style="background:${c.colorHex}"></div>
+      <span class="ci-shape">${c.shape}</span>
+      <button class="ci-del" onclick="removeItem(${i})">消す</button>
+    </div>
+  `).join('');
+  document.getElementById('decide-btn').disabled = confirmed.length === 0;
+}
+
+function removeItem(i) {
+  confirmed.splice(i, 1);
+  renderConfirmed();
+}
+
+function decide() {
+  alert('決定！\n' + confirmed.map(c => `${c.optLabel} → ${c.colorLabel}で${c.shape}`).join('\n'));
+}
+</script>
+</body>
+</html>

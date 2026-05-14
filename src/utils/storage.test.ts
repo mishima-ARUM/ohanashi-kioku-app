@@ -6,9 +6,27 @@ const sampleResult: QuizResult = {
   storyId: 'story-001', date: '2026-01-01T00:00:00Z',
   score: 2, total: 3,
   answers: [
-    { questionId: 'q1', selectedId: 'yellow', correct: true },
-    { questionId: 'q2', selectedId: '5', correct: true },
-    { questionId: 'q3', selectedId: '2', correct: false },
+    {
+      questionId: 'q1',
+      selections: [{ optionId: 'yellow', color: 'red', shape: 'circle' }],
+      taskResults: [true],
+      score: 1,
+      maxScore: 1,
+    },
+    {
+      questionId: 'q2',
+      selections: [{ optionId: '5', color: 'red', shape: 'circle' }],
+      taskResults: [true],
+      score: 1,
+      maxScore: 1,
+    },
+    {
+      questionId: 'q3',
+      selections: [],
+      taskResults: [false],
+      score: 0,
+      maxScore: 1,
+    },
   ],
 }
 

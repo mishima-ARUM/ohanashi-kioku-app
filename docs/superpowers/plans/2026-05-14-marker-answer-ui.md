@@ -1,3 +1,965 @@
+# Marker Answer UI Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Replace the 4 existing answer component types with a single 3-step Marker Answer UI (① 回答選択 → ② 色選択 → ③ 形選択) that mimics real exam format and supports per-combination partial scoring.
+
+**Architecture:** New `MarkerAnswerPanel` component manages its own pending/confirmed state and exposes a ref handle (`getConfirmed()`) so QuizPage can read selections on timeout. All 15 questions are rewritten to the `marker` type with `tasks: MarkerTask[]` for scoring. The old 4 answer component files are deleted.
+
+**Tech Stack:** React 18 + TypeScript, Tailwind CSS, Vitest for tests.
+
+---
+
+## File Map
+
+| File | Action | Purpose |
+|------|--------|---------|
+| `src/types/index.ts` | Modify | Add MarkColor/MarkShape/MarkerTask/MarkerSelection; update Question/Answer/QuizResult; remove QuestionType |
+| `src/utils/scoreAnswer.ts` | Create | Pure scoring function `scoreAnswer(tasks, selections) → boolean[]` |
+| `src/utils/scoreAnswer.test.ts` | Create | TDD tests for scoreAnswer |
+| `src/utils/storage.test.ts` | Modify | Update sampleResult to new Answer/QuizResult shape |
+| `src/components/answers/MarkerAnswerPanel.tsx` | Create | 3-step answer UI with forwardRef handle |
+| `src/pages/QuizPage.tsx` | Modify | Use MarkerAnswerPanel, update TTS/scoring/timeout logic |
+| `src/pages/ResultPage.tsx` | Modify | Show taskResults per question |
+| `src/pages/ProgressPage.tsx` | Modify | Remove type-based stats (all questions now 'marker') |
+| `src/hooks/useProgress.ts` | Modify | Remove TypeAccuracy / QuestionType import |
+| `src/data/stories.ts` | Modify | Rewrite all 15 stories to marker format |
+| `src/components/answers/IllustrationAnswer.tsx` | Delete | Replaced by MarkerAnswerPanel |
+| `src/components/answers/NumberAnswer.tsx` | Delete | Replaced by MarkerAnswerPanel |
+| `src/components/answers/ColorAnswer.tsx` | Delete | Replaced by MarkerAnswerPanel |
+| `src/components/answers/CharacterAnswer.tsx` | Delete | Replaced by MarkerAnswerPanel |
+
+---
+
+## Task 1: Core types + scoreAnswer utility (TDD)
+
+**Files:**
+- Modify: `src/types/index.ts`
+- Create: `src/utils/scoreAnswer.ts`
+- Create: `src/utils/scoreAnswer.test.ts`
+
+- [ ] **Step 1: Write the failing test**
+
+Create `src/utils/scoreAnswer.test.ts`:
+
+```typescript
+import { describe, it, expect } from 'vitest'
+import { scoreAnswer } from './scoreAnswer'
+import type { MarkerTask, MarkerSelection } from '../types'
+
+const tasks: MarkerTask[] = [
+  { instruction: 'test1', optionId: 'a', color: 'red', shape: 'circle' },
+  { instruction: 'test2', optionId: 'b', color: 'blue', shape: 'triangle' },
+]
+
+describe('scoreAnswer', () => {
+  it('空のselectionsはすべてfalse', () => {
+    expect(scoreAnswer(tasks, [])).toEqual([false, false])
+  })
+
+  it('完全一致するselectionがあればtrue', () => {
+    const selections: MarkerSelection[] = [
+      { optionId: 'a', color: 'red', shape: 'circle' },
+    ]
+    expect(scoreAnswer(tasks, selections)).toEqual([true, false])
+  })
+
+  it('optionIdが合っても色・形が違えばfalse', () => {
+    const selections: MarkerSelection[] = [
+      { optionId: 'a', color: 'blue', shape: 'circle' }, // wrong color
+    ]
+    expect(scoreAnswer(tasks, selections)).toEqual([false, false])
+  })
+
+  it('両taskともに正解できる', () => {
+    const selections: MarkerSelection[] = [
+      { optionId: 'a', color: 'red', shape: 'circle' },
+      { optionId: 'b', color: 'blue', shape: 'triangle' },
+    ]
+    expect(scoreAnswer(tasks, selections)).toEqual([true, true])
+  })
+
+  it('余分なselectionがあっても正解判定に影響しない', () => {
+    const selections: MarkerSelection[] = [
+      { optionId: 'z', color: 'green', shape: 'cross' }, // extra, wrong
+      { optionId: 'a', color: 'red', shape: 'circle' },
+    ]
+    expect(scoreAnswer(tasks, selections)).toEqual([true, false])
+  })
+})
+```
+
+- [ ] **Step 2: Run test to verify it fails**
+
+```
+cd C:\Users\Surface06\ohanashi-kioku-app
+npx vitest run src/utils/scoreAnswer.test.ts
+```
+
+Expected: FAIL with "Cannot find module './scoreAnswer'"
+
+- [ ] **Step 3: Create scoreAnswer utility**
+
+Create `src/utils/scoreAnswer.ts`:
+
+```typescript
+import type { MarkerTask, MarkerSelection } from '../types'
+
+export function scoreAnswer(tasks: MarkerTask[], selections: MarkerSelection[]): boolean[] {
+  return tasks.map(task =>
+    selections.some(s =>
+      s.optionId === task.optionId &&
+      s.color === task.color &&
+      s.shape === task.shape
+    )
+  )
+}
+```
+
+- [ ] **Step 4: Update src/types/index.ts**
+
+Replace the entire file with:
+
+```typescript
+// Marker answer types
+export type MarkColor = 'red' | 'blue' | 'green' | 'yellow'
+export type MarkShape = 'circle' | 'triangle' | 'cross' | 'double-circle'
+
+export interface MarkerTask {
+  instruction: string  // TTS読み上げ用の指示文
+  optionId: string     // 正解の選択肢ID
+  color: MarkColor     // 正解の色
+  shape: MarkShape     // 正解の形
+}
+
+export interface MarkerSelection {
+  optionId: string
+  color: MarkColor
+  shape: MarkShape
+}
+
+export interface Option {
+  id: string
+  label: string
+  emoji?: string
+}
+
+export interface Question {
+  id: string
+  type: 'marker'
+  text: string
+  tasks: MarkerTask[]
+  options: Option[]
+  explanation: string
+}
+
+export interface Story {
+  id: string
+  title: string
+  difficulty: 1 | 2 | 3
+  estimatedMinutes: number
+  icon: string
+  story: string
+  questions: Question[]
+}
+
+export interface Answer {
+  questionId: string
+  selections: MarkerSelection[]
+  taskResults: boolean[]
+  score: number      // 正解task数
+  maxScore: number   // task総数
+}
+
+export interface QuizResult {
+  storyId: string
+  date: string
+  score: number   // 全questionのtask正解数合計
+  total: number   // 全questionのtask総数合計
+  answers: Answer[]
+}
+
+export interface ProgressData {
+  results: QuizResult[]
+}
+```
+
+- [ ] **Step 5: Run tests**
+
+```
+npx vitest run src/utils/scoreAnswer.test.ts
+```
+
+Expected: All 5 tests PASS.
+
+- [ ] **Step 6: Commit**
+
+```
+git add src/types/index.ts src/utils/scoreAnswer.ts src/utils/scoreAnswer.test.ts
+git commit -m "feat: add marker answer types and scoreAnswer utility"
+```
+
+---
+
+## Task 2: Update storage tests for new Answer shape
+
+**Files:**
+- Modify: `src/utils/storage.test.ts`
+
+- [ ] **Step 1: Update the test file**
+
+Replace the entire `src/utils/storage.test.ts` with:
+
+```typescript
+import { describe, it, expect, beforeEach } from 'vitest'
+import { loadProgress, saveResult, clearProgress } from './storage'
+import type { QuizResult } from '../types'
+
+const sampleResult: QuizResult = {
+  storyId: 'story-001', date: '2026-01-01T00:00:00Z',
+  score: 2, total: 3,
+  answers: [
+    {
+      questionId: 'q1',
+      selections: [{ optionId: 'yellow', color: 'red', shape: 'circle' }],
+      taskResults: [true],
+      score: 1,
+      maxScore: 1,
+    },
+    {
+      questionId: 'q2',
+      selections: [{ optionId: '5', color: 'red', shape: 'circle' }],
+      taskResults: [true],
+      score: 1,
+      maxScore: 1,
+    },
+    {
+      questionId: 'q3',
+      selections: [],
+      taskResults: [false],
+      score: 0,
+      maxScore: 1,
+    },
+  ],
+}
+
+beforeEach(() => clearProgress())
+
+describe('loadProgress', () => {
+  it('空のとき空のresultsを返す', () => {
+    expect(loadProgress()).toEqual({ results: [] })
+  })
+  it('壊れたJSONのとき空のresultsを返す', () => {
+    localStorage.setItem('ohanashi-progress', 'invalid')
+    expect(loadProgress()).toEqual({ results: [] })
+  })
+})
+
+describe('saveResult', () => {
+  it('結果を保存して読み込める', () => {
+    saveResult(sampleResult)
+    expect(loadProgress().results).toHaveLength(1)
+    expect(loadProgress().results[0].storyId).toBe('story-001')
+  })
+  it('複数の結果を蓄積できる', () => {
+    saveResult(sampleResult)
+    saveResult({ ...sampleResult, date: '2026-01-02T00:00:00Z' })
+    expect(loadProgress().results).toHaveLength(2)
+  })
+})
+```
+
+- [ ] **Step 2: Run tests**
+
+```
+npx vitest run src/utils/storage.test.ts
+```
+
+Expected: All tests PASS (storage.ts itself doesn't change — it's type-agnostic JSON).
+
+- [ ] **Step 3: Commit**
+
+```
+git add src/utils/storage.test.ts
+git commit -m "test: update storage tests for new Answer/QuizResult shape"
+```
+
+---
+
+## Task 3: Create MarkerAnswerPanel component
+
+**Files:**
+- Create: `src/components/answers/MarkerAnswerPanel.tsx`
+
+- [ ] **Step 1: Create the component**
+
+Create `src/components/answers/MarkerAnswerPanel.tsx`:
+
+```typescript
+import { forwardRef, useImperativeHandle, useState, useCallback } from 'react'
+import type { Option, MarkColor, MarkShape, MarkerSelection } from '../../types'
+
+export interface MarkerAnswerPanelHandle {
+  getConfirmed: () => MarkerSelection[]
+}
+
+interface Props {
+  options: Option[]
+  disabled: boolean
+  onSelect: (selections: MarkerSelection[]) => void
+  onInteract?: () => void
+}
+
+const COLOR_CONFIG: { id: MarkColor; label: string; hex: string; emoji: string }[] = [
+  { id: 'red',    label: 'あか',   hex: '#ef4444', emoji: '🔴' },
+  { id: 'blue',   label: 'あお',   hex: '#3b82f6', emoji: '🔵' },
+  { id: 'green',  label: 'みどり', hex: '#22c55e', emoji: '🟢' },
+  { id: 'yellow', label: 'きいろ', hex: '#eab308', emoji: '🟡' },
+]
+
+const SHAPE_CONFIG: { id: MarkShape; label: string; symbol: string }[] = [
+  { id: 'circle',        label: 'まる',       symbol: '○' },
+  { id: 'triangle',      label: 'さんかく',   symbol: '△' },
+  { id: 'cross',         label: 'ばつ',       symbol: '✕' },
+  { id: 'double-circle', label: 'にじゅうまる', symbol: '◎' },
+]
+
+export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
+  function MarkerAnswerPanel({ options, disabled, onSelect, onInteract }, ref) {
+    const [pendingOpt, setPendingOpt] = useState<string | null>(null)
+    const [pendingColor, setPendingColor] = useState<MarkColor | null>(null)
+    const [pendingShape, setPendingShape] = useState<MarkShape | null>(null)
+    const [confirmed, setConfirmed] = useState<MarkerSelection[]>([])
+
+    useImperativeHandle(ref, () => ({
+      getConfirmed: () => confirmed,
+    }), [confirmed])
+
+    const tryAutoConfirm = useCallback(
+      (opt: string | null, color: MarkColor | null, shape: MarkShape | null) => {
+        if (opt && color && shape) {
+          const newItem: MarkerSelection = { optionId: opt, color, shape }
+          setConfirmed(prev => [...prev, newItem])
+          setPendingOpt(null)
+          setPendingColor(null)
+          setPendingShape(null)
+        }
+      },
+      []
+    )
+
+    const handleOptClick = (optId: string) => {
+      if (disabled) return
+      onInteract?.()
+      const next = optId
+      setPendingOpt(next)
+      tryAutoConfirm(next, pendingColor, pendingShape)
+    }
+
+    const handleColorClick = (color: MarkColor) => {
+      if (disabled) return
+      onInteract?.()
+      setPendingColor(color)
+      tryAutoConfirm(pendingOpt, color, pendingShape)
+    }
+
+    const handleShapeClick = (shape: MarkShape) => {
+      if (disabled) return
+      onInteract?.()
+      setPendingShape(shape)
+      tryAutoConfirm(pendingOpt, pendingColor, shape)
+    }
+
+    const handleRemove = (index: number) => {
+      setConfirmed(prev => prev.filter((_, i) => i !== index))
+    }
+
+    const pendingOptLabel = options.find(o => o.id === pendingOpt)
+
+    return (
+      <div className="flex flex-col gap-3">
+        {/* ① こたえをえらぶ */}
+        <div className="bg-white rounded-2xl p-3 shadow-sm border border-gray-100">
+          <div className="flex items-center gap-1.5 mb-2">
+            <span className="w-5 h-5 rounded-full bg-purple-600 text-white text-xs font-bold flex items-center justify-center">①</span>
+            <span className="text-xs font-bold text-gray-500">こたえをえらぶ</span>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            {options.map(o => (
+              <button
+                key={o.id}
+                onClick={() => handleOptClick(o.id)}
+                className={`flex flex-col items-center gap-1 p-3 rounded-xl border-2 transition-all
+                  ${pendingOpt === o.id
+                    ? 'border-purple-500 bg-purple-50 text-purple-700'
+                    : 'border-gray-200 bg-white text-gray-700 hover:border-purple-300'}
+                  ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer active:scale-95'}`}
+              >
+                {o.emoji && <span className="text-2xl">{o.emoji}</span>}
+                <span className="text-sm font-bold">{o.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* ② いろをえらぶ */}
+        <div className="bg-white rounded-2xl p-3 shadow-sm border border-gray-100">
+          <div className="flex items-center gap-1.5 mb-2">
+            <span className="w-5 h-5 rounded-full bg-purple-600 text-white text-xs font-bold flex items-center justify-center">②</span>
+            <span className="text-xs font-bold text-gray-500">いろをえらぶ</span>
+          </div>
+          <div className="flex gap-3 justify-center">
+            {COLOR_CONFIG.map(c => (
+              <button
+                key={c.id}
+                onClick={() => handleColorClick(c.id)}
+                className={`flex flex-col items-center gap-1 transition-all
+                  ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
+              >
+                <div
+                  className={`w-12 h-12 rounded-full border-4 transition-all active:scale-90
+                    ${pendingColor === c.id ? 'border-gray-900 shadow-lg scale-110' : 'border-transparent'}`}
+                  style={{ backgroundColor: c.hex }}
+                />
+                <span className="text-xs text-gray-600">{c.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* ③ かたちをえらぶ */}
+        <div className="bg-white rounded-2xl p-3 shadow-sm border border-gray-100">
+          <div className="flex items-center gap-1.5 mb-2">
+            <span className="w-5 h-5 rounded-full bg-purple-600 text-white text-xs font-bold flex items-center justify-center">③</span>
+            <span className="text-xs font-bold text-gray-500">かたちをえらぶ</span>
+          </div>
+          <div className="flex gap-2 justify-center">
+            {SHAPE_CONFIG.map(s => (
+              <button
+                key={s.id}
+                onClick={() => handleShapeClick(s.id)}
+                className={`flex flex-col items-center gap-1 transition-all
+                  ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer'}`}
+              >
+                <div
+                  className={`w-12 h-12 rounded-xl border-2 flex items-center justify-center text-2xl transition-all active:scale-90
+                    ${pendingShape === s.id ? 'border-purple-500 bg-purple-50' : 'border-gray-200 bg-white'}`}
+                >
+                  {s.symbol}
+                </div>
+                <span className="text-xs text-gray-600">{s.label}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* えらんだこたえ */}
+        <div className="bg-amber-50 border-2 border-amber-300 rounded-2xl p-3">
+          <div className="text-xs font-bold text-amber-800 mb-2">📋 えらんだこたえ</div>
+
+          {/* pending preview */}
+          <div className="bg-green-50 border-2 border-dashed border-green-300 rounded-xl p-2 mb-2 min-h-[36px] flex items-center gap-2">
+            {pendingOpt || pendingColor || pendingShape ? (
+              <>
+                {pendingOptLabel && (
+                  <span className="text-sm font-bold text-gray-700">
+                    {pendingOptLabel.emoji} {pendingOptLabel.label}
+                  </span>
+                )}
+                {pendingColor && (
+                  <div
+                    className="w-4 h-4 rounded-full flex-shrink-0"
+                    style={{ backgroundColor: COLOR_CONFIG.find(c => c.id === pendingColor)?.hex }}
+                  />
+                )}
+                {pendingShape && (
+                  <span className="text-lg">{SHAPE_CONFIG.find(s => s.id === pendingShape)?.symbol}</span>
+                )}
+              </>
+            ) : (
+              <span className="text-xs text-gray-400">①②③をえらぶとここにひょうじされます</span>
+            )}
+          </div>
+
+          {/* confirmed list */}
+          {confirmed.length > 0 && (
+            <div className="flex flex-col gap-1.5 mb-2">
+              {confirmed.map((item, i) => {
+                const opt = options.find(o => o.id === item.optionId)
+                const colorCfg = COLOR_CONFIG.find(c => c.id === item.color)
+                const shapeCfg = SHAPE_CONFIG.find(s => s.id === item.shape)
+                return (
+                  <div key={i} className="bg-white rounded-xl px-3 py-2 flex items-center gap-2">
+                    <span className="text-sm font-bold text-gray-800 flex-1">
+                      {opt?.emoji} {opt?.label}
+                    </span>
+                    <div className="w-5 h-5 rounded-full flex-shrink-0" style={{ backgroundColor: colorCfg?.hex }} />
+                    <span className="text-xl">{shapeCfg?.symbol}</span>
+                    <button
+                      onClick={() => handleRemove(i)}
+                      disabled={disabled}
+                      className="bg-red-100 text-red-600 rounded-lg px-2 py-0.5 text-xs font-bold disabled:opacity-50"
+                    >
+                      消す
+                    </button>
+                  </div>
+                )
+              })}
+            </div>
+          )}
+
+          <button
+            onClick={() => onSelect(confirmed)}
+            disabled={disabled || confirmed.length === 0}
+            className="w-full py-3 rounded-xl font-bold text-base transition-all
+              bg-gradient-to-r from-amber-400 to-orange-400 text-white
+              disabled:from-gray-300 disabled:to-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed
+              active:scale-98"
+          >
+            このこたえでけっていする →
+          </button>
+        </div>
+      </div>
+    )
+  }
+)
+```
+
+- [ ] **Step 2: Commit**
+
+```
+git add src/components/answers/MarkerAnswerPanel.tsx
+git commit -m "feat: add MarkerAnswerPanel component"
+```
+
+---
+
+## Task 4: Update QuizPage
+
+**Files:**
+- Modify: `src/pages/QuizPage.tsx`
+
+- [ ] **Step 1: Replace QuizPage.tsx**
+
+```typescript
+import { useState, useEffect, useCallback, useRef } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { stories } from '../data/stories'
+import { useTTS } from '../hooks/useTTS'
+import { useQuizTimer } from '../hooks/useQuizTimer'
+import { useProgress } from '../hooks/useProgress'
+import { ProgressBar } from '../components/ProgressBar'
+import { MarkerAnswerPanel, type MarkerAnswerPanelHandle } from '../components/answers/MarkerAnswerPanel'
+import { scoreAnswer } from '../utils/scoreAnswer'
+import type { Answer, MarkerSelection } from '../types'
+
+type Phase = 'reading' | 'selecting' | 'timeout'
+
+export function QuizPage() {
+  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const story = stories.find(s => s.id === id)!
+  const { speak, stop } = useTTS()
+  const { addResult } = useProgress()
+
+  const [qIdx, setQIdx] = useState(0)
+  const [phase, setPhase] = useState<Phase>('reading')
+  const [, setAnswers] = useState<Answer[]>([])
+
+  const qIdxRef = useRef(0)
+  const answersRef = useRef<Answer[]>([])
+  const earlyPressRef = useRef(false)
+  const startQuestionRef = useRef<(index: number) => void>(() => {})
+  const panelRef = useRef<MarkerAnswerPanelHandle>(null)
+
+  const { timeLeft, start: startTimer, reset: resetTimer } = useQuizTimer(20, () => handleTimeoutRef.current())
+
+  useEffect(() => () => { stop() }, [stop])
+
+  const finishQuiz = useCallback((finalAnswers: Answer[]) => {
+    const score = finalAnswers.reduce((s, a) => s + a.score, 0)
+    const total = finalAnswers.reduce((s, a) => s + a.maxScore, 0)
+    addResult({
+      storyId: id!,
+      date: new Date().toISOString(),
+      score,
+      total,
+      answers: finalAnswers,
+    })
+    navigate(`/result/${id}`)
+  }, [addResult, id, navigate])
+
+  const advanceAfterAnswer = useCallback((newAnswers: Answer[]) => {
+    setPhase('timeout')
+    speak('やめ', () => {
+      setTimeout(() => {
+        const next = qIdxRef.current + 1
+        if (next >= story.questions.length) {
+          finishQuiz(newAnswers)
+        } else {
+          qIdxRef.current = next
+          setQIdx(next)
+          startQuestionRef.current(next)
+        }
+      }, 1000)
+    })
+  }, [story.questions.length, speak, finishQuiz])
+
+  const recordAnswer = useCallback((selections: MarkerSelection[]) => {
+    const q = story.questions[qIdxRef.current]
+    const taskResults = scoreAnswer(q.tasks, selections)
+    const score = taskResults.filter(Boolean).length
+    const answer: Answer = {
+      questionId: q.id,
+      selections,
+      taskResults,
+      score,
+      maxScore: q.tasks.length,
+    }
+    const newAnswers = [...answersRef.current, answer]
+    answersRef.current = newAnswers
+    setAnswers(newAnswers)
+    return newAnswers
+  }, [story.questions])
+
+  const handleDecide = useCallback((selections: MarkerSelection[]) => {
+    resetTimer()
+    const newAnswers = recordAnswer(selections)
+    advanceAfterAnswer(newAnswers)
+  }, [resetTimer, recordAnswer, advanceAfterAnswer])
+
+  const handleTimeout = useCallback(() => {
+    const currentConfirmed = panelRef.current?.getConfirmed() ?? []
+    const newAnswers = recordAnswer(currentConfirmed)
+    advanceAfterAnswer(newAnswers)
+  }, [recordAnswer, advanceAfterAnswer])
+
+  // keep ref so useQuizTimer always calls latest version
+  const handleTimeoutRef = useRef(handleTimeout)
+  handleTimeoutRef.current = handleTimeout
+
+  const startQuestion = useCallback((index: number) => {
+    const q = story.questions[index]
+    earlyPressRef.current = false
+    setPhase('reading')
+    const taskLines = q.tasks.map(t => t.instruction).join('。')
+    setTimeout(() => {
+      speak(`問題${index + 1}。${q.text}。${taskLines}`, () => {
+        if (earlyPressRef.current) {
+          const newAnswers = recordAnswer([])
+          speak('きちんと読み上げるまで、手を膝の上に置いてお待ちください。問題はスキップします。', () => {
+            const next = index + 1
+            if (next >= story.questions.length) {
+              finishQuiz(newAnswers)
+            } else {
+              qIdxRef.current = next
+              setQIdx(next)
+              startQuestionRef.current(next)
+            }
+          })
+        } else {
+          speak('回答を選択してください。はじめ', () => {
+            setPhase('selecting')
+          })
+        }
+      })
+    }, 1000)
+  }, [story.questions, speak, recordAnswer, finishQuiz])
+  startQuestionRef.current = startQuestion
+
+  useEffect(() => {
+    if (phase === 'selecting') startTimer()
+  }, [phase]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    startQuestion(0)
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleInteract = () => {
+    if (phase === 'reading') earlyPressRef.current = true
+  }
+
+  const currentQ = story.questions[qIdx]
+  const isDisabled = phase === 'timeout'
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-pink-50 p-4">
+      <div className="max-w-lg mx-auto">
+        <div className="mb-4">
+          <ProgressBar current={qIdx} total={story.questions.length} />
+        </div>
+
+        <div className="bg-white rounded-3xl p-6 shadow-sm mb-3">
+          <div className="flex justify-between items-center mb-4">
+            <span className="text-sm font-bold text-purple-600 bg-purple-100 px-3 py-1 rounded-full">
+              もんだい {qIdx + 1}
+            </span>
+            {phase === 'selecting' && (
+              <span className={`text-lg font-bold tabular-nums ${timeLeft <= 5 ? 'text-red-500 animate-pulse' : 'text-gray-500'}`}>
+                ⏱ {timeLeft}びょう
+              </span>
+            )}
+            {phase === 'reading' && (
+              <span className="text-sm text-gray-400 animate-pulse">🔊 よみあげ中...</span>
+            )}
+            {phase === 'timeout' && (
+              <span className="text-sm font-bold text-red-500">やめ！</span>
+            )}
+          </div>
+
+          <p className="text-xl font-bold text-gray-800 mb-2 text-center leading-relaxed">
+            {currentQ.text}
+          </p>
+
+          {currentQ.tasks.map((task, i) => (
+            <p key={i} className="text-xs text-center text-purple-600 bg-purple-50 rounded-lg px-3 py-1 mb-1">
+              {task.instruction}
+            </p>
+          ))}
+        </div>
+
+        <MarkerAnswerPanel
+          ref={panelRef}
+          options={currentQ.options}
+          disabled={isDisabled}
+          onSelect={handleDecide}
+          onInteract={handleInteract}
+        />
+      </div>
+    </div>
+  )
+}
+```
+
+- [ ] **Step 2: Commit**
+
+```
+git add src/pages/QuizPage.tsx
+git commit -m "feat: update QuizPage to use MarkerAnswerPanel and new scoring"
+```
+
+---
+
+## Task 5: Update ResultPage, ProgressPage, useProgress
+
+**Files:**
+- Modify: `src/pages/ResultPage.tsx`
+- Modify: `src/pages/ProgressPage.tsx`
+- Modify: `src/hooks/useProgress.ts`
+
+- [ ] **Step 1: Update ResultPage.tsx**
+
+Replace `src/pages/ResultPage.tsx`:
+
+```typescript
+import { useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { stories } from '../data/stories'
+import { useProgress } from '../hooks/useProgress'
+
+export function ResultPage() {
+  const { id } = useParams<{ id: string }>()
+  const navigate = useNavigate()
+  const { data } = useProgress()
+  const story = stories.find(s => s.id === id)!
+
+  const latestResult = [...data.results]
+    .filter(r => r.storyId === id)
+    .sort((a, b) => b.date.localeCompare(a.date))[0]
+
+  useEffect(() => {
+    if (!latestResult) navigate('/')
+  }, [latestResult, navigate])
+
+  if (!latestResult) return null
+
+  const { score, total, answers } = latestResult
+  const pct = total > 0 ? Math.round((score / total) * 100) : 0
+  const isPerfect = score === total
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-pink-50 p-4">
+      <div className="max-w-lg mx-auto">
+        <div className="bg-white rounded-3xl p-6 shadow-sm mb-4 text-center">
+          <div className="text-6xl mb-2">{isPerfect ? '🎉' : score >= total / 2 ? '😊' : '😢'}</div>
+          <h1 className="text-2xl font-bold text-gray-800 mb-1">{story.title}</h1>
+          <div className="text-4xl font-bold text-purple-600 my-3">
+            {score} / {total} せいかい！
+          </div>
+          <div className="text-sm text-gray-400 mb-1">（くみあわせ正解数）</div>
+          <div className="text-lg text-gray-500">{pct}%</div>
+          {isPerfect && <p className="text-yellow-500 font-bold mt-2">🌟 ぜんもんせいかい！すごい！</p>}
+        </div>
+
+        <div className="flex flex-col gap-3 mb-6">
+          {story.questions.map((q, i) => {
+            const ans = answers.find(a => a.questionId === q.id)
+            const taskResults = ans?.taskResults ?? q.tasks.map(() => false)
+            const allCorrect = taskResults.every(Boolean)
+            const anyCorrect = taskResults.some(Boolean)
+            const borderColor = allCorrect ? 'border-green-300' : anyCorrect ? 'border-yellow-300' : 'border-red-300'
+            return (
+              <div key={q.id} className={`bg-white rounded-2xl p-4 border-2 ${borderColor}`}>
+                <div className="flex items-start gap-2">
+                  <span className="text-xl">{allCorrect ? '✅' : anyCorrect ? '🔶' : '❌'}</span>
+                  <div className="flex-1">
+                    <p className="text-sm font-bold text-gray-700">もんだい{i + 1}: {q.text}</p>
+                    {q.tasks.length > 1 && (
+                      <div className="mt-1 flex flex-col gap-0.5">
+                        {q.tasks.map((task, ti) => (
+                          <p key={ti} className="text-xs text-gray-500">
+                            {taskResults[ti] ? '✅' : '❌'} {task.instruction}
+                          </p>
+                        ))}
+                      </div>
+                    )}
+                    {!allCorrect && (
+                      <p className="text-xs text-blue-600 mt-1">💡 {q.explanation}</p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <button onClick={() => navigate(`/story/${id}`)}
+            className="w-full py-4 rounded-2xl bg-gradient-to-r from-yellow-400 to-pink-400 text-white font-bold text-lg shadow active:scale-95">
+            🔁 もういちどやる
+          </button>
+          <button onClick={() => navigate('/')}
+            className="w-full py-4 rounded-2xl border-2 border-gray-200 text-gray-600 font-bold text-lg">
+            🏠 ホームへ
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
+- [ ] **Step 2: Update useProgress.ts**
+
+Replace `src/hooks/useProgress.ts`:
+
+```typescript
+import { useState, useCallback } from 'react'
+import { loadProgress, saveResult } from '../utils/storage'
+import type { ProgressData, QuizResult } from '../types'
+
+export function useProgress() {
+  const [data, setData] = useState<ProgressData>(() => loadProgress())
+
+  const addResult = useCallback((result: QuizResult) => {
+    saveResult(result)
+    setData(loadProgress())
+  }, [])
+
+  const getStoryBestScore = useCallback((storyId: string) => {
+    const rs = data.results.filter(r => r.storyId === storyId)
+    if (rs.length === 0) return null
+    return Math.max(...rs.map(r => r.score))
+  }, [data])
+
+  const getPracticedDates = useCallback((): string[] => {
+    const dates = new Set(data.results.map(r => r.date.slice(0, 10)))
+    return Array.from(dates)
+  }, [data])
+
+  return { data, addResult, getStoryBestScore, getPracticedDates }
+}
+```
+
+- [ ] **Step 3: Update ProgressPage.tsx**
+
+Replace `src/pages/ProgressPage.tsx`:
+
+```typescript
+import { useNavigate } from 'react-router-dom'
+import { useProgress } from '../hooks/useProgress'
+import { stories } from '../data/stories'
+
+export function ProgressPage() {
+  const navigate = useNavigate()
+  const { data, getPracticedDates } = useProgress()
+  const results = data.results
+
+  const totalAttempts = results.length
+  const overallCorrect = results.reduce((s, r) => s + r.score, 0)
+  const overallTotal = results.reduce((s, r) => s + r.total, 0)
+  const overallPct = overallTotal > 0 ? Math.round((overallCorrect / overallTotal) * 100) : 0
+  const practicedDates = getPracticedDates()
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-pink-50 p-4">
+      <div className="max-w-lg mx-auto">
+        <button onClick={() => navigate('/')} className="text-gray-500 mb-4">← もどる</button>
+        <h1 className="text-xl font-bold text-purple-700 mb-4">📊 きろく・ぶんせき</h1>
+
+        <div className="bg-white rounded-3xl p-5 shadow-sm mb-4">
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <div className="text-2xl font-bold text-purple-600">{totalAttempts}</div>
+              <div className="text-xs text-gray-500">ちょうせん</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold text-green-500">{overallPct}%</div>
+              <div className="text-xs text-gray-500">せいかいりつ</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold text-blue-500">{practicedDates.length}</div>
+              <div className="text-xs text-gray-500">れんしゅうび</div>
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-3xl p-5 shadow-sm">
+          <h2 className="text-sm font-bold text-gray-600 mb-3">もんだい別さいこうスコア</h2>
+          {stories.map(s => {
+            const rs = results.filter(r => r.storyId === s.id)
+            const best = rs.length > 0 ? Math.max(...rs.map(r => r.score)) : null
+            const bestTotal = rs.length > 0
+              ? rs.find(r => r.score === best)?.total ?? s.questions.length
+              : s.questions.length
+            return (
+              <div key={s.id} className="flex items-center gap-2 py-2 border-b border-gray-100 last:border-0">
+                <span className="text-xl">{s.icon}</span>
+                <span className="flex-1 text-sm text-gray-700">{s.title}</span>
+                <span className="text-sm font-bold text-purple-600">
+                  {best !== null ? `${best}/${bestTotal}` : '—'}
+                </span>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}
+```
+
+- [ ] **Step 4: Commit**
+
+```
+git add src/pages/ResultPage.tsx src/pages/ProgressPage.tsx src/hooks/useProgress.ts
+git commit -m "feat: update result/progress pages for marker answer scoring"
+```
+
+---
+
+## Task 6: Rewrite stories.ts
+
+**Files:**
+- Modify: `src/data/stories.ts`
+
+All questions use `type: 'marker'`, 1 task each, `color: 'red'`, `shape: 'circle'`.  
+Instruction for all: `'ただしいこたえをえらんで、あかでまるをおしてください'`  
+Options: remove `correct` and `color` fields; add `emoji` where helpful (color options get color-circle emoji).
+
+- [ ] **Step 1: Replace src/data/stories.ts**
+
+```typescript
 import type { Story } from '../types'
 
 const INS = 'ただしいこたえをえらんで、あかでまるをおしてください'
@@ -782,3 +1744,95 @@ export const stories: Story[] = [
     ],
   },
 ]
+```
+
+- [ ] **Step 2: Run TypeScript check**
+
+```
+npx tsc --noEmit
+```
+
+Expected: No errors.
+
+- [ ] **Step 3: Commit**
+
+```
+git add src/data/stories.ts
+git commit -m "feat: rewrite all 15 stories to marker format"
+```
+
+---
+
+## Task 7: Delete old answer components + build verification
+
+**Files:**
+- Delete: `src/components/answers/IllustrationAnswer.tsx`
+- Delete: `src/components/answers/NumberAnswer.tsx`
+- Delete: `src/components/answers/ColorAnswer.tsx`
+- Delete: `src/components/answers/CharacterAnswer.tsx`
+
+- [ ] **Step 1: Delete the 4 old files**
+
+```
+del "src\components\answers\IllustrationAnswer.tsx"
+del "src\components\answers\NumberAnswer.tsx"
+del "src\components\answers\ColorAnswer.tsx"
+del "src\components\answers\CharacterAnswer.tsx"
+```
+
+Or on Unix:
+```
+rm src/components/answers/IllustrationAnswer.tsx
+rm src/components/answers/NumberAnswer.tsx
+rm src/components/answers/ColorAnswer.tsx
+rm src/components/answers/CharacterAnswer.tsx
+```
+
+- [ ] **Step 2: Run full test suite**
+
+```
+npx vitest run
+```
+
+Expected: All tests PASS.
+
+- [ ] **Step 3: Build**
+
+```
+npm run build
+```
+
+Expected: Build succeeds with no errors.
+
+- [ ] **Step 4: Commit**
+
+```
+git add -A
+git commit -m "chore: delete old answer components (replaced by MarkerAnswerPanel)"
+```
+
+---
+
+## Self-Review
+
+**Spec coverage check:**
+- ✅ MarkColor / MarkShape / MarkerTask / MarkerSelection types → Task 1
+- ✅ Question.type = 'marker', tasks[], Option.correct removed → Task 1
+- ✅ Answer.selections / taskResults / score / maxScore → Task 1
+- ✅ QuizResult.score/total counts tasks → Task 1 + Task 4
+- ✅ scoreAnswer utility with per-combination matching → Task 1
+- ✅ MarkerAnswerPanel with ①②③ auto-confirm, delete, decide → Task 3
+- ✅ disabled=true during timeout only → Task 4 (isDisabled = phase === 'timeout')
+- ✅ earlyPressRef detection via onInteract → Task 4
+- ✅ TTS: question text + task instructions joined → Task 4
+- ✅ Timeout reads confirmed via panelRef.current.getConfirmed() → Task 4
+- ✅ ResultPage: taskResults per question, partial-credit indicator → Task 5
+- ✅ ProgressPage: remove type-based stats → Task 5
+- ✅ All 15 stories rewritten → Task 6
+- ✅ Old components deleted → Task 7
+
+**Type consistency check:**
+- `scoreAnswer(tasks: MarkerTask[], selections: MarkerSelection[]): boolean[]` — used in Task 4 QuizPage with `q.tasks` and `MarkerSelection[]` ✅
+- `MarkerAnswerPanelHandle.getConfirmed()` → returns `MarkerSelection[]` — used in `handleTimeout` as `panelRef.current?.getConfirmed() ?? []` ✅
+- `Answer.selections: MarkerSelection[]` matches what `handleDecide` and `handleTimeout` pass ✅
+- `finishQuiz` sums `a.score` and `a.maxScore` across answers — both fields defined in Task 1 ✅
