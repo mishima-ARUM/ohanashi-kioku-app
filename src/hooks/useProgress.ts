@@ -1,12 +1,6 @@
 import { useState, useCallback } from 'react'
 import { loadProgress, saveResult } from '../utils/storage'
-import type { ProgressData, QuizResult, QuestionType } from '../types'
-
-export interface TypeAccuracy {
-  type: QuestionType
-  correct: number
-  total: number
-}
+import type { ProgressData, QuizResult } from '../types'
 
 export function useProgress() {
   const [data, setData] = useState<ProgressData>(() => loadProgress())
