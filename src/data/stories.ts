@@ -8,8 +8,6 @@ import { storiesApr } from './stories-apr'
 import { storiesMay } from './stories-may'
 import { storiesJun } from './stories-jun'
 
-const INS = 'ただしいこたえをえらんで、あかでまるをおしてください'
-
 export const stories: Story[] = [
   // ===== ⭐ やさしい（5問） =====
   {
@@ -20,7 +18,7 @@ export const stories: Story[] = [
       {
         id: 'q1', type: 'marker',
         text: 'ミミちゃんのぼうしはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'yellow', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでまるをおしてください', optionId: 'yellow', color: 'red', shape: 'circle' }],
         options: [
           { id: 'red',    label: 'あか',   emoji: '🔴' },
           { id: 'yellow', label: 'きいろ', emoji: '🟡' },
@@ -32,7 +30,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'チューリップはなんぼんさいていましたか？',
-        tasks: [{ instruction: INS, optionId: '5', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでさんかくをおしてください', optionId: '5', color: 'blue', shape: 'triangle' }],
         options: [
           { id: '3', label: '3', emoji: '3️⃣' },
           { id: '4', label: '4', emoji: '4️⃣' },
@@ -45,7 +43,7 @@ export const stories: Story[] = [
       {
         id: 'q3', type: 'marker',
         text: 'りっちゃんはどんぐりをいくつくれましたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでばつをおしてください', optionId: '3', color: 'green', shape: 'cross' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -65,7 +63,7 @@ export const stories: Story[] = [
       {
         id: 'q1', type: 'marker',
         text: 'タマちゃんのかごはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'blue', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでにじゅうまるをおしてください', optionId: 'blue', color: 'yellow', shape: 'double-circle' }],
         options: [
           { id: 'red',    label: 'あか',   emoji: '🔴' },
           { id: 'blue',   label: 'あお',   emoji: '🔵' },
@@ -77,7 +75,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'たまごはなんこかいましたか？',
-        tasks: [{ instruction: INS, optionId: '6', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでまるをおしてください', optionId: '6', color: 'blue', shape: 'circle' }],
         options: [
           { id: '4', label: '4', emoji: '4️⃣' },
           { id: '5', label: '5', emoji: '5️⃣' },
@@ -97,7 +95,7 @@ export const stories: Story[] = [
       {
         id: 'q1', type: 'marker',
         text: 'クーちゃんはパンをいくつたべましたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでさんかくをおしてください', optionId: '2', color: 'green', shape: 'triangle' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -110,7 +108,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'あさごはんのメニューにないものはどれですか？',
-        tasks: [{ instruction: INS, optionId: 'd', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでばつをおしてください', optionId: 'd', color: 'yellow', shape: 'cross' }],
         options: [
           { id: 'a', label: 'パン',   emoji: '🍞' },
           { id: 'b', label: 'スープ', emoji: '🍲' },
@@ -129,7 +127,7 @@ export const stories: Story[] = [
       {
         id: 'q1', type: 'marker',
         text: 'シロくんがつかったぞうきんはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'green', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでにじゅうまるをおしてください', optionId: 'green', color: 'red', shape: 'double-circle' }],
         options: [
           { id: 'red',    label: 'あか',   emoji: '🔴' },
           { id: 'yellow', label: 'きいろ', emoji: '🟡' },
@@ -141,7 +139,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'おかあさんはりんごをいくつくれましたか？',
-        tasks: [{ instruction: INS, optionId: '4', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでまるをおしてください', optionId: '4', color: 'green', shape: 'circle' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -154,7 +152,7 @@ export const stories: Story[] = [
       {
         id: 'q3', type: 'marker',
         text: 'シロくんがさいごにしたことはどれですか？',
-        tasks: [{ instruction: INS, optionId: 'c', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでさんかくをおしてください', optionId: 'c', color: 'yellow', shape: 'triangle' }],
         options: [
           { id: 'a', label: 'おちゃわんあらい', emoji: '🍽️' },
           { id: 'b', label: 'テーブルふき',     emoji: '🧽' },
@@ -173,7 +171,7 @@ export const stories: Story[] = [
       {
         id: 'q1', type: 'marker',
         text: 'むらさきのすみれはなんぼんありましたか？',
-        tasks: [{ instruction: INS, optionId: '5', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでばつをおしてください', optionId: '5', color: 'red', shape: 'cross' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -186,7 +184,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'あかいバラをかったのはだれですか？',
-        tasks: [{ instruction: INS, optionId: 'mike', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでにじゅうまるをおしてください', optionId: 'mike', color: 'blue', shape: 'double-circle' }],
         options: [
           { id: 'pon',  label: 'ポンちゃん', emoji: '🦝' },
           { id: 'mike', label: 'ミケちゃん', emoji: '🐱' },
@@ -206,7 +204,7 @@ export const stories: Story[] = [
       {
         id: 'q1', type: 'marker',
         text: 'ハルのかごはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'green', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでまるをおしてください', optionId: 'green', color: 'yellow', shape: 'circle' }],
         options: [
           { id: 'red',    label: 'あか',   emoji: '🔴' },
           { id: 'blue',   label: 'あお',   emoji: '🔵' },
@@ -218,7 +216,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'とちゅうでみかけたどうぶつはどれですか？',
-        tasks: [{ instruction: INS, optionId: 'b', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでさんかくをおしてください', optionId: 'b', color: 'red', shape: 'triangle' }],
         options: [
           { id: 'a', label: 'うさぎとたぬき', emoji: '🐰🦝' },
           { id: 'b', label: 'りすとたぬき',   emoji: '🐿️🦝' },
@@ -252,7 +250,7 @@ export const stories: Story[] = [
       {
         id: 'q1', type: 'marker',
         text: 'お母さんのぼうしはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'red', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでばつをおしてください', optionId: 'red', color: 'blue', shape: 'cross' }],
         options: [
           { id: 'red',    label: 'あか',   emoji: '🔴' },
           { id: 'blue',   label: 'あお',   emoji: '🔵' },
@@ -264,7 +262,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'かけっこでいちばんになったのはだれですか？',
-        tasks: [{ instruction: INS, optionId: 'yuu', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでにじゅうまるをおしてください', optionId: 'yuu', color: 'green', shape: 'double-circle' }],
         options: [
           { id: 'yuu', label: 'ユウ', emoji: '👦' },
           { id: 'ken', label: 'ケン', emoji: '👦' },
@@ -290,7 +288,7 @@ export const stories: Story[] = [
       {
         id: 'q4', type: 'marker',
         text: 'おうえんにきたのはだれとだれですか？',
-        tasks: [{ instruction: INS, optionId: 'c', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでまるをおしてください', optionId: 'c', color: 'red', shape: 'circle' }],
         options: [
           { id: 'a', label: 'お父さんとお兄さん', emoji: '👨👦' },
           { id: 'b', label: 'お母さんとお姉さん', emoji: '👩👧' },
@@ -309,7 +307,7 @@ export const stories: Story[] = [
       {
         id: 'q1', type: 'marker',
         text: 'ナナのワンピースはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'red', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでさんかくをおしてください', optionId: 'red', color: 'blue', shape: 'triangle' }],
         options: [
           { id: 'red',    label: 'あか',   emoji: '🔴' },
           { id: 'yellow', label: 'きいろ', emoji: '🟡' },
@@ -321,7 +319,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'ケーキにたっていたろうそくはなんぼんでしたか？',
-        tasks: [{ instruction: INS, optionId: '5', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでばつをおしてください', optionId: '5', color: 'green', shape: 'cross' }],
         options: [
           { id: '3', label: '3', emoji: '3️⃣' },
           { id: '4', label: '4', emoji: '4️⃣' },
@@ -355,7 +353,7 @@ export const stories: Story[] = [
       {
         id: 'q1', type: 'marker',
         text: 'えんそくでさいしょにみたどうぶつはどれですか？',
-        tasks: [{ instruction: INS, optionId: 'squirrel', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでにじゅうまるをおしてください', optionId: 'squirrel', color: 'yellow', shape: 'double-circle' }],
         options: [
           { id: 'squirrel', label: 'りす',   emoji: '🐿️' },
           { id: 'rabbit',   label: 'うさぎ', emoji: '🐰' },
@@ -382,7 +380,7 @@ export const stories: Story[] = [
       {
         id: 'q3', type: 'marker',
         text: 'えんそくで二ひきめにみたどうぶつはどれですか？',
-        tasks: [{ instruction: INS, optionId: 'rabbit', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでまるをおしてください', optionId: 'rabbit', color: 'blue', shape: 'circle' }],
         options: [
           { id: 'squirrel', label: 'りす',   emoji: '🐿️' },
           { id: 'rabbit',   label: 'うさぎ', emoji: '🐰' },
@@ -401,7 +399,7 @@ export const stories: Story[] = [
       {
         id: 'q1', type: 'marker',
         text: 'にわでみたどうぶつはなんでしたか？',
-        tasks: [{ instruction: INS, optionId: 'squirrel', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでさんかくをおしてください', optionId: 'squirrel', color: 'green', shape: 'triangle' }],
         options: [
           { id: 'squirrel', label: 'りす',   emoji: '🐿️' },
           { id: 'rabbit',   label: 'うさぎ', emoji: '🐰' },
@@ -428,7 +426,7 @@ export const stories: Story[] = [
       {
         id: 'q3', type: 'marker',
         text: 'りすはさいごにどこへいきましたか？',
-        tasks: [{ instruction: INS, optionId: 'tree', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでばつをおしてください', optionId: 'tree', color: 'yellow', shape: 'cross' }],
         options: [
           { id: 'tree',   label: 'きのうえ',   emoji: '🌲' },
           { id: 'house',  label: 'いえのなか', emoji: '🏠' },
@@ -464,7 +462,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'ソウはやきとりをなんぼんたべましたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでにじゅうまるをおしてください', optionId: '3', color: 'red', shape: 'double-circle' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -491,7 +489,7 @@ export const stories: Story[] = [
       {
         id: 'q4', type: 'marker',
         text: 'お父さんがもっていたちょうちんはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'red', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでまるをおしてください', optionId: 'red', color: 'green', shape: 'circle' }],
         options: [
           { id: 'red',    label: 'あか',   emoji: '🔴' },
           { id: 'yellow', label: 'きいろ', emoji: '🟡' },
@@ -503,7 +501,7 @@ export const stories: Story[] = [
       {
         id: 'q5', type: 'marker',
         text: 'かわでみたながしびのいろはどれですか？',
-        tasks: [{ instruction: INS, optionId: 'b', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでさんかくをおしてください', optionId: 'b', color: 'yellow', shape: 'triangle' }],
         options: [
           { id: 'a', label: 'あかとあお',   emoji: '🔴🔵' },
           { id: 'b', label: 'あかとしろ',   emoji: '🔴⬜' },
@@ -537,7 +535,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'リクがつかったくれよんはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'green', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでばつをおしてください', optionId: 'green', color: 'red', shape: 'cross' }],
         options: [
           { id: 'pink',  label: 'ぴんく',   emoji: '🩷' },
           { id: 'brown', label: 'ちゃいろ', emoji: '🟤' },
@@ -564,7 +562,7 @@ export const stories: Story[] = [
       {
         id: 'q4', type: 'marker',
         text: 'リクがつくろうとしたかたちはなんでしたか？',
-        tasks: [{ instruction: INS, optionId: 'heart', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでにじゅうまるをおしてください', optionId: 'heart', color: 'blue', shape: 'double-circle' }],
         options: [
           { id: 'flower', label: 'おはな',   emoji: '🌸' },
           { id: 'star',   label: 'ほし',     emoji: '⭐' },
@@ -576,7 +574,7 @@ export const stories: Story[] = [
       {
         id: 'q5', type: 'marker',
         text: 'じゅぎょうのおわりにみんなはえをどうしましたか？',
-        tasks: [{ instruction: INS, optionId: 'c', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでまるをおしてください', optionId: 'c', color: 'yellow', shape: 'circle' }],
         options: [
           { id: 'a', label: 'いえにもちかえった', emoji: '🏠' },
           { id: 'b', label: 'せんせいにわたした', emoji: '👩‍🏫' },
@@ -610,7 +608,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'リクとおじいちゃんがつったさかなはあわせてなんびきでしたか？',
-        tasks: [{ instruction: INS, optionId: '5', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでさんかくをおしてください', optionId: '5', color: 'red', shape: 'triangle' }],
         options: [
           { id: '3', label: '3', emoji: '3️⃣' },
           { id: '4', label: '4', emoji: '4️⃣' },
@@ -637,7 +635,7 @@ export const stories: Story[] = [
       {
         id: 'q4', type: 'marker',
         text: 'リクがつったさかなはなんびきでしたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでばつをおしてください', optionId: '2', color: 'blue', shape: 'cross' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -649,7 +647,7 @@ export const stories: Story[] = [
       {
         id: 'q5', type: 'marker',
         text: 'おじいちゃんはリクになにをおしえてくれましたか？',
-        tasks: [{ instruction: INS, optionId: 'a', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでにじゅうまるをおしてください', optionId: 'a', color: 'green', shape: 'double-circle' }],
         options: [
           { id: 'a', label: 'つりざおのもちかた',   emoji: '🎣' },
           { id: 'b', label: 'さかなのつかまえかた', emoji: '🐟' },
@@ -698,7 +696,7 @@ export const stories: Story[] = [
       {
         id: 'q3', type: 'marker',
         text: 'さいしょのおきゃくさんはだれでしたか？',
-        tasks: [{ instruction: INS, optionId: 'b', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでまるをおしてください', optionId: 'b', color: 'red', shape: 'circle' }],
         options: [
           { id: 'a', label: 'せんせい',         emoji: '👩‍🏫' },
           { id: 'b', label: 'こ年せいのおとこのこ', emoji: '👦' },
@@ -710,7 +708,7 @@ export const stories: Story[] = [
       {
         id: 'q4', type: 'marker',
         text: 'ナナのエプロンはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'green', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでさんかくをおしてください', optionId: 'green', color: 'blue', shape: 'triangle' }],
         options: [
           { id: 'blue',   label: 'あお',   emoji: '🔵' },
           { id: 'yellow', label: 'きいろ', emoji: '🟡' },
@@ -722,7 +720,7 @@ export const stories: Story[] = [
       {
         id: 'q5', type: 'marker',
         text: 'いちにちでうったたこやきはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '50', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでばつをおしてください', optionId: '50', color: 'green', shape: 'cross' }],
         options: [
           { id: '30', label: '30', emoji: '3️⃣0️⃣' },
           { id: '40', label: '40', emoji: '4️⃣0️⃣' },
@@ -756,7 +754,7 @@ export const stories: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'スープにいれたじゃがいもはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでにじゅうまるをおしてください', optionId: '3', color: 'yellow', shape: 'double-circle' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -783,7 +781,7 @@ export const stories: Story[] = [
       {
         id: 'q4', type: 'marker',
         text: 'サラダのドレッシングをかけたのはだれですか？',
-        tasks: [{ instruction: INS, optionId: 'mom', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでまるをおしてください', optionId: 'mom', color: 'blue', shape: 'circle' }],
         options: [
           { id: 'aoi',    label: 'アオイ',   emoji: '👧' },
           { id: 'mom',    label: 'お母さん', emoji: '👩' },
@@ -794,7 +792,7 @@ export const stories: Story[] = [
       {
         id: 'q5', type: 'marker',
         text: 'オムレツはだれがつくりましたか？',
-        tasks: [{ instruction: INS, optionId: 'mom', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでさんかくをおしてください', optionId: 'mom', color: 'green', shape: 'triangle' }],
         options: [
           { id: 'aoi',    label: 'アオイ',   emoji: '👧' },
           { id: 'mom',    label: 'お母さん', emoji: '👩' },

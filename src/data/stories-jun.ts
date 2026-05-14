@@ -1,18 +1,17 @@
 import type { Story } from '../types'
 
-const INS = 'ただしいこたえをえらんで、あかでまるをおしてください'
 
 export const storiesJun: Story[] = [
   // ===== 6月 やさしい（30問） =====
   {
-    id: 'story-228', title: 'あじさいのはな', difficulty: 1,
+    id: 'story-228', title: 'あじさいのはな', difficulty: 3,
     estimatedMinutes: 2, icon: '💜',
     story: 'ろくがつになって、にわのあじさいがさきました。ユイはあおとむらさきのあじさいをみつけました。「いくつさいてるかかぞえてみよう」とゆいはかぞえました。あおのあじさいがよっこ、むらさきのあじさいがみっこさいていました。「あじさいってなんでいろがちがうの？」とユイがきくと、おかあさんが「つちのせいなんだよ」とおしえてくれました。ユイはすこしきってかびんにかざりました。「きれいだね」とおとうさんがいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'さいていたあおのあじさいはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '4', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでばつをおしてください', optionId: '4', color: 'red', shape: 'cross' }],
         options: [
           { id: '3', label: '3', emoji: '3️⃣' },
           { id: '4', label: '4', emoji: '4️⃣' },
@@ -24,7 +23,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'あじさいのいろがちがうのはなぜとおかあさんがおしえてくれましたか？',
-        tasks: [{ instruction: INS, optionId: 'soil', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでにじゅうまるをおしてください', optionId: 'soil', color: 'blue', shape: 'double-circle' }],
         options: [
           { id: 'soil',  label: 'つちのせい', emoji: '🌍' },
           { id: 'water', label: 'みずのせい', emoji: '💧' },
@@ -36,14 +35,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-229', title: 'つゆのあめ', difficulty: 1,
+    id: 'story-229', title: 'つゆのあめ', difficulty: 3,
     estimatedMinutes: 2, icon: '☔',
     story: 'ろくがつはつゆのきせつです。マナはあめのひ、きいろいながぐつをはいてあるきました。みずたまりをみつけると「ジャブジャブ！」としながらたのしみました。みずたまりはみっつありました。おかあさんが「ながぐつだからだいじょうぶだよ」とわらいながらいいました。かさもさしていたので、あたまはぬれませんでした。かえりみちに、かたつむりをふたつみつけました。「ゆっくりあるいてるね」とマナはいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'マナのながぐつはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'yellow', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでまるをおしてください', optionId: 'yellow', color: 'yellow', shape: 'circle' }],
         options: [
           { id: 'yellow', label: 'きいろ', emoji: '🟡' },
           { id: 'red',    label: 'あか',   emoji: '🔴' },
@@ -55,7 +54,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'かえりみちにみつけたかたつむりはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでさんかくをおしてください', optionId: '2', color: 'red', shape: 'triangle' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -67,14 +66,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-230', title: 'かたつむりのかんさつ', difficulty: 1,
+    id: 'story-230', title: 'かたつむりのかんさつ', difficulty: 3,
     estimatedMinutes: 2, icon: '🐌',
     story: 'あめあがりのこうえんで、ソウはかたつむりをみつけました。「ゆっくりあるいてるね」とソウはしゃがんでみました。かたつむりのからはうずまきがあって、みどりがかったちゃいろでした。つのがふたつでていました。「さわってもいい？」とソウがきくと、おとうさんが「そっとならいいよ」といいました。ゆびでそっとさわると、かたつむりはからのなかにひっこみました。「おどかしてごめんね」とソウはこころのなかでいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'かたつむりのからのいろはなんでしたか？',
-        tasks: [{ instruction: INS, optionId: 'brown', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでばつをおしてください', optionId: 'brown', color: 'blue', shape: 'cross' }],
         options: [
           { id: 'brown',  label: 'みどりがかったちゃいろ', emoji: '🟤' },
           { id: 'yellow', label: 'きいろ',                 emoji: '🟡' },
@@ -86,7 +85,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'かたつむりのつのはいくつでていましたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでにじゅうまるをおしてください', optionId: '2', color: 'green', shape: 'double-circle' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -98,14 +97,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-231', title: 'あめのひのとしょかん', difficulty: 1,
+    id: 'story-231', title: 'あめのひのとしょかん', difficulty: 3,
     estimatedMinutes: 2, icon: '📚',
     story: 'あめのにちようびに、リナはおかあさんととしょかんへいきました。えほんのコーナーにいくと、「かたつむりのぼうけん」というほんをみつけました。りなはそのほんをよみはじめました。かたつむりがいろいろなくにをたびするおはなしで、ぜんぶでよんじゅうページありました。「おもしろい！」とリナはのめりこみました。よみおわると、もう一さつかりました。かえりみちにあめがあがって、にじがでました。「よいひだったね」とおかあさんがいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'リナがよんだほんのなまえはなんでしたか？',
-        tasks: [{ instruction: INS, optionId: 'snail', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでまるをおしてください', optionId: 'snail', color: 'red', shape: 'circle' }],
         options: [
           { id: 'snail',     label: 'かたつむりのぼうけん', emoji: '🐌' },
           { id: 'butterfly', label: 'ちょうちょうのたび',   emoji: '🦋' },
@@ -117,7 +116,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'ほんはなんページありましたか？',
-        tasks: [{ instruction: INS, optionId: '40', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでさんかくをおしてください', optionId: '40', color: 'blue', shape: 'triangle' }],
         options: [
           { id: '20', label: '20ページ', emoji: '📄' },
           { id: '30', label: '30ページ', emoji: '📄' },
@@ -129,14 +128,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-232', title: 'たなばたのかざり', difficulty: 1,
+    id: 'story-232', title: 'たなばたのかざり', difficulty: 3,
     estimatedMinutes: 2, icon: '🎋',
     story: 'たなばたのじゅんびで、ケイはおかあさんといっしょにたんざくにねがいごとをかきました。ケイはあかいたんざくにかきました。おかあさんはきいろいたんざくにかきました。おとうさんはあおいたんざくにかきました。みんなのたんざくをあわせてさんまいになりました。「ねがいごとがかなうといいね」とおかあさんがいいました。たんざくをたけにむすびつけると、かぜにゆれてきれいでした。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'ケイがかいたたんざくはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'red', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでばつをおしてください', optionId: 'red', color: 'green', shape: 'cross' }],
         options: [
           { id: 'red',    label: 'あか',   emoji: '🔴' },
           { id: 'yellow', label: 'きいろ', emoji: '🟡' },
@@ -148,7 +147,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'たんざくはぜんぶでなんまいでしたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでにじゅうまるをおしてください', optionId: '3', color: 'yellow', shape: 'double-circle' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -160,14 +159,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-233', title: 'なつのそうめん', difficulty: 1,
+    id: 'story-233', title: 'なつのそうめん', difficulty: 3,
     estimatedMinutes: 2, icon: '🍜',
     story: 'あつい六がつのひるごはんに、タロウのうちではそうめんをたべました。つめたいみずでしめたそうめんをめんつゆでたべました。「つるつるしておいしい！」とタロウはよろこびました。おかあさんがのりをさんまいとみょうがをのせてくれました。おとうさんはそうめんをさんたばゆでました。タロウはふたたばたべました。「なつはそうめんにかぎるね」とおとうさんがいいました。タロウもうなずきながらたべました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'そうめんにのせたのりはなんまいでしたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでまるをおしてください', optionId: '3', color: 'blue', shape: 'circle' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -179,7 +178,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'タロウはそうめんをなんたばたべましたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでさんかくをおしてください', optionId: '2', color: 'green', shape: 'triangle' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -191,14 +190,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-234', title: 'あめのひのおりがみ', difficulty: 1,
+    id: 'story-234', title: 'あめのひのおりがみ', difficulty: 3,
     estimatedMinutes: 2, icon: '📄',
     story: 'あめでそとにでられない日、ハナはおりがみをしました。かたつむりをみっこおって、あじさいをふたつつくりました。「かたつむりのつくりかたはむずかしいね」とハナがいいました。おかあさんが「れんしゅうすればできるよ」とはげましてくれました。できあがったかたつむりとあじさいをかみにはって、「あめのひの絵」とタイトルをつけました。おとうさんが「じょうずだね」とほめてくれました。ハナはうれしくなって、かべにはりました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'かたつむりはなんこつくりましたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでばつをおしてください', optionId: '3', color: 'yellow', shape: 'cross' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -210,7 +209,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'あじさいはいくつつくりましたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでにじゅうまるをおしてください', optionId: '2', color: 'red', shape: 'double-circle' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -222,14 +221,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-235', title: 'なつのとうもろこし', difficulty: 1,
+    id: 'story-235', title: 'なつのとうもろこし', difficulty: 3,
     estimatedMinutes: 2, icon: '🌽',
     story: 'ろくがつのおわりに、コウジはおじいちゃんのはたけでとうもろこしをしゅうかくしました。おじいちゃんが「これがいちばんおおきい」といってよっぽんえらんでくれました。おうちにかえってゆでると、あまいにおいがたちこめました。「できた！」とコウジはよろこびました。かぶりつくと、あまくてぷりぷりしていました。「はたけからとったばかりはおいしいね」とおかあさんがいいました。コウジはふたほんたべました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'おじいちゃんがえらんでくれたとうもろこしはなんぽんでしたか？',
-        tasks: [{ instruction: INS, optionId: '4', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでまるをおしてください', optionId: '4', color: 'green', shape: 'circle' }],
         options: [
           { id: '3', label: '3', emoji: '3️⃣' },
           { id: '4', label: '4', emoji: '4️⃣' },
@@ -241,7 +240,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'コウジはとうもろこしをなんぽんたべましたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでさんかくをおしてください', optionId: '2', color: 'yellow', shape: 'triangle' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -253,14 +252,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-236', title: 'かわのせいぶつかんさつ', difficulty: 1,
+    id: 'story-236', title: 'かわのせいぶつかんさつ', difficulty: 3,
     estimatedMinutes: 2, icon: '🦀',
     story: 'ろくがつのにちようびに、アキはかぞくでかわへせいぶつかんさつにいきました。かわのそこをてあみでさがすと、ちいさなさわがにがさんびきとれました。「つめたい！」とアキはさわりながらいいました。しばらくみてから、かわにかえしてあげました。つぎにめだかをみつけました。「きれいだね」とアキがいいました。おとうさんが「むかしはめだかがもっとたくさんいたんだよ」とおしえてくれました。かわのせいぶつはとてもおもしろかったです。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'とれたさわがにはなんびきでしたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでばつをおしてください', optionId: '3', color: 'red', shape: 'cross' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -272,7 +271,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'さわがにをとったあとどうしましたか？',
-        tasks: [{ instruction: INS, optionId: 'release', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでにじゅうまるをおしてください', optionId: 'release', color: 'blue', shape: 'double-circle' }],
         options: [
           { id: 'release', label: 'かわにかえした',   emoji: '🌊' },
           { id: 'keep',    label: 'いえにもちかえった', emoji: '🏠' },
@@ -284,14 +283,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-237', title: 'なつのかき氷', difficulty: 1,
+    id: 'story-237', title: 'なつのかき氷', difficulty: 3,
     estimatedMinutes: 2, icon: '🍧',
     story: 'あついろくがつのひ、ミサはおかあさんといっしょにかき氷をつくりました。せんようのきかいでこおりをけずると、ふわふわのゆきのようになりました。ミサはいちごシロップをかけました。おかあさんはれもんシロップをかけました。「どっちがおいしそう？」とおかあさんがきくと、「いちごのほうがおいしそう！」とミサがこたえました。ひとくちたべると「つめたい！おいしい！」とミサはよろこびました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'ミサがかけたシロップはなにあじでしたか？',
-        tasks: [{ instruction: INS, optionId: 'strawberry', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでまるをおしてください', optionId: 'strawberry', color: 'yellow', shape: 'circle' }],
         options: [
           { id: 'strawberry', label: 'いちご', emoji: '🍓' },
           { id: 'lemon',      label: 'れもん', emoji: '🍋' },
@@ -303,7 +302,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'かき氷のこおりはどのようでしたか？',
-        tasks: [{ instruction: INS, optionId: 'fluffy', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでさんかくをおしてください', optionId: 'fluffy', color: 'red', shape: 'triangle' }],
         options: [
           { id: 'fluffy', label: 'ふわふわのゆきのよう', emoji: '❄️' },
           { id: 'hard',   label: 'かたくてつぶつぶ',     emoji: '🧊' },
@@ -315,14 +314,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-238', title: 'なつのゆうだち', difficulty: 1,
+    id: 'story-238', title: 'なつのゆうだち', difficulty: 3,
     estimatedMinutes: 2, icon: '⛈️',
     story: 'ろくがつのごご、とつぜんおおきなかみなりがなって、ゆうだちがふりはじめました。ノアはそとであそんでいたので、いえのなかにかけこみました。まどからそとをみると、あめがすごいいきおいでふっていました。おかあさんが「かみなりがなったらきのしたにはいってはだめよ」とおしえてくれました。さんじゅっぷんほどでゆうだちはやみました。そとのくうきがすずしくなって、きもちよかったです。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'ゆうだちはどのくらいでやみましたか？',
-        tasks: [{ instruction: INS, optionId: '30', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでばつをおしてください', optionId: '30', color: 'blue', shape: 'cross' }],
         options: [
           { id: '10', label: '10ぷん', emoji: '⏰' },
           { id: '20', label: '20ぷん', emoji: '⏰' },
@@ -334,7 +333,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'かみなりのときにはいってはだめなところはどこですか？',
-        tasks: [{ instruction: INS, optionId: 'tree', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでにじゅうまるをおしてください', optionId: 'tree', color: 'green', shape: 'double-circle' }],
         options: [
           { id: 'tree',  label: 'きのした', emoji: '🌲' },
           { id: 'house', label: 'いえのなか', emoji: '🏠' },
@@ -346,14 +345,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-239', title: 'なつのすいえいきょうしつ', difficulty: 1,
+    id: 'story-239', title: 'なつのすいえいきょうしつ', difficulty: 3,
     estimatedMinutes: 2, icon: '🏊',
     story: 'ろくがつから、コウタはすいえいきょうしつにかよいはじめました。はじめてのひ、みずがこわくてプールのはしにつかまっていました。せんせいが「かおをつけてみよう」といいました。コウタはゆうきをだして、かおをみずのなかにいれました。「できた！」とコウタはうれしくなりました。さんかいれんしゅうすると、すこしなれてきました。「またくるのがたのしみ」とコウタはおもいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'コウタがすいえいきょうしつにかよいはじめたのはなんがつでしたか？',
-        tasks: [{ instruction: INS, optionId: '6', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでまるをおしてください', optionId: '6', color: 'red', shape: 'circle' }],
         options: [
           { id: '5', label: '5がつ', emoji: '📅' },
           { id: '6', label: '6がつ', emoji: '📅' },
@@ -365,7 +364,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'かおをみずにつけるれんしゅうをなんかいしましたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでさんかくをおしてください', optionId: '3', color: 'blue', shape: 'triangle' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -377,14 +376,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-240', title: 'なつのやさいいため', difficulty: 1,
+    id: 'story-240', title: 'なつのやさいいため', difficulty: 3,
     estimatedMinutes: 2, icon: '🥦',
     story: 'ろくがつのどようびに、リョウはおかあさんといっしょになつのやさいいためをつくりました。ピーマンをみっこ、なすをふたつ、トマトをひとつつかいました。「ピーマンはにがいかな」とリョウがいうと、「いためるとおいしくなるよ」とおかあさんがこたえました。できあがったやさいいためをたべると、「あまい！」とリョウがおどろきました。「やさいはたべかたによってあじがかわるね」とおかあさんがいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'つかったピーマンはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでばつをおしてください', optionId: '3', color: 'green', shape: 'cross' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -396,7 +395,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'つかったなすはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでにじゅうまるをおしてください', optionId: '2', color: 'yellow', shape: 'double-circle' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -408,14 +407,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-241', title: 'なつのさかなつり', difficulty: 1,
+    id: 'story-241', title: 'なつのさかなつり', difficulty: 3,
     estimatedMinutes: 2, icon: '🎣',
     story: 'ろくがつのにちようびに、ユウはおとうさんとかわへさかなつりにいきました。きいろいぼうしをかぶって、つりざおをもっていきました。みずにつりいとをたらすと、しばらくしてぴくぴくとうごきました。「かかった！」とユウはさけびました。ひきあげると、ちいさなめだかがふたひきつれていました。「ちいさいけど、つれてよかった！」とユウはうれしそうでした。おとうさんは「もっとおおきいのをねらおう」とわらいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'ユウがかぶっていたぼうしはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'yellow', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでまるをおしてください', optionId: 'yellow', color: 'blue', shape: 'circle' }],
         options: [
           { id: 'yellow', label: 'きいろ', emoji: '🟡' },
           { id: 'red',    label: 'あか',   emoji: '🔴' },
@@ -427,7 +426,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'つれたさかなはなんびきでしたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでさんかくをおしてください', optionId: '2', color: 'green', shape: 'triangle' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -439,14 +438,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-242', title: 'なつのあさごはん', difficulty: 1,
+    id: 'story-242', title: 'なつのあさごはん', difficulty: 3,
     estimatedMinutes: 2, icon: '🍳',
     story: 'あついなつのあさ、サクラはおかあさんといっしょにあさごはんをつくりました。たまごをふたつやいて、やさいとトースト、ジュースをならべました。「いただきます」といってたべはじめました。「あついのにちゃんとたべると一日げんきだよ」とおかあさんがいいました。たまごはおひさまのようにきいろくてふわふわでした。サクラはぜんぶたべきりました。「おいしかった！きょうもがんばろう」とサクラはいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'やいたたまごはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでばつをおしてください', optionId: '2', color: 'yellow', shape: 'cross' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -458,7 +457,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'たまごのいろはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'yellow', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでにじゅうまるをおしてください', optionId: 'yellow', color: 'red', shape: 'double-circle' }],
         options: [
           { id: 'yellow', label: 'きいろ', emoji: '🟡' },
           { id: 'white',  label: 'しろ',   emoji: '⬜' },
@@ -470,14 +469,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-243', title: 'なつのかいだん', difficulty: 1,
+    id: 'story-243', title: 'なつのかいだん', difficulty: 3,
     estimatedMinutes: 2, icon: '🏫',
     story: 'がっこうのかいだんで、ハルカはともだちのコトとどちらがはやくのぼれるかきょうそうしました。かいだんはぜんぶでにじゅうだんありました。「よーい、どん！」でふたりはいっせいにかけあがりました。ハルカがいっとうでした。「もういっかい！」とコトがいったので、もうさんかいやりました。ぜんぶでよんかいきょうそうして、ハルカがさんかいかちました。「またあしたもやろう」とふたりはなかよくいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'かいだんはぜんぶでなんだんでしたか？',
-        tasks: [{ instruction: INS, optionId: '20', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでまるをおしてください', optionId: '20', color: 'green', shape: 'circle' }],
         options: [
           { id: '15', label: '15だん', emoji: '1️⃣5️⃣' },
           { id: '20', label: '20だん', emoji: '2️⃣0️⃣' },
@@ -489,7 +488,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'きょうそうはぜんぶでなんかいしましたか？',
-        tasks: [{ instruction: INS, optionId: '4', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでさんかくをおしてください', optionId: '4', color: 'yellow', shape: 'triangle' }],
         options: [
           { id: '3', label: '3', emoji: '3️⃣' },
           { id: '4', label: '4', emoji: '4️⃣' },
@@ -501,14 +500,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-244', title: 'なつのすだれ', difficulty: 1,
+    id: 'story-244', title: 'なつのすだれ', difficulty: 3,
     estimatedMinutes: 2, icon: '🏮',
     story: 'あついろくがつのひ、ミオのいえではすだれをとりだしました。おとうさんがまどにすだれをかけると、ひかりがきれいにとおって、へやがすずしくみえました。「いいきもちだね」とミオがいいました。おかあさんが「すだれはむかしからあるえいちのどうぐだよ」とおしえてくれました。ミオはすだれのあいだからはなをみました。「みどりのかわいいはっぱがみえる」とミオはにこにこしました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'すだれをかけたのはだれでしたか？',
-        tasks: [{ instruction: INS, optionId: 'dad', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでばつをおしてください', optionId: 'dad', color: 'red', shape: 'cross' }],
         options: [
           { id: 'dad', label: 'おとうさん', emoji: '👨' },
           { id: 'mom', label: 'おかあさん', emoji: '👩' },
@@ -520,7 +519,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'ミオがすだれのあいだからみたのはなんでしたか？',
-        tasks: [{ instruction: INS, optionId: 'leaf', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでにじゅうまるをおしてください', optionId: 'leaf', color: 'blue', shape: 'double-circle' }],
         options: [
           { id: 'leaf',  label: 'みどりのはっぱ', emoji: '🌿' },
           { id: 'flower', label: 'あかいはな',    emoji: '🌺' },
@@ -532,14 +531,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-245', title: 'なつのミニトマト', difficulty: 1,
+    id: 'story-245', title: 'なつのミニトマト', difficulty: 3,
     estimatedMinutes: 2, icon: '🍅',
     story: 'ろくがつになって、ダイのそだてているミニトマトがあかくなってきました。「みて！あかくなった！」とダイはおかあさんをよびました。よっこのミニトマトがあかくなっていました。「もうたべられるの？」ときくと、「もうすこしまったほうがおいしいよ」とおかあさんがこたえました。みっかまったら、つやつやのあかいミニトマトができていました。たべてみると、「あまい！」とダイはよろこびました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'あかくなったミニトマトはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '4', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでまるをおしてください', optionId: '4', color: 'yellow', shape: 'circle' }],
         options: [
           { id: '3', label: '3', emoji: '3️⃣' },
           { id: '4', label: '4', emoji: '4️⃣' },
@@ -551,7 +550,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'ミニトマトをたべるまでなんにちまちましたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでさんかくをおしてください', optionId: '3', color: 'red', shape: 'triangle' }],
         options: [
           { id: '1', label: '1にち', emoji: '1️⃣' },
           { id: '2', label: '2にち', emoji: '2️⃣' },
@@ -563,14 +562,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-246', title: 'なつのかぼちゃ', difficulty: 1,
+    id: 'story-246', title: 'なつのかぼちゃ', difficulty: 3,
     estimatedMinutes: 2, icon: '🎃',
     story: 'おじいちゃんのはたけでかぼちゃがそだっていました。ナツキはおじいちゃんとみにいくと、みどりのかぼちゃがみっこなっていました。「おおきいね！」とナツキがいいました。おじいちゃんが「あつのにはいりにかぼちゃをいれるんだよ」とおしえてくれました。「かぼちゃのてんぷらがたべたい！」とナツキがいいました。「もうすこしまったらとれるよ」とおじいちゃんがこたえました。ナツキはかぼちゃのてんぷらをたのしみにしました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'なっていたかぼちゃはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでばつをおしてください', optionId: '3', color: 'blue', shape: 'cross' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -582,7 +581,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'ナツキがたべたいといったかぼちゃのりょうりはなんでしたか？',
-        tasks: [{ instruction: INS, optionId: 'tempura', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでにじゅうまるをおしてください', optionId: 'tempura', color: 'green', shape: 'double-circle' }],
         options: [
           { id: 'tempura', label: 'てんぷら', emoji: '🍤' },
           { id: 'soup',    label: 'スープ',   emoji: '🍲' },
@@ -594,14 +593,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-247', title: 'なつのにじ', difficulty: 1,
+    id: 'story-247', title: 'なつのにじ', difficulty: 3,
     estimatedMinutes: 2, icon: '🌈',
     story: 'ゆうだちのあと、レンはそとにでると、おおきなにじがかかっていました。「にじだ！」とレンはさけびました。おかあさんもそとにでてきました。にじはそらのはしからはしまでかかっていて、ととてもきれいでした。「なんいろあるかかぞえてみよう」とおかあさんがいいました。ふたりでかぞえると、しちいろありました。「あのむこうがわにはなにがあるんだろう」とレンはゆめをみながらいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'にじのいろはなんいろでしたか？',
-        tasks: [{ instruction: INS, optionId: '7', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでまるをおしてください', optionId: '7', color: 'red', shape: 'circle' }],
         options: [
           { id: '5', label: '5', emoji: '5️⃣' },
           { id: '6', label: '6', emoji: '6️⃣' },
@@ -613,7 +612,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'にじがでたのはどのあとでしたか？',
-        tasks: [{ instruction: INS, optionId: 'shower', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでさんかくをおしてください', optionId: 'shower', color: 'blue', shape: 'triangle' }],
         options: [
           { id: 'shower', label: 'ゆうだちのあと', emoji: '⛈️' },
           { id: 'morning', label: 'あさのあと',   emoji: '🌅' },
@@ -625,14 +624,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-248', title: 'なつのとうなす', difficulty: 1,
+    id: 'story-248', title: 'なつのとうなす', difficulty: 3,
     estimatedMinutes: 2, icon: '🍆',
     story: 'ろくがつのはたけで、ミナはおかあさんといっしょになすをしゅうかくしました。むらさきのなすがよっほんなっていました。「むらさきってきれいな色だね」とミナがいいました。とったなすでおかあさんがみそしるをつくりました。「なすのみそしるはおいしい！」とミナはよろこびました。「はたけのやさいはたべるとおいしいね」とミナがいいました。「そうだね、じぶんでとるからよりおいしいのかもしれないね」とおかあさんがこたえました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'しゅうかくしたなすはなんほんでしたか？',
-        tasks: [{ instruction: INS, optionId: '4', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでばつをおしてください', optionId: '4', color: 'green', shape: 'cross' }],
         options: [
           { id: '3', label: '3', emoji: '3️⃣' },
           { id: '4', label: '4', emoji: '4️⃣' },
@@ -644,7 +643,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'なすでつくったりょうりはなんでしたか？',
-        tasks: [{ instruction: INS, optionId: 'miso', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでにじゅうまるをおしてください', optionId: 'miso', color: 'yellow', shape: 'double-circle' }],
         options: [
           { id: 'miso',  label: 'みそしる', emoji: '🍜' },
           { id: 'curry', label: 'カレー',   emoji: '🍛' },
@@ -656,14 +655,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-249', title: 'なつのひまわり', difficulty: 1,
+    id: 'story-249', title: 'なつのひまわり', difficulty: 3,
     estimatedMinutes: 2, icon: '🌻',
     story: 'ろくがつになって、コダイのそだてていたひまわりがさきはじめました。「さいた！」とコダイはよろこびました。きいろのおおきなはながふたつさいていました。おかあさんが「ひまわりはおひさまのほうをむいてさくんだよ」とおしえてくれました。「ほんとだ、おひさまのほうをむいてる！」とコダイはかんしんしました。みずをたっぷりあげると、ひまわりがさらにおおきくなるようなきがしました。「なつまでにもっとおおきくなれ」とコダイはいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'さいていたひまわりはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでまるをおしてください', optionId: '2', color: 'blue', shape: 'circle' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
@@ -675,7 +674,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'ひまわりはどのほうこうをむいてさくとおかあさんがおしえてくれましたか？',
-        tasks: [{ instruction: INS, optionId: 'sun', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでさんかくをおしてください', optionId: 'sun', color: 'green', shape: 'triangle' }],
         options: [
           { id: 'sun',   label: 'おひさまのほう', emoji: '☀️' },
           { id: 'north', label: 'きたのほう',     emoji: '⬆️' },
@@ -687,14 +686,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-250', title: 'なつのわなげ', difficulty: 1,
+    id: 'story-250', title: 'なつのわなげ', difficulty: 3,
     estimatedMinutes: 2, icon: '🎯',
     story: 'なつのおまつりで、アイはわなげをさんかいやりました。さいしょのわはとおかったです。にかいめはちかくにおちました。さんかいめにやっとひとつはいりました。「やった！」とアイはおおよろこびでした。わなげのにいさんが「じょうずだったね」といって、きいろいボールをひとつくれました。「またやりたい！」とアイはいいました。おかあさんが「もういっかいやってみよう」といってくれました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'わなげはぜんぶでなんかいやりましたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでばつをおしてください', optionId: '3', color: 'yellow', shape: 'cross' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -706,7 +705,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'けいひんにもらったのはなんでしたか？',
-        tasks: [{ instruction: INS, optionId: 'ball', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでにじゅうまるをおしてください', optionId: 'ball', color: 'red', shape: 'double-circle' }],
         options: [
           { id: 'ball',   label: 'きいろいボール', emoji: '🟡' },
           { id: 'sticker', label: 'シール',       emoji: '✨' },
@@ -718,14 +717,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-251', title: 'なつのコップ', difficulty: 1,
+    id: 'story-251', title: 'なつのコップ', difficulty: 3,
     estimatedMinutes: 2, icon: '🥤',
     story: 'あつい六がつのひ、ハルはおかあさんといっしょにむぎちゃをつくりました。なべにみずをいれて、むぎちゃのパックをさんこいれてにました。「いいにおいがする！」とハルがいいました。さめたら、れいぞうこにいれてひやしました。のむときはあおいコップにいれてのみました。「おいしい！」とハルはよろこびました。おとうさんもよろこんでくれました。「なつはむぎちゃがいちばんだね」とおとうさんがいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'むぎちゃのパックをなんこいれましたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでまるをおしてください', optionId: '3', color: 'green', shape: 'circle' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -737,7 +736,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'むぎちゃをいれたコップはなにいろでしたか？',
-        tasks: [{ instruction: INS, optionId: 'blue', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでさんかくをおしてください', optionId: 'blue', color: 'yellow', shape: 'triangle' }],
         options: [
           { id: 'blue',   label: 'あお',   emoji: '🔵' },
           { id: 'red',    label: 'あか',   emoji: '🔴' },
@@ -749,14 +748,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-252', title: 'なつのせんぷうき', difficulty: 1,
+    id: 'story-252', title: 'なつのせんぷうき', difficulty: 3,
     estimatedMinutes: 2, icon: '🌀',
     story: 'あついろくがつのひ、ノアはせんぷうきのまえにすわりました。「きもちいい！」とノアはよろこびました。せんぷうきのかぜにあたりながら、ほんをよみました。おとうさんが「せんぷうきにあたりながらねるとからだによくないよ」とおしえてくれました。「なんで？」とノアがきくと、「からだがひえすぎるから」とこたえてくれました。ノアはそれからはせんぷうきをよわくにしてつかうことにしました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'ノアはせんぷうきのまえでなにをしていましたか？',
-        tasks: [{ instruction: INS, optionId: 'book', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでばつをおしてください', optionId: 'book', color: 'red', shape: 'cross' }],
         options: [
           { id: 'book',  label: 'ほんをよんだ', emoji: '📚' },
           { id: 'sleep', label: 'ねた',         emoji: '😴' },
@@ -768,7 +767,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'せんぷうきにあたりながらねるとよくないりゆうはなんですか？',
-        tasks: [{ instruction: INS, optionId: 'cold', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでにじゅうまるをおしてください', optionId: 'cold', color: 'blue', shape: 'double-circle' }],
         options: [
           { id: 'cold',  label: 'からだがひえすぎる', emoji: '🥶' },
           { id: 'noisy', label: 'うるさくてねられない', emoji: '😤' },
@@ -780,14 +779,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-253', title: 'なつのかえるのうた', difficulty: 1,
+    id: 'story-253', title: 'なつのかえるのうた', difficulty: 3,
     estimatedMinutes: 2, icon: '🐸',
     story: 'ろくがつのあめのよる、ケイコはかわのそばをとおりかかると、かえるのないごえがきこえてきました。「ケロケロ、ケロケロ」とたくさんのかえるがないていました。「かえるはなぜあめのひになくの？」とケイコがおかあさんにきくと、「なつのあいてをさがしているからだよ」とおしえてくれました。「ふうん」とケイコはなっとくしました。かえるのこえをよっつかぞえながらいえへかえりました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'かえるはなんとないていましたか？',
-        tasks: [{ instruction: INS, optionId: 'kero', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでまるをおしてください', optionId: 'kero', color: 'yellow', shape: 'circle' }],
         options: [
           { id: 'kero', label: 'ケロケロ', emoji: '🐸' },
           { id: 'wan',  label: 'ワンワン', emoji: '🐶' },
@@ -799,7 +798,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'かえるがなくりゆうはなんとおかあさんがおしえてくれましたか？',
-        tasks: [{ instruction: INS, optionId: 'partner', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでさんかくをおしてください', optionId: 'partner', color: 'red', shape: 'triangle' }],
         options: [
           { id: 'partner', label: 'なつのあいてをさがしているから', emoji: '💚' },
           { id: 'rain',    label: 'あめがたのしいから',             emoji: '☔' },
@@ -811,14 +810,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-254', title: 'なつのすいかわり', difficulty: 1,
+    id: 'story-254', title: 'なつのすいかわり', difficulty: 3,
     estimatedMinutes: 2, icon: '🍉',
     story: 'ろくがつのにちようびに、タイガはおじいちゃんのいえですいかをたべました。おじいちゃんがはたけでそだてたすいかで、おおきくてつやつやしていました。「めをとじてたたいてみよう」とおじいちゃんがいいました。「ポンポン」となるとおいしいすいかだということでした。タイガがたたいてみると「ポンポン」となりました。きってみると、なかはきれいなあかでした。「あまい！」とタイガはよろこびました。たねをよっこだしながらたべました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'おいしいすいかをたたくとどんなおとがしますか？',
-        tasks: [{ instruction: INS, optionId: 'ponpon', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでばつをおしてください', optionId: 'ponpon', color: 'blue', shape: 'cross' }],
         options: [
           { id: 'ponpon', label: 'ポンポン', emoji: '🍉' },
           { id: 'cocon',  label: 'コンコン', emoji: '🪵' },
@@ -830,7 +829,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'たべながらだしたたねはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '4', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでにじゅうまるをおしてください', optionId: '4', color: 'green', shape: 'double-circle' }],
         options: [
           { id: '3', label: '3', emoji: '3️⃣' },
           { id: '4', label: '4', emoji: '4️⃣' },
@@ -842,14 +841,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-255', title: 'なつのきゅうリ', difficulty: 1,
+    id: 'story-255', title: 'なつのきゅうリ', difficulty: 3,
     estimatedMinutes: 2, icon: '🥒',
     story: 'ろくがつのあついひ、サヤはれいぞうこからつめたいきゅうりをだしてたべました。おかあさんがうすくきってくれて、うめぼしをのせてくれました。「つめたくておいしい！」とサヤがいいました。おかあさんが「きゅうりはみずぶんがおおくて、あつい日にぴったりだよ」とおしえてくれました。「からだがすずしくなるかんじがする」とサヤがいいました。よっきれたべました。「もっとたべたい！」とサヤがいいました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'きゅうりのうえにのせたのはなんでしたか？',
-        tasks: [{ instruction: INS, optionId: 'umeboshi', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでまるをおしてください', optionId: 'umeboshi', color: 'red', shape: 'circle' }],
         options: [
           { id: 'umeboshi', label: 'うめぼし',   emoji: '🔴' },
           { id: 'salt',     label: 'しお',       emoji: '🧂' },
@@ -861,7 +860,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'サヤはきゅうりをなんきれたべましたか？',
-        tasks: [{ instruction: INS, optionId: '4', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでさんかくをおしてください', optionId: '4', color: 'blue', shape: 'triangle' }],
         options: [
           { id: '3', label: '3', emoji: '3️⃣' },
           { id: '4', label: '4', emoji: '4️⃣' },
@@ -873,14 +872,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-256', title: 'なつのかくれんぼ', difficulty: 1,
+    id: 'story-256', title: 'なつのかくれんぼ', difficulty: 3,
     estimatedMinutes: 2, icon: '🙈',
     story: 'ろくがつのにちようびに、ケンとともだちのアツシとミナのさんにんでかくれんぼをしました。ケンがおにになりました。「いーち、にー、さーん」とじゅうかぞえました。みにいくと、アツシはきのうしろにかくれていました。ミナははなだんのなかにかくれていました。「みーつけた！」とケンはよろこびました。つぎはアツシがおにになりました。さんかいかくれんぼをして、ケンはにかいみつけることができました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'かくれんぼをしたのはなんにんでしたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでばつをおしてください', optionId: '3', color: 'green', shape: 'cross' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -892,7 +891,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'アツシはどこにかくれていましたか？',
-        tasks: [{ instruction: INS, optionId: 'tree', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでにじゅうまるをおしてください', optionId: 'tree', color: 'yellow', shape: 'double-circle' }],
         options: [
           { id: 'tree',   label: 'きのうしろ',   emoji: '🌲' },
           { id: 'flower', label: 'はなだんのなか', emoji: '🌸' },
@@ -904,14 +903,14 @@ export const storiesJun: Story[] = [
     ],
   },
   {
-    id: 'story-257', title: 'なつのあさのさんぽ', difficulty: 1,
+    id: 'story-257', title: 'なつのあさのさんぽ', difficulty: 3,
     estimatedMinutes: 2, icon: '🌅',
     story: 'ろくがつのあさ、リョウはおとうさんとはやおきしてさんぽにでかけました。まだすずしくて、くうきがきれいでした。こうえんでとりがさんわないていました。「ちゅんちゅん」というこえがきもちよくひびきました。ひまわりのはながふたつさいていました。「なつはやっぱりひまわりだね」とおとうさんがいいました。かえりみちにジュースをひとつかって、ふたりでわけてのみました。「あしたもはやおきしよう」とリョウはけっしんしました。',
     questions: [
       {
         id: 'q1', type: 'marker',
         text: 'こうえんでないていたとりはなんわでしたか？',
-        tasks: [{ instruction: INS, optionId: '3', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでまるをおしてください', optionId: '3', color: 'blue', shape: 'circle' }],
         options: [
           { id: '2', label: '2', emoji: '2️⃣' },
           { id: '3', label: '3', emoji: '3️⃣' },
@@ -923,7 +922,7 @@ export const storiesJun: Story[] = [
       {
         id: 'q2', type: 'marker',
         text: 'さいていたひまわりはなんこでしたか？',
-        tasks: [{ instruction: INS, optionId: '2', color: 'red', shape: 'circle' }],
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでさんかくをおしてください', optionId: '2', color: 'green', shape: 'triangle' }],
         options: [
           { id: '1', label: '1', emoji: '1️⃣' },
           { id: '2', label: '2', emoji: '2️⃣' },
