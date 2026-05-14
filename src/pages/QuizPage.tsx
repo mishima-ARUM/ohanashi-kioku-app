@@ -11,6 +11,26 @@ import type { Answer, MarkerSelection } from '../types'
 
 type Phase = 'reading' | 'selecting' | 'timeout'
 
+/** ブッブー音（Web Audio API） */
+function playBuzzer(): void {
+  try {
+    const ctx = new AudioContext()
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.connect(gain)
+    gain.connect(ctx.destination)
+    osc.type = 'sawtooth'
+    osc.frequency.setValueAtTime(220, ctx.currentTime)
+    osc.frequency.exponentialRampToValueAtTime(80, ctx.currentTime + 0.45)
+    gain.gain.setValueAtTime(0.35, ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5)
+    osc.start(ctx.currentTime)
+    osc.stop(ctx.currentTime + 0.5)
+  } catch {
+    // AudioContext 非対応環境ではスキップ
+  }
+}
+
 export function QuizPage() {
   const { id } = useParams<{ id: string }>()
   const navigate = useNavigate()
@@ -97,20 +117,25 @@ export function QuizPage() {
       speak(`問題${index + 1}。${q.text}。${taskLines}`, () => {
         if (earlyPressRef.current) {
           const newAnswers = recordAnswer([])
-          speak('きちんと読み上げるまで、手を膝の上に置いてお待ちください。問題はスキップします。', () => {
-            const next = index + 1
-            if (next >= (story?.questions.length ?? 0)) {
-              finishQuiz(newAnswers)
-            } else {
-              qIdxRef.current = next
-              setQIdx(next)
-              startQuestionRef.current(next)
-            }
-          })
+          // ブッブー → 700ms後に警告読み上げ
+          playBuzzer()
+          setTimeout(() => {
+            speak('きちんと読み上げるまで、手を膝の上に置いてお待ちください。問題はスキップします。', () => {
+              const next = index + 1
+              if (next >= (story?.questions.length ?? 0)) {
+                finishQuiz(newAnswers)
+              } else {
+                qIdxRef.current = next
+                setQIdx(next)
+                startQuestionRef.current(next)
+              }
+            })
+          }, 700)
         } else {
-          speak('回答を選択してください。はじめ', () => {
+          // 一拍おいてから回答フェーズへ
+          setTimeout(() => {
             setPhase('selecting')
-          })
+          }, 800)
         }
       })
     }, 1000)
