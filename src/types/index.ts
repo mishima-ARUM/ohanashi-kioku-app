@@ -21,6 +21,17 @@ export interface Option {
   emoji?: string
 }
 
+export type QuestionCategory =
+  | '色の記憶'
+  | '数の記憶'
+  | '登場人物'
+  | '持ち物・もの'
+  | '行動・できごと'
+  | '場所'
+  | '順番・流れ'
+  | '仲間はずれ'
+  | '季節'
+
 export interface Question {
   id: string
   type: 'marker'
@@ -28,6 +39,7 @@ export interface Question {
   tasks: MarkerTask[]
   options: Option[]
   explanation: string
+  category?: QuestionCategory
 }
 
 export interface Story {
