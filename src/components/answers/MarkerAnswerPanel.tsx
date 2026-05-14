@@ -1,4 +1,4 @@
-import { forwardRef, useImperativeHandle, useState, useCallback } from 'react'
+import { forwardRef, useImperativeHandle, useState } from 'react'
 import type { Option, MarkColor, MarkShape, MarkerSelection } from '../../types'
 
 export interface MarkerAnswerPanelHandle {
@@ -8,7 +8,7 @@ export interface MarkerAnswerPanelHandle {
 interface Props {
   options: Option[]
   disabled: boolean
-  onSelect: (selections: MarkerSelection[]) => void
+  onSelect?: (selections: MarkerSelection[]) => void
   onInteract?: () => void
 }
 
@@ -27,56 +27,37 @@ const SHAPE_CONFIG: { id: MarkShape; label: string; symbol: string }[] = [
 ]
 
 export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
-  function MarkerAnswerPanel({ options, disabled, onSelect, onInteract }, ref) {
+  function MarkerAnswerPanel({ options, disabled, onInteract }, ref) {
     const [pendingOpt, setPendingOpt] = useState<string | null>(null)
     const [pendingColor, setPendingColor] = useState<MarkColor | null>(null)
     const [pendingShape, setPendingShape] = useState<MarkShape | null>(null)
-    const [confirmed, setConfirmed] = useState<MarkerSelection[]>([])
 
     useImperativeHandle(ref, () => ({
-      getConfirmed: () => confirmed,
-    }), [confirmed])
-
-    const tryAutoConfirm = useCallback(
-      (opt: string | null, color: MarkColor | null, shape: MarkShape | null) => {
-        if (opt && color && shape) {
-          const newItem: MarkerSelection = { optionId: opt, color, shape }
-          setConfirmed(prev => [...prev, newItem])
-          setPendingOpt(null)
-          setPendingColor(null)
-          setPendingShape(null)
+      getConfirmed: () => {
+        if (pendingOpt && pendingColor && pendingShape) {
+          return [{ optionId: pendingOpt, color: pendingColor, shape: pendingShape }]
         }
+        return []
       },
-      []
-    )
+    }), [pendingOpt, pendingColor, pendingShape])
 
     const handleOptClick = (optId: string) => {
       if (disabled) return
       onInteract?.()
-      const next = optId
-      setPendingOpt(next)
-      tryAutoConfirm(next, pendingColor, pendingShape)
+      setPendingOpt(optId)
     }
 
     const handleColorClick = (color: MarkColor) => {
       if (disabled) return
       onInteract?.()
       setPendingColor(color)
-      tryAutoConfirm(pendingOpt, color, pendingShape)
     }
 
     const handleShapeClick = (shape: MarkShape) => {
       if (disabled) return
       onInteract?.()
       setPendingShape(shape)
-      tryAutoConfirm(pendingOpt, pendingColor, shape)
     }
-
-    const handleRemove = (index: number) => {
-      setConfirmed(prev => prev.filter((_, i) => i !== index))
-    }
-
-    const pendingOptLabel = options.find(o => o.id === pendingOpt)
 
     return (
       <div className="flex flex-col gap-3">
@@ -156,73 +137,6 @@ export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
               </button>
             ))}
           </div>
-        </div>
-
-        {/* えらんだこたえ */}
-        <div className="bg-amber-50 border-2 border-amber-300 rounded-2xl p-3">
-          <div className="text-xs font-bold text-amber-800 mb-2">📋 えらんだこたえ</div>
-
-          {/* pending preview */}
-          <div className="bg-green-50 border-2 border-dashed border-green-300 rounded-xl p-2 mb-2 min-h-[36px] flex items-center gap-2">
-            {pendingOpt || pendingColor || pendingShape ? (
-              <>
-                {pendingOptLabel && (
-                  <span className="text-sm font-bold text-gray-700">
-                    {pendingOptLabel.emoji} {pendingOptLabel.label}
-                  </span>
-                )}
-                {pendingColor && (
-                  <div
-                    className="w-4 h-4 rounded-full flex-shrink-0"
-                    style={{ backgroundColor: COLOR_CONFIG.find(c => c.id === pendingColor)?.hex }}
-                  />
-                )}
-                {pendingShape && (
-                  <span className="text-lg">{SHAPE_CONFIG.find(s => s.id === pendingShape)?.symbol}</span>
-                )}
-              </>
-            ) : (
-              <span className="text-xs text-gray-400">①②③をえらぶとここにひょうじされます</span>
-            )}
-          </div>
-
-          {/* confirmed list */}
-          {confirmed.length > 0 && (
-            <div className="flex flex-col gap-1.5 mb-2">
-              {confirmed.map((item, i) => {
-                const opt = options.find(o => o.id === item.optionId)
-                const colorCfg = COLOR_CONFIG.find(c => c.id === item.color)
-                const shapeCfg = SHAPE_CONFIG.find(s => s.id === item.shape)
-                return (
-                  <div key={i} className="bg-white rounded-xl px-3 py-2 flex items-center gap-2">
-                    <span className="text-sm font-bold text-gray-800 flex-1">
-                      {opt?.emoji} {opt?.label}
-                    </span>
-                    <div className="w-5 h-5 rounded-full flex-shrink-0" style={{ backgroundColor: colorCfg?.hex }} />
-                    <span className="text-xl">{shapeCfg?.symbol}</span>
-                    <button
-                      onClick={() => handleRemove(i)}
-                      disabled={disabled}
-                      className="bg-red-100 text-red-600 rounded-lg px-2 py-0.5 text-xs font-bold disabled:opacity-50"
-                    >
-                      消す
-                    </button>
-                  </div>
-                )
-              })}
-            </div>
-          )}
-
-          <button
-            onClick={() => onSelect(confirmed)}
-            disabled={disabled || confirmed.length === 0}
-            className="w-full py-3 rounded-xl font-bold text-base transition-all
-              bg-gradient-to-r from-amber-400 to-orange-400 text-white
-              disabled:from-gray-300 disabled:to-gray-300 disabled:text-gray-400 disabled:cursor-not-allowed
-              active:scale-98"
-          >
-            このこたえでけっていする →
-          </button>
         </div>
       </div>
     )

@@ -28,7 +28,7 @@ export function QuizPage() {
   const startQuestionRef = useRef<(index: number) => void>(() => {})
   const panelRef = useRef<MarkerAnswerPanelHandle>(null)
 
-  const { timeLeft, start: startTimer, reset: resetTimer } = useQuizTimer(20, () => handleTimeoutRef.current())
+  const { timeLeft, start: startTimer } = useQuizTimer(20, () => handleTimeoutRef.current())
 
   useEffect(() => () => { stop() }, [stop])
 
@@ -77,12 +77,6 @@ export function QuizPage() {
     setAnswers(newAnswers)
     return newAnswers
   }, [story?.questions])
-
-  const handleDecide = useCallback((selections: MarkerSelection[]) => {
-    resetTimer()
-    const newAnswers = recordAnswer(selections)
-    advanceAfterAnswer(newAnswers)
-  }, [resetTimer, recordAnswer, advanceAfterAnswer])
 
   const handleTimeout = useCallback(() => {
     const currentConfirmed = panelRef.current?.getConfirmed() ?? []
@@ -180,7 +174,6 @@ export function QuizPage() {
           ref={panelRef}
           options={currentQ.options}
           disabled={isDisabled}
-          onSelect={handleDecide}
           onInteract={handleInteract}
         />
       </div>
