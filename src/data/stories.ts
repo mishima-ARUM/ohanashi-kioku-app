@@ -9,6 +9,80 @@ import { storiesMay } from './stories-may'
 import { storiesJun } from './stories-jun'
 
 export const stories: Story[] = [
+  // ===== かんたん（サンプル） =====
+  {
+    id: 'story-000', title: 'こうえんのおでかけ', difficulty: 0,
+    estimatedMinutes: 2, icon: '🌳',
+    story: 'ある晴れた日、ゆうたくんと妹のさくらちゃんは、お母さんと一緒に大きな公園へ行きました。公園には赤いカエデの葉っぱがたくさん落ちていて、風が吹くたびに葉っぱがゆっくり舞っていました。最初に三人は噴水の近くにあるベンチに座り、お母さんが作ってくれたおにぎりを食べました。ゆうたくんは鮭のおにぎり、さくらちゃんは梅のおにぎりを食べました。お昼ご飯を食べた後、二人は公園の中を歩きながら池の近くへ行きました。その途中で白い鳥を見つけました。さくらちゃんは「白鳥かな？」と言いましたが、お母さんは「よく見てごらん。あれは白いサギだよ」と教えてくれました。帰る前に三人は売店へ行き、ゆうたくんはりんごジュース、さくらちゃんはいちごジュースを買ってもらいました。そして夕方になる前に、三人は手をつないで家へ帰りました。',
+    questions: [
+      {
+        id: 'q1', type: 'marker',
+        text: 'さいしょにさんにんはどこへいきましたか？',
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでまるをおしてください', optionId: 'park', color: 'red', shape: 'circle' }],
+        options: [
+          { id: 'park',     label: 'こうえん', emoji: '🌳' },
+          { id: 'sea',      label: 'うみ',     emoji: '🌊' },
+          { id: 'mountain', label: 'やま',     emoji: '⛰️' },
+          { id: 'station',  label: 'えき',     emoji: '🚉' },
+        ],
+        explanation: '「大きな公園へ行きました」とあります。',
+        category: '場所',
+      },
+      {
+        id: 'q2', type: 'marker',
+        text: 'ゆうたくんがたべたおにぎりはなんでしたか？',
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あおでまるをおしてください', optionId: 'salmon', color: 'blue', shape: 'circle' }],
+        options: [
+          { id: 'salmon', label: 'さけ',   emoji: '🐟' },
+          { id: 'ume',    label: 'うめ',   emoji: '🌸' },
+          { id: 'okaka',  label: 'おかか', emoji: '🍙' },
+          { id: 'tuna',   label: 'ツナ',   emoji: '🥫' },
+        ],
+        explanation: '「ゆうたくんは鮭のおにぎりを食べました」とあります。',
+        category: '持ち物・もの',
+      },
+      {
+        id: 'q3', type: 'marker',
+        text: 'いけのちかくにいたとりはなんでしたか？',
+        tasks: [{ instruction: 'ただしいこたえをえらんで、みどりでさんかくをおしてください', optionId: 'heron', color: 'green', shape: 'triangle' }],
+        options: [
+          { id: 'swan',    label: 'はくちょう', emoji: '🦢' },
+          { id: 'heron',   label: 'しろいサギ', emoji: '🦤' },
+          { id: 'duck',    label: 'かも',       emoji: '🦆' },
+          { id: 'sparrow', label: 'すずめ',     emoji: '🐦' },
+        ],
+        explanation: '「あれは白いサギだよ」とお母さんが教えてくれました。',
+        category: '行動・できごと',
+      },
+      {
+        id: 'q4', type: 'marker',
+        text: 'さくらちゃんがかってもらったのみものはなんでしたか？',
+        tasks: [{ instruction: 'ただしいこたえをえらんで、きいろでまるをおしてください', optionId: 'strawberry', color: 'yellow', shape: 'circle' }],
+        options: [
+          { id: 'apple',      label: 'りんごジュース',   emoji: '🍎' },
+          { id: 'strawberry', label: 'いちごジュース',   emoji: '🍓' },
+          { id: 'orange',     label: 'オレンジジュース', emoji: '🍊' },
+          { id: 'grape',      label: 'ぶどうジュース',   emoji: '🍇' },
+        ],
+        explanation: '「さくらちゃんはいちごジュースを買ってもらいました」とあります。',
+        category: '持ち物・もの',
+      },
+      {
+        id: 'q5', type: 'marker',
+        text: 'このおはなしのきせつはいつでしょうか？',
+        tasks: [{ instruction: 'ただしいこたえをえらんで、あかでさんかくをおしてください', optionId: 'autumn', color: 'red', shape: 'triangle' }],
+        options: [
+          { id: 'spring', label: 'はる', emoji: '🌸' },
+          { id: 'summer', label: 'なつ', emoji: '🌻' },
+          { id: 'autumn', label: 'あき', emoji: '🍂' },
+          { id: 'winter', label: 'ふゆ', emoji: '❄️' },
+        ],
+        explanation: '「赤いカエデの葉っぱ」がヒントで、これは秋の風景です。',
+        category: '季節',
+      },
+    ],
+  },
+
   // ===== ⭐ やさしい（5問） =====
   {
     id: 'story-001', title: 'うさぎのおさんぽ', difficulty: 1,

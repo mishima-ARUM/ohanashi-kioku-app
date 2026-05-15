@@ -46,7 +46,7 @@ export interface Question {
 export interface Story {
   id: string
   title: string
-  difficulty: 1 | 2 | 3
+  difficulty: 0 | 1 | 2 | 3
   estimatedMinutes: number
   releaseDate?: string  // 'MM-DD' 形式 例: '11-01'
   icon: string

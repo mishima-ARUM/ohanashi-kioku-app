@@ -7,9 +7,9 @@ interface Props {
   bestScore: number | null
 }
 
-const DIFFICULTY_LABEL = ['', 'やさしい', 'ふつう', 'むずかしい']
-const DIFFICULTY_COLOR = ['', 'bg-yellow-100 border-yellow-300', 'bg-pink-100 border-pink-300', 'bg-blue-100 border-blue-300']
-const DIFFICULTY_LOCKED = ['', 'bg-gray-50 border-gray-200', 'bg-gray-50 border-gray-200', 'bg-gray-50 border-gray-200']
+const DIFFICULTY_LABEL = ['かんたん', 'やさしい', 'ふつう', 'むずかしい']
+const DIFFICULTY_COLOR = ['bg-green-50 border-green-200', 'bg-yellow-100 border-yellow-300', 'bg-pink-100 border-pink-300', 'bg-blue-100 border-blue-300']
+const DIFFICULTY_LOCKED = ['bg-gray-50 border-gray-200', 'bg-gray-50 border-gray-200', 'bg-gray-50 border-gray-200', 'bg-gray-50 border-gray-200']
 
 export function StoryCard({ story, bestScore }: Props) {
   const navigate = useNavigate()

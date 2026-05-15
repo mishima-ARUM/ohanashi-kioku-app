@@ -192,7 +192,8 @@ export function getDifficultyStats(
   stories: Story[],
 ): Record<1 | 2 | 3, DiffStat> {
   const storyMap = new Map(stories.map(s => [s.id, s]))
-  const acc: Record<1 | 2 | 3, { correct: number; total: number }> = {
+  const acc: Record<0 | 1 | 2 | 3, { correct: number; total: number }> = {
+    0: { correct: 0, total: 0 },
     1: { correct: 0, total: 0 },
     2: { correct: 0, total: 0 },
     3: { correct: 0, total: 0 },
