@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { stories } from '../data/stories'
 import { useTTS } from '../hooks/useTTS'
 
-type Phase = 'idle' | 'announcing' | 'reading' | 'done'
+type Phase = 'idle' | 'announcing' | 'reading'
 
 const SPEEDS = [0.7, 1.0, 1.2]
 
@@ -21,15 +21,14 @@ export function StoryPage() {
     speak('これからお話を読み上げます。手を膝の上に置いて、静かに聞いてください。', () => {
       setPhase('reading')
       setTimeout(() => {
-        speak(story!.story, () => setPhase('done'))
+        speak(story!.story, () => {
+          stop()
+          navigate(`/quiz/${id}`)
+        })
       }, 1500)
     })
-  }, [speak, story])
+  }, [speak, stop, story, navigate, id])
 
-  const handleReplay = useCallback(() => {
-    setPhase('reading')
-    speak(story!.story, () => setPhase('done'))
-  }, [speak, story])
 
   if (!story) return <div className="p-8 text-center">もんだいがみつかりません</div>
 
@@ -71,18 +70,6 @@ export function StoryPage() {
               <p className="text-gray-600 font-bold">
                 {phase === 'announcing' ? 'アナウンス中...' : 'おはなし よみあげ中...'}
               </p>
-            </div>
-          )}
-          {phase === 'done' && (
-            <div className="flex flex-col gap-3">
-              <button onClick={() => navigate(`/quiz/${id}`)}
-                className="w-full py-5 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-400 text-white text-xl font-bold shadow-lg active:scale-95">
-                もんだいへすすむ →
-              </button>
-              <button onClick={handleReplay}
-                className="w-full py-3 rounded-2xl border-2 border-gray-200 text-gray-600 font-bold">
-                🔁 もういちどきく
-              </button>
             </div>
           )}
         </div>
