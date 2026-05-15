@@ -29,7 +29,7 @@ function selectBestVoice(lang: string): SpeechSynthesisVoice | null {
 function splitBySentence(text: string): string[] {
   return text
     .split(/(?<=[。、！？\n])/)
-    .map(s => s.replace(/[。！？]+$/, '').trim())  // 末尾の句読点を削除（TTS が「まる」と読むのを防ぐ）
+    .map(s => s.replace(/[。]+$/, '').trim())  // 末尾の「。」を削除（TTSが「まる」と読むのを防ぐ）。！？は抑揚のため残す
     .filter(s => s.length > 0)
 }
 

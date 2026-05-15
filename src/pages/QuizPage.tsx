@@ -111,10 +111,12 @@ export function QuizPage() {
             })
           }, 500)
         } else {
-          // 一拍おいてから回答フェーズへ
+          // 一拍おいて「回答を始めてください」→ 回答フェーズへ
           setTimeout(() => {
-            setPhase('selecting')
-          }, 800)
+            speak('回答を始めてください', () => {
+              setPhase('selecting')
+            })
+          }, 500)
         }
       })
     }, 1000)
