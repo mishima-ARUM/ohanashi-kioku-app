@@ -11,7 +11,6 @@ import { storiesJun } from '../data/stories-jun'
 import { StoryCard } from '../components/StoryCard'
 import { useProgress } from '../hooks/useProgress'
 import { useNavigate } from 'react-router-dom'
-import { isUnlocked } from '../utils/dateUtils'
 
 const MONTHS = [
   { label: '11月', emoji: '🍂', list: storiesNov },
@@ -38,8 +37,9 @@ function getCurrentMonthLabel(): string {
 }
 
 export function HomePage() {
-  const { getStoryBestScore } = useProgress()
+  const { getStoryBestScore, data } = useProgress()
   const navigate = useNavigate()
+  const results = data.results
 
   // 今月のセクションを初期展開、それ以外は折りたたみ
   const currentLabel = getCurrentMonthLabel()
@@ -84,8 +84,8 @@ export function HomePage() {
         {/* 月別セクション（折りたたみ） */}
         {MONTHS.map(({ label, emoji, list }) => {
           const isOpen = openMonths.has(label)
-          // 解放済みの問題数
-          const unlockedCount = list.filter(s => isUnlocked(s.releaseDate)).length
+          // 回答済みの問題数（1回以上解いたストーリー）
+          const attemptedCount = list.filter(s => results.some(r => r.storyId === s.id)).length
           return (
             <section key={label} className="mb-3">
               {/* セクションヘッダー（タップで開閉） */}
@@ -98,7 +98,7 @@ export function HomePage() {
                 </span>
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-gray-400">
-                    {unlockedCount}/{list.length}もん
+                    {attemptedCount}/{list.length}もん
                   </span>
                   <span className="text-gray-400 text-sm">
                     {isOpen ? '▲' : '▼'}
