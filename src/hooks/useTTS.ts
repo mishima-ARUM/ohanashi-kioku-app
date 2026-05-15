@@ -50,6 +50,15 @@ export function useTTS({ rate: initialRate = 1.0, lang = 'ja-JP', pauseMs = 500 
 
   useEffect(() => () => { window.speechSynthesis.cancel() }, [])
 
+  // iOS Safari では一定時間 speak() が呼ばれないと合成エンジンがスリープし
+  // 次の speak() 呼び出しを無視する。resume() を定期実行して起こし続ける。
+  useEffect(() => {
+    const id = setInterval(() => {
+      window.speechSynthesis.resume()
+    }, 5000)
+    return () => clearInterval(id)
+  }, [])
+
   const speak = useCallback((text: string, onDone?: () => void) => {
     window.speechSynthesis.cancel()
     speakIdRef.current += 1
