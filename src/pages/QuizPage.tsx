@@ -45,22 +45,6 @@ export function QuizPage() {
     navigate(`/result/${id}`)
   }, [addResult, id, navigate])
 
-  const advanceAfterAnswer = useCallback((newAnswers: Answer[]) => {
-    setPhase('timeout')
-    speak('やめ', () => {
-      setTimeout(() => {
-        const next = qIdxRef.current + 1
-        if (next >= (story?.questions.length ?? 0)) {
-          finishQuiz(newAnswers)
-        } else {
-          qIdxRef.current = next
-          setQIdx(next)
-          startQuestionRef.current(next)
-        }
-      }, 1000)
-    })
-  }, [story?.questions?.length, speak, finishQuiz])
-
   const recordAnswer = useCallback((selections: MarkerSelection[]) => {
     const q = (story?.questions ?? [])[qIdxRef.current]
     const taskResults = scoreAnswer(q.tasks, selections)
@@ -81,8 +65,20 @@ export function QuizPage() {
   const handleTimeout = useCallback(() => {
     const currentConfirmed = panelRef.current?.getConfirmed() ?? []
     const newAnswers = recordAnswer(currentConfirmed)
-    advanceAfterAnswer(newAnswers)
-  }, [recordAnswer, advanceAfterAnswer])
+    setPhase('timeout')
+    speak('やめ！', () => {
+      setTimeout(() => {
+        const next = qIdxRef.current + 1
+        if (next >= (story?.questions.length ?? 0)) {
+          finishQuiz(newAnswers)
+        } else {
+          qIdxRef.current = next
+          setQIdx(next)
+          startQuestionRef.current(next)
+        }
+      }, 1000)
+    })
+  }, [recordAnswer, speak, finishQuiz, story?.questions?.length])
 
   // keep ref so useQuizTimer always calls latest version
   const handleTimeoutRef = useRef(handleTimeout)
