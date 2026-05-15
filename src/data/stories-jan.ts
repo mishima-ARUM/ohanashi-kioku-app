@@ -3,7 +3,7 @@ import type { Story } from '../types'
 
 export const storiesJan: Story[] = [
   {
-    id: 'story-077', title: 'ハルのがんたん', difficulty: 1, estimatedMinutes: 2, icon: '🎍',
+    id: 'story-077', title: 'ハルのがんたん', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-01', icon: '🎍',
     story: 'いちがつついたちのあさ、ハルはおかあさんとはやおきをしました。まどのそとにはしろいゆきがつもっていました。ハルはあかいきものをきて、おじいちゃんのおうちへいきました。おじいちゃんは「あけましておめでとう」とにっこりわらって、きいろいふくろにおとしだまをいれてくれました。ハルはとてもうれしくなりました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ハルがきたきものはなにいろでしたか？',
@@ -27,7 +27,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-078', title: 'ユウのおしょうがつ', difficulty: 1, estimatedMinutes: 2, icon: '🎏',
+    id: 'story-078', title: 'ユウのおしょうがつ', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-02', icon: '🎏',
     story: 'おしょうがつのあさ、ユウはおとうさんとおかあさんといっしょにおぞうにをたべました。おぞうにのおわんはしろくて、なかにみっつのおもちがはいっていました。おかあさんが「ことしもげんきにすごそうね」とほほえみました。ユウは「うん！」とへんじをして、おもちをひとつたべました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'おぞうにのおわんはなにいろでしたか？',
@@ -51,7 +51,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-079', title: 'ナナのはつひので', difficulty: 1, estimatedMinutes: 2, icon: '🌅',
+    id: 'story-079', title: 'ナナのはつひので', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-03', icon: '🌅',
     story: 'いちがつついたちのあさ、ナナはおとうさんとちかくのやまへはつひのでをみにいきました。そらがだんだんあかくなって、おおきなおひさまがのぼってきました。ナナは「すごくきれい！」とこえをあげました。おとうさんは「ことしもいいとしになるといいね」といいました。ふたりはあおいそらをながめながらかえりました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ナナとおとうさんはどこへいきましたか？',
@@ -75,7 +75,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-080', title: 'ケンのはつもうで', difficulty: 1, estimatedMinutes: 2, icon: '⛩️',
+    id: 'story-080', title: 'ケンのはつもうで', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-04', icon: '⛩️',
     story: 'おしょうがつに、ケンはかぞくとじんじゃへはつもうでにいきました。じんじゃのまえにはながいながいれつができていました。ケンはあかいてぶくろをして、おかあさんのてをぎゅっとにぎりました。やっとおまいりができると、ケンは「げんきでいられますように」とおねがいをしました。かえりに、みせでちいさなえまをひとつかいました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ケンのてぶくろはなにいろでしたか？',
@@ -99,7 +99,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-081', title: 'アオイとおみくじ', difficulty: 1, estimatedMinutes: 2, icon: '📜',
+    id: 'story-081', title: 'アオイとおみくじ', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-05', icon: '📜',
     story: 'はつもうでのひ、アオイはおかあさんとじんじゃへいきました。おまいりのあとで、アオイははじめておみくじをひきました。おみくじのかみはしろくて、ながいかたちをしていました。「だいきち」とかいてありました。おかあさんが「よかったね、いいことがありそうだよ」とほほえみました。アオイはにっこりしてかみをきにむすびました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'おみくじのかみはなにいろでしたか？',
@@ -123,7 +123,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-082', title: 'ソウのはつもうで', difficulty: 1, estimatedMinutes: 2, icon: '🎋',
+    id: 'story-082', title: 'ソウのはつもうで', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-06', icon: '🎋',
     story: 'ソウはおとうさんとおにいさんとさんにんではつもうでにいきました。じんじゃのかいだんはとてもながくて、ソウはかぞえながらのぼりました。かいだんはぜんぶでにじゅうごだんありました。おまいりのあとで、おとうさんがあまいおしるこをかってくれました。しろいおもちがはいっていて、とてもおいしかったです。',
     questions: [
       { id: 'q1', type: 'marker', text: 'はつもうでにいったのはなんにんですか？',
@@ -147,7 +147,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-083', title: 'リクのおせちりょうり', difficulty: 1, estimatedMinutes: 2, icon: '🍱',
+    id: 'story-083', title: 'リクのおせちりょうり', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-07', icon: '🍱',
     story: 'おしょうがつのあさごはんは、おせちりょうりでした。おせちのおはこはきいろくて、なかにいろいろなりょうりがならんでいました。リクはくろいこんぶまきがすきで、みっつたべました。おかあさんは「こんぶはよろこぶのいみがあるんだよ」とおしえてくれました。リクはそれをきいてもっとすきになりました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'おせちのおはこはなにいろでしたか？',
@@ -171,7 +171,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-084', title: 'サラのおぞうに', difficulty: 1, estimatedMinutes: 2, icon: '🍲',
+    id: 'story-084', title: 'サラのおぞうに', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-08', icon: '🍲',
     story: 'おしょうがつのあさ、サラはおかあさんといっしょにおぞうにをつくりました。おなべにみずをいれて、にんじんとほうれんそうとおもちをいれました。にんじんはオレンジいろで、ほうれんそうはみどりいろでした。できあがったおぞうにをかぞくよにんでたべました。「おいしいね」とみんなわらっていいました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'にんじんはなにいろでしたか？',
@@ -195,7 +195,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-085', title: 'モモのおせちとおとしだま', difficulty: 1, estimatedMinutes: 2, icon: '💴',
+    id: 'story-085', title: 'モモのおせちとおとしだま', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-09', icon: '💴',
     story: 'おしょうがつのあさ、モモはおじいちゃんとおばあちゃんのおうちにいきました。おじいちゃんがあかいぽちぶくろにおとしだまをいれてくれました。モモはうれしくて「ありがとうございます」とていねいにおれいをいいました。テーブルのうえにはおせちがならんでいて、モモはきいろいくりきんとんをふたつたべました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ぽちぶくろはなにいろでしたか？',
@@ -219,7 +219,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-086', title: 'ダイのたこあげ', difficulty: 1, estimatedMinutes: 2, icon: '🪁',
+    id: 'story-086', title: 'ダイのたこあげ', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-10', icon: '🪁',
     story: 'おしょうがつのおやすみに、ダイはおとうさんとこうえんでたこあげをしました。ダイのたこはあかとしろのもようで、かぜにのってたかくあがりました。「もっとたかく！」とダイはよろこびました。おとうさんのたこはあおくて、ダイのたこよりもっとたかくあがりました。ふたりはながいあいだたこあげをたのしみました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ダイのたこはどんないろでしたか？',
@@ -243,7 +243,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-087', title: 'コトのたこあげ', difficulty: 1, estimatedMinutes: 2, icon: '🪁',
+    id: 'story-087', title: 'コトのたこあげ', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-11', icon: '🪁',
     story: 'コトはおにいさんといっしょにみどりいろのたこをつくりました。たこにはむらさきのほしのもようをえがきました。こうえんへもっていって、かぜにのせてとばすと、たこはゆらゆらとそらにあがりました。コトは「やったあ！」とよろこびました。たこのひもはながくて、てのなかでぴんとはってきもちよかったです。',
     questions: [
       { id: 'q1', type: 'marker', text: 'たこはなにいろでしたか？',
@@ -267,7 +267,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-088', title: 'ミクとかぜのたこ', difficulty: 1, estimatedMinutes: 2, icon: '🌬️',
+    id: 'story-088', title: 'ミクとかぜのたこ', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-12', icon: '🌬️',
     story: 'ミクはおかあさんといっしょにたこあげにいきました。かぜがつよいひで、ミクのきいろいたこはあっというまにたかくあがりました。となりでおとこのこがあかいたこをあげていました。たこのひもはぜんぶでごほんありました。ミクは「もっとあげたい！」といって、いっぽんずつつなぎました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ミクのたこはなにいろでしたか？',
@@ -291,7 +291,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-089', title: 'レンのはねつき', difficulty: 1, estimatedMinutes: 2, icon: '🏸',
+    id: 'story-089', title: 'レンのはねつき', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-13', icon: '🏸',
     story: 'おしょうがつに、レンはおねえさんとはねつきをしました。はねつきのはねはしろくてちいさく、かるいです。レンははねをみっつうちましたが、よっつめはそとにでてしまいました。まけたひとはかおにすみでてんてんをかいてもらいます。レンのかおにはてんてんがふたつつきました。おねえさんはわらって「もういちどやろう！」といいました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'はねつきのはねはなにいろでしたか？',
@@ -315,7 +315,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-090', title: 'フウのこまあそび', difficulty: 1, estimatedMinutes: 2, icon: '🌀',
+    id: 'story-090', title: 'フウのこまあそび', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-14', icon: '🌀',
     story: 'フウはおじいちゃんにこまのまわしかたをおそわりました。こまはあかとあおのもようで、くるくるときれいにまわります。はじめはうまくまわせませんでしたが、なんどもれんしゅうして、さいごにはじょうずにまわせるようになりました。おじいちゃんが「やったね、じょうずになったよ」とほめてくれました。フウはとてもうれしかったです。',
     questions: [
       { id: 'q1', type: 'marker', text: 'こまはなにいろのもようでしたか？',
@@ -339,7 +339,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-091', title: 'ハルのななくさがゆ', difficulty: 1, estimatedMinutes: 2, icon: '🌿',
+    id: 'story-091', title: 'ハルのななくさがゆ', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-15', icon: '🌿',
     story: 'いちがつなのかのあさ、ハルはおかあさんとななくさがゆをつくりました。ななくさにはせりやなずな、おぎょうなどがあります。おかあさんが「ななくさをたべるとかぜをひかないんだよ」とおしえてくれました。できあがったおかゆはみどりいろのくさがはいっていて、やさしいあじがしました。ハルはおちゃわんいっぱいたべました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ななくさがゆをたべるのはいつですか？',
@@ -363,7 +363,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-092', title: 'ユウのななくさ', difficulty: 1, estimatedMinutes: 2, icon: '🌱',
+    id: 'story-092', title: 'ユウのななくさ', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-16', icon: '🌱',
     story: 'ユウのおうちでは、いちがつなのかにかならずななくさがゆをたべます。ことしはユウがおてつだいをしました。みどりいろのくさをなないろみじかくきりました。おとうさんが「むかしからのならわしだよ」とおしえてくれました。できたおかゆはやわらかくて、ユウはふたはいおかわりをしました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ユウはなにをしましたか？',
@@ -387,7 +387,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-093', title: 'ナナのかがみもち', difficulty: 1, estimatedMinutes: 2, icon: '🎑',
+    id: 'story-093', title: 'ナナのかがみもち', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-17', icon: '🎑',
     story: 'ナナのおうちのげんかんには、しろいかがみもちがかざってあります。おおきなおもちのうえにちいさなおもちがのっていて、いちばんうえにはみかんがひとつのっています。ナナは「かがみもちはなんでふたつかさなってるの？」とおかあさんにきくと、「げつとにちをあらわすんだよ」とおしえてくれました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'かがみもちはどこにかざってありましたか？',
@@ -411,7 +411,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-094', title: 'ケンのかがみびらき', difficulty: 1, estimatedMinutes: 2, icon: '🫕',
+    id: 'story-094', title: 'ケンのかがみびらき', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-18', icon: '🫕',
     story: 'いちがつじゅうごにち、ケンはおかあさんといっしょにかがみびらきをしました。かがみもちをわって、おしるこにいれてたべます。おもちはかたくなっていたので、おとうさんがきねでたたいてわりました。できたおしるこはあまくてあたたかくて、ケンはおちゃわんをふたつたべました。おなかがいっぱいになってとてもしあわせでした。',
     questions: [
       { id: 'q1', type: 'marker', text: 'かがみびらきはなんがつなんにちですか？',
@@ -435,7 +435,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-095', title: 'アオイのはつゆめ', difficulty: 1, estimatedMinutes: 2, icon: '💭',
+    id: 'story-095', title: 'アオイのはつゆめ', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-19', icon: '💭',
     story: 'おしょうがつのよる、アオイはふじさんのゆめをみました。おおきなやまのうえにはしろいゆきがつもっていて、そらはあおくてきれいでした。ゆめのなかでアオイはやまをのぼって、いちばんうえからとおくまでみわたしました。あさおきてからおかあさんに「ふじさんのゆめをみたよ！」とはなすと、おかあさんは「それはいいはつゆめだね」とよろこんでくれました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'アオイはなんのゆめをみましたか？',
@@ -459,7 +459,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-096', title: 'ソウのはつゆめ', difficulty: 1, estimatedMinutes: 2, icon: '🦅',
+    id: 'story-096', title: 'ソウのはつゆめ', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-20', icon: '🦅',
     story: 'ソウはおしょうがつのよる、たかのゆめをみました。おおきなたかがそらをとびながら、しろいさかなをつかまえていました。たかのはねはちゃいろくて、おおきくてりっぱでした。ゆめからさめたあと、ソウはおとうさんに「たかのゆめをみた！」とはなしました。おとうさんは「いちふじにたかは、えんぎのいいゆめだよ」とおしえてくれました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ソウがみたゆめにでてきたとりはなんですか？',
@@ -483,7 +483,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-097', title: 'リクのどんどやき', difficulty: 1, estimatedMinutes: 2, icon: '🔥',
+    id: 'story-097', title: 'リクのどんどやき', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-21', icon: '🔥',
     story: 'いちがつのなかごろ、リクはおとうさんとちかくのこうえんのどんどやきにいきました。おしょうがつのかざりやとしがみをたいまつでもやす、おまつりです。たかくあがるほのおはあかくてあたたかかったです。リクはかきもちをみっつさして、おひのなかであぶりました。こんがりやけてとてもおいしかったです。',
     questions: [
       { id: 'q1', type: 'marker', text: 'どんどやきにいったのはだれとだれですか？',
@@ -507,7 +507,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-098', title: 'サラのどんどやき', difficulty: 1, estimatedMinutes: 2, icon: '🎍',
+    id: 'story-098', title: 'サラのどんどやき', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-22', icon: '🎍',
     story: 'サラはおかあさんとおねえさんのさんにんでどんどやきにいきました。おしょうがつにかざったかどまつやしめなわをもっていきました。やくにたつひとは「もやすものをいれてください」といって、サラたちのかざりをうけとってくれました。さいごにおねえさんがかわいいだるまのえまをかいてひにいれました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'どんどやきにいったのはなんにんですか？',
@@ -531,7 +531,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-099', title: 'モモのゆきだるま', difficulty: 1, estimatedMinutes: 2, icon: '⛄',
+    id: 'story-099', title: 'モモのゆきだるま', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-23', icon: '⛄',
     story: 'おおゆきのあさ、モモはおにわでゆきだるまをつくりました。まずおおきなゆきのたまをつくって、そのうえにちいさなたまをのせました。かおはくろいいしでめをふたつ、にんじんではなをひとつつけました。あたまにはみどりのバケツをのせました。できあがったゆきだるまをみて、モモは「かわいい！」とよろこびました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ゆきだるまのめはなにでつけましたか？',
@@ -555,7 +555,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-100', title: 'ダイのゆきがっせん', difficulty: 1, estimatedMinutes: 2, icon: '❄️',
+    id: 'story-100', title: 'ダイのゆきがっせん', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-24', icon: '❄️',
     story: 'ゆきがつもったにわで、ダイはともだちのレンとゆきがっせんをしました。ダイはあかいてぶくろをして、レンはしろいてぶくろをしていました。ふたりはじゅっこずつゆきだまをつくって、なげあいました。ダイはよっつあてて、レンはみっつあてました。さいごにおかあさんが「おちゃをわかしたよ」とよんで、ふたりはおうちにはいりました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ダイのてぶくろはなにいろでしたか？',
@@ -579,7 +579,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-101', title: 'コトのゆきあそび', difficulty: 1, estimatedMinutes: 2, icon: '🌨️',
+    id: 'story-101', title: 'コトのゆきあそび', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-25', icon: '🌨️',
     story: 'ゆきのひ、コトはおにいさんとそとであそびました。ふたりはゆきでかまくらをつくりました。かまくらのなかはひろくて、ふたりがすわれるくらいありました。おかあさんがあたたかいホットチョコレートをもってきてくれました。かまくらのなかでのんだホットチョコレートはとくべつにおいしくかんじました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'コトとおにいさんはなにをつくりましたか？',
@@ -603,7 +603,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-102', title: 'ミクのせつぶんのまめ', difficulty: 1, estimatedMinutes: 2, icon: '🫘',
+    id: 'story-102', title: 'ミクのせつぶんのまめ', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-26', icon: '🫘',
     story: 'もうすぐせつぶんです。ミクはおかあさんといっしょに、いりだいずをかいにおみせへいきました。おみせにはだいずがいろいろならんでいました。ミクはちいさなふくろにはいったまめをみっぱいかいました。おうちにかえって、おかあさんがおにのおめんをつくってくれました。おめんはあかくてこわいかおをしていました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ミクはまめをなんぱいかいましたか？',
@@ -627,7 +627,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-103', title: 'レンのおにのおめん', difficulty: 1, estimatedMinutes: 2, icon: '👹',
+    id: 'story-103', title: 'レンのおにのおめん', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-27', icon: '👹',
     story: 'せつぶんのまえのひ、レンはようちえんでおにのおめんをつくりました。あかいかみでかおをつくって、あおいいろのつのをふたつはりました。くちはおおきくひろげてかきました。いえにかえってからおとうさんにみせると、おとうさんは「こわいおにだね！」とびっくりしました。レンはじまんでうれしかったです。',
     questions: [
       { id: 'q1', type: 'marker', text: 'おにのかおはなにいろのかみでつくりましたか？',
@@ -651,7 +651,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-104', title: 'フウのふゆのほし', difficulty: 1, estimatedMinutes: 2, icon: '⭐',
+    id: 'story-104', title: 'フウのふゆのほし', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-28', icon: '⭐',
     story: 'ふゆのよる、フウはおとうさんとにわでほしぞらをみました。そらにはたくさんのほしがきらきらかがやいていました。おとうさんが「あのおおきなほしはきたほしというんだよ」とおしえてくれました。フウはゆびでほしをかぞえてみると、みえるほしはとてもおおくて、かぞえきれませんでした。',
     questions: [
       { id: 'q1', type: 'marker', text: 'フウはどこでほしをみましたか？',
@@ -675,7 +675,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-105', title: 'ハルのふゆのいきもの', difficulty: 1, estimatedMinutes: 2, icon: '🐦',
+    id: 'story-105', title: 'ハルのふゆのいきもの', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-29', icon: '🐦',
     story: 'さむいふゆのあさ、ハルはにわのきにことりがとまっているのをみつけました。ちいさなことりはあたまがくろくて、おなかはしろかったです。「つめたくないのかな」とハルはおもいました。おかあさんが「ことりにえさをあげようよ」といって、パンくずをさらにのせてにわにおきました。するとことりがおりてきてたべました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'ことりのあたまはなにいろでしたか？',
@@ -699,7 +699,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-106', title: 'ユウのかるた', difficulty: 1, estimatedMinutes: 2, icon: '🃏',
+    id: 'story-106', title: 'ユウのかるた', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-30', icon: '🃏',
     story: 'おしょうがつのあそびに、ユウはかぞくでかるたをしました。さんかしたのはユウ、おかあさん、おねえさん、おじいちゃんのよにんです。よみてはおばあちゃんがやってくれました。ユウはいちばんおおくとって、じゅうにまいになりました。おじいちゃんは「ゆうくんはやいね」とほめてくれました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'かるたのよみてはだれでしたか？',
@@ -723,7 +723,7 @@ export const storiesJan: Story[] = [
     ],
   },
   {
-    id: 'story-107', title: 'ナナのすごろく', difficulty: 1, estimatedMinutes: 2, icon: '🎲',
+    id: 'story-107', title: 'ナナのすごろく', difficulty: 1, estimatedMinutes: 2, releaseDate: '01-31', icon: '🎲',
     story: 'おしょうがつのごご、ナナはかぞくですごろくをしました。さんかしたのはナナ、おとうさん、おかあさん、おにいさんのよにんです。さいころをふってこまをすすめます。ナナはさいしょにふって、ろのめがでてろますすすみました。おにいさんは「ふりなおし」のますにとまってざんねんそうでした。さいごにナナがいちばんにゴールしました。',
     questions: [
       { id: 'q1', type: 'marker', text: 'すごろくにさんかしたのはなんにんですか？',

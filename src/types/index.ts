@@ -48,6 +48,7 @@ export interface Story {
   title: string
   difficulty: 1 | 2 | 3
   estimatedMinutes: number
+  releaseDate?: string  // 'MM-DD' 形式 例: '11-01'
   icon: string
   story: string
   questions: Question[]
