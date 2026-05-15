@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom'
 import { getCategoryStats, getWeakCategories } from '../utils/analytics'
 import type { QuizResult, Story } from '../types'
 
@@ -8,8 +7,7 @@ interface Props {
 }
 
 export function WeakCategoryCard({ results, stories }: Props) {
-  const navigate = useNavigate()
-  const stats    = getCategoryStats(results, stories)
+  const stats = getCategoryStats(results, stories)
   const weak     = getWeakCategories(stats, 5)
 
   if (weak.length === 0) {
@@ -53,13 +51,6 @@ export function WeakCategoryCard({ results, stories }: Props) {
           )
         })}
       </div>
-      {/* 練習するボタン（Phase 1 は HomePage へ遷移のみ） */}
-      <button
-        onClick={() => navigate('/')}
-        className="mt-4 w-full py-2 rounded-2xl bg-purple-100 text-purple-700 text-sm font-bold hover:bg-purple-200 transition-colors"
-      >
-        この もんだいを れんしゅうする →
-      </button>
     </div>
   )
 }

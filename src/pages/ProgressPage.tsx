@@ -68,29 +68,34 @@ export function ProgressPage() {
         {/* ④ 月別進捗バー */}
         <MonthlyProgress results={results} months={MONTHS} />
 
-        {/* ⑤ 問題別スコア一覧（既存） */}
-        <div className="bg-white rounded-3xl p-5 shadow-sm">
-          <h2 className="text-sm font-bold text-gray-600 mb-3">もんだい別さいこうスコア</h2>
-          {ALL_STORIES.map(s => {
-            const rs   = results.filter(r => r.storyId === s.id)
-            const best = rs.length > 0 ? Math.max(...rs.map(r => r.score)) : null
-            const bestTotal = rs.length > 0
-              ? (rs.find(r => r.score === best)?.total ?? s.questions.length)
-              : s.questions.length
-            return (
-              <div
-                key={s.id}
-                className="flex items-center gap-2 py-2 border-b border-gray-100 last:border-0"
-              >
-                <span className="text-xl">{s.icon}</span>
-                <span className="flex-1 text-sm text-gray-700">{s.title}</span>
-                <span className="text-sm font-bold text-purple-600">
-                  {best !== null ? `${best}/${bestTotal}` : '—'}
-                </span>
-              </div>
-            )
-          })}
-        </div>
+        {/* ⑤ 問題別スコア一覧（解いた問題のみ） */}
+        {results.length > 0 && (() => {
+          const attemptedStories = ALL_STORIES.filter(s =>
+            results.some(r => r.storyId === s.id)
+          )
+          return (
+            <div className="bg-white rounded-3xl p-5 shadow-sm">
+              <h2 className="text-sm font-bold text-gray-600 mb-3">もんだい別さいこうスコア</h2>
+              {attemptedStories.map(s => {
+                const rs   = results.filter(r => r.storyId === s.id)
+                const best = Math.max(...rs.map(r => r.score))
+                const bestTotal = rs.find(r => r.score === best)?.total ?? s.questions.length
+                return (
+                  <div
+                    key={s.id}
+                    className="flex items-center gap-2 py-2 border-b border-gray-100 last:border-0"
+                  >
+                    <span className="text-xl">{s.icon}</span>
+                    <span className="flex-1 text-sm text-gray-700">{s.title}</span>
+                    <span className="text-sm font-bold text-purple-600">
+                      {best}/{bestTotal}
+                    </span>
+                  </div>
+                )
+              })}
+            </div>
+          )
+        })()}
       </div>
     </div>
   )
