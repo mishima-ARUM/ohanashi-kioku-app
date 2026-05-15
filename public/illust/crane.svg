@@ -1,0 +1,23 @@
+<svg viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <!-- 胴体 -->
+  <ellipse cx="38" cy="44" rx="16" ry="10" fill="#fff" stroke="#555" stroke-width="1.5"/>
+  <!-- 羽 -->
+  <ellipse cx="48" cy="42" rx="10" ry="6" fill="#f0f0f0" stroke="#555" stroke-width="1"/>
+  <ellipse cx="28" cy="42" rx="8" ry="5" fill="#f0f0f0" stroke="#555" stroke-width="1"/>
+  <!-- 首 -->
+  <path d="M30 40 Q26 30 30 20" stroke="#555" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- 頭 -->
+  <circle cx="31" cy="17" r="5" fill="#fff" stroke="#555" stroke-width="1.5"/>
+  <!-- 赤い頭飾り -->
+  <ellipse cx="31" cy="13" rx="3.5" ry="2.5" fill="#e53935"/>
+  <!-- くちばし -->
+  <path d="M34 16 L42 14" stroke="#FF8F00" stroke-width="2" stroke-linecap="round"/>
+  <!-- 脚 -->
+  <line x1="34" y1="54" x2="30" y2="65" stroke="#FF8F00" stroke-width="2.5"/>
+  <line x1="42" y1="54" x2="46" y2="65" stroke="#FF8F00" stroke-width="2.5"/>
+  <!-- 足 -->
+  <path d="M27 65 L30 65 L30 68" stroke="#FF8F00" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M43 65 L46 65 L46 68" stroke="#FF8F00" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- 黒い尾羽 -->
+  <path d="M52 46 Q60 50 56 56" stroke="#333" stroke-width="2" fill="none"/>
+</svg>
