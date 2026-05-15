@@ -27,7 +27,10 @@ function selectBestVoice(lang: string): SpeechSynthesisVoice | null {
 }
 
 function splitBySentence(text: string): string[] {
-  return text.split(/(?<=[。、！？\n])/).filter(s => s.trim().length > 0)
+  return text
+    .split(/(?<=[。、！？\n])/)
+    .map(s => s.replace(/[。！？]+$/, '').trim())  // 末尾の句読点を削除（TTS が「まる」と読むのを防ぐ）
+    .filter(s => s.length > 0)
 }
 
 export function useTTS({ rate: initialRate = 1.0, lang = 'ja-JP', pauseMs = 500 }: UseTTSOptions = {}): UseTTSReturn {
