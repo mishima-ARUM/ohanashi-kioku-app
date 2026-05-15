@@ -34,3 +34,19 @@ export async function loadResultsFromFirestore(): Promise<QuizResult[]> {
     return rest as QuizResult
   })
 }
+
+// ─── 全ユーザー集計（偏差値計算用） ───────────────────────────
+
+/** 全ユーザーの正答率を globalScores コレクションに保存（匿名・個人情報なし） */
+export async function saveGlobalScore(accuracy: number): Promise<void> {
+  await addDoc(collection(db, 'globalScores'), {
+    accuracy,           // 0〜1 の正答率
+    savedAt: serverTimestamp(),
+  })
+}
+
+/** 全ユーザーの正答率一覧を取得（偏差値計算に使用） */
+export async function loadGlobalAccuracies(): Promise<number[]> {
+  const snap = await getDocs(collection(db, 'globalScores'))
+  return snap.docs.map(d => d.data().accuracy as number)
+}

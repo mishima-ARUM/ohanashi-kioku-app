@@ -65,6 +65,28 @@ export function computeDeviation(accuracy: number): number {
 }
 
 /**
+ * 全ユーザーの正答率データを使った本物の偏差値計算。
+ * 偏差値 = 50 + 10 × (自分の正答率 - 全体平均) / 標準偏差
+ * データが2件未満の場合は従来の簡易計算にフォールバック。
+ */
+export function computeDeviationFromGlobal(
+  userAccuracy: number,
+  allAccuracies: number[],
+): number {
+  if (allAccuracies.length < 2) {
+    return computeDeviation(userAccuracy)
+  }
+  const mean = allAccuracies.reduce((a, b) => a + b, 0) / allAccuracies.length
+  const variance =
+    allAccuracies.reduce((a, b) => a + (b - mean) ** 2, 0) / allAccuracies.length
+  const std = Math.sqrt(variance)
+  if (std === 0) return 50
+  const raw = 50 + 10 * (userAccuracy - mean) / std
+  // 10〜90 の範囲にクランプ
+  return Math.round(Math.max(10, Math.min(90, raw)))
+}
+
+/**
  * 直近 5 回の偏差値平均 - その前 5 回の偏差値平均を返す。
  * 10 件未満の場合は 0 を返す。
  */

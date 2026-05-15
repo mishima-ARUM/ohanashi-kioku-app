@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
 import { useProgress } from '../hooks/useProgress'
+import { loadGlobalAccuracies } from '../lib/firestoreDb'
 import { stories } from '../data/stories'
 import { storiesNov } from '../data/stories-nov'
 import { storiesDec } from '../data/stories-dec'
@@ -44,6 +46,13 @@ export function ProgressPage() {
   const navigate = useNavigate()
   const { data } = useProgress()
   const results = data.results
+  const [globalAccuracies, setGlobalAccuracies] = useState<number[]>([])
+
+  useEffect(() => {
+    loadGlobalAccuracies()
+      .then(setGlobalAccuracies)
+      .catch(err => console.warn('Global accuracies load failed:', err))
+  }, [])
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-yellow-50 to-pink-50 p-4">
@@ -57,7 +66,7 @@ export function ProgressPage() {
         <h1 className="text-xl font-bold text-purple-700 mb-4">📊 きろく・ぶんせき</h1>
 
         {/* ① 偏差値カード */}
-        <DeviationCard results={results} stories={ALL_STORIES} />
+        <DeviationCard results={results} stories={ALL_STORIES} globalAccuracies={globalAccuracies} />
 
         {/* ② 苦手カテゴリ TOP3 */}
         <WeakCategoryCard results={results} stories={ALL_STORIES} />

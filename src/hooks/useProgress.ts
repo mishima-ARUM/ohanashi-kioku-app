@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 import { loadProgress, saveResult } from '../utils/storage'
-import { saveResultToFirestore, loadResultsFromFirestore } from '../lib/firestoreDb'
+import { saveResultToFirestore, loadResultsFromFirestore, saveGlobalScore } from '../lib/firestoreDb'
 import type { ProgressData, QuizResult } from '../types'
 
 export function useProgress() {
@@ -26,9 +26,13 @@ export function useProgress() {
     saveResult(result)
     setData(loadProgress())
 
-    // Firestore にも非同期で保存
+    // Firestore にも非同期で保存（個人記録 + 全体集計）
+    const accuracy = result.total > 0 ? result.score / result.total : 0
     saveResultToFirestore(result).catch(err => {
       console.warn('Firestore save failed:', err)
+    })
+    saveGlobalScore(accuracy).catch(err => {
+      console.warn('Global score save failed:', err)
     })
   }, [])
 
