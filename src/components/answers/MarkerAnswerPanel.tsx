@@ -82,7 +82,7 @@ export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
                 {o.imageUrl
                   ? (
                     <img
-                      src={`${import.meta.env.BASE_URL}${o.imageUrl.replace(/^\//, '')}`}
+                      src={o.imageUrl}
                       alt={o.label}
                       className="w-16 h-16 object-contain"
                       loading="lazy"
