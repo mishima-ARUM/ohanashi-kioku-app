@@ -73,13 +73,26 @@ export const MarkerAnswerPanel = forwardRef<MarkerAnswerPanelHandle, Props>(
                 key={o.id}
                 onClick={() => handleOptClick(o.id)}
                 disabled={disabled}
-                className={`flex flex-col items-center gap-1 p-3 rounded-xl border-2 transition-all
+                className={`flex flex-col items-center gap-1 p-2 rounded-xl border-2 transition-all
                   ${pendingOpt === o.id
                     ? 'border-purple-500 bg-purple-50 text-purple-700'
                     : 'border-gray-200 bg-white text-gray-700 hover:border-purple-300'}
                   ${disabled ? 'cursor-not-allowed opacity-60' : 'cursor-pointer active:scale-95'}`}
               >
-                {o.emoji && <span className="text-2xl">{o.emoji}</span>}
+                {o.imageUrl
+                  ? (
+                    <img
+                      src={o.imageUrl}
+                      alt={o.label}
+                      className="w-16 h-16 object-contain"
+                      loading="lazy"
+                    />
+                  )
+                  : o.emoji
+                    ? <span className="text-3xl leading-none">{o.emoji}</span>
+                    : null
+                }
+                <span className="text-xs text-gray-600 font-medium leading-tight text-center">{o.label}</span>
               </button>
             ))}
           </div>

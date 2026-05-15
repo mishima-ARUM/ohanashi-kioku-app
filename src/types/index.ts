@@ -19,6 +19,7 @@ export interface Option {
   id: string
   label: string
   emoji?: string
+  imageUrl?: string  // フリー素材イラスト URL（あるときは emoji より優先表示）
 }
 
 // 問題のカテゴリ分類（9種類）
