@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import type { LineProfile } from '../lib/liff'
 import { stories } from '../data/stories'
 import { storiesNov } from '../data/stories-nov'
 import { storiesDec } from '../data/stories-dec'
@@ -36,7 +37,11 @@ function getCurrentMonthLabel(): string {
   return found?.label ?? MONTHS[0].label
 }
 
-export function HomePage() {
+interface Props {
+  lineProfile?: LineProfile | null
+}
+
+export function HomePage({ lineProfile }: Props) {
   const { getStoryBestScore, data } = useProgress()
   const navigate = useNavigate()
   const results = data.results
@@ -59,7 +64,20 @@ export function HomePage() {
         <header className="text-center py-6">
           <div className="text-5xl mb-2">📖</div>
           <h1 className="text-2xl font-bold text-purple-700">おはなしきおく</h1>
-          <p className="text-sm text-gray-500">もんだいをえらんでね</p>
+          {lineProfile ? (
+            <div className="flex items-center justify-center gap-2 mt-2">
+              {lineProfile.pictureUrl && (
+                <img
+                  src={lineProfile.pictureUrl}
+                  alt={lineProfile.displayName}
+                  className="w-7 h-7 rounded-full"
+                />
+              )}
+              <p className="text-sm text-gray-600 font-bold">{lineProfile.displayName} さん</p>
+            </div>
+          ) : (
+            <p className="text-sm text-gray-500">もんだいをえらんでね</p>
+          )}
         </header>
 
         <button

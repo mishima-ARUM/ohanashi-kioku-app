@@ -7,13 +7,12 @@ import {
   serverTimestamp,
 } from 'firebase/firestore'
 import { db } from './firebase'
-import { getDeviceId } from './deviceId'
+import { getUserId } from './userId'
 import type { QuizResult } from '../types'
 
-/** ユーザーのサブコレクション参照を返す */
+/** ユーザーのサブコレクション参照を返す（LINE ID 優先、なければデバイスID） */
 function resultsRef() {
-  const deviceId = getDeviceId()
-  return collection(db, 'users', deviceId, 'results')
+  return collection(db, 'users', getUserId(), 'results')
 }
 
 /** Firestore に結果を保存 */
